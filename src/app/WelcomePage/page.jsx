@@ -14,7 +14,7 @@ function WelcomePage() {
         <Container>
             <NavBar />
             {/* === Welcome User, Profile === */}
-            <div className='flex-grow bg-[#1d1d30]'>
+            <div className='flex-grow bg-[#191925]'>
                 <h1 className=" my-8  mx-4 text-white text-3xl font-medium text-center animate-floating ">Welcome, ..UserName..</h1>
                 <div className='bg-white w-fit mx-auto shadow-xl mb-10 p-4 px-8 rounded-xl'>
                     <div className='flex justify-center'>
@@ -34,7 +34,7 @@ function WelcomePage() {
                 <div className='container bg-white mx-auto shadow-xl my-10 px-10 py-7 rounded-xl'>
                     <div className="my-5">
                         <Link className='mr-2 px-3 py-2 font-semibold bg-[#226922] text-white rounded-lg hover:bg-[#79b479] hover:text-[#ffffff] transition shadow-lg hover:shadow-[0_0_10px_rgba(33, 116, 33, 1)]' 
-                        href="/createContent">Create Content</Link>
+                        href="/create">Create Content</Link>
                     </div>
                     {/* === User Content Data API GET === */}
                     <div>
@@ -51,7 +51,7 @@ function WelcomePage() {
                                     </div>  
                                     <div className='mt-5 '>
                                         <Link className='mr-2 px-3 py-1 border-[2px] font-semibold border-blue-500 text-blue-500 rounded-lg hover:bg-blue-500 hover:text-white transition shadow-lg hover:shadow-[0_0_10px_rgba(59,130,246,0.8)]' 
-                                            href={`/editContent`}>Edit Content</Link>
+                                            href={`/edit`}>Edit Content</Link>
                                         <Link className='mr-2 px-3 py-1 border-[2px] font-semibold border-[#b32b2b] text-[#b32b2b] rounded-lg hover:bg-[#b32b2b] hover:text-white transition shadow-lg hover:shadow-[0_0_10px_rgbargba(179, 43, 43, 1)]' 
                                             href={`/delete`}>Delete Content</Link>
                                     </div>
