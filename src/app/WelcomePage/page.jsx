@@ -6,16 +6,20 @@ import Footer from "../Components/footer";
 import Link from 'next/link';
 import Image from 'next/image'
 import { CgProfile } from "react-icons/cg";
-
+import { useSession } from 'next-auth/react'
 
 function WelcomePage() {
+
+    const { data: session } = useSession();
+    console.log(session);
+
     return (
     <main className="flex flex-col h-screen relative ">
         <Container>
             <NavBar />
             {/* === Welcome User, Profile === */}
             <div className='flex-grow bg-[#191925]'>
-                <h1 className=" my-8  mx-4 text-white text-3xl font-medium text-center animate-floating ">Welcome, ..UserName..</h1>
+                <h1 className=" my-8  mx-4 text-white text-3xl font-medium text-center animate-floating ">Welcome,{session?.user?.name} </h1>
                 <div className='bg-white w-fit mx-auto shadow-xl mb-10 p-4 px-8 rounded-xl'>
                     <div className='flex justify-center'>
                         <div className="flex-col items-start ">
@@ -24,9 +28,9 @@ function WelcomePage() {
                                 <div className="ml-1 text-[17.5px]"><CgProfile /></div>
                             </div>
                             <hr className="my-1 border-t-2 border-gray-300 w-full" />
-                            <p className="mt-2">User: ......</p>
-                            <p>Email: .....</p>
-                            <p>Role: .....</p>
+                            <p className="mt-2">User: {session?.user?.name}</p>
+                            <p>Email: {session?.user?.email}</p>
+                            <p>Role: {session?.user?.role}</p>
                         </div>
                     </div>
                 </div>
@@ -43,7 +47,7 @@ function WelcomePage() {
                                     <div className="flex justify-left gap-8">
                                         <Image src="https://images.unsplash.com/photo-1499673610122-01c7122c5dcb?q=80&w=1927&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                                         width={180}
-                                        height={100}
+                                        height={120}
                                         alt="Image Code"/>
                                         <p className="my-4">      
                                             The image showcases a serene library with towering bookshelves, warm golden lighting, and a central wooden table perfect for quiet study. The cozy atmosphere and intricate architecture create an inviting space for learning, reflection, and discovery.
