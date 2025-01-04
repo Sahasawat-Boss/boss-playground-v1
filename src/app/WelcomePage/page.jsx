@@ -7,16 +7,18 @@ import Link from 'next/link';
 import Image from 'next/image'
 import { CgProfile } from "react-icons/cg";
 import { useSession } from 'next-auth/react'
+import { redirect } from 'next/navigation'
 
 function WelcomePage() {
 
     const { data: session } = useSession();
+    if (!session) redirect('/signIn'); //if no session or no login redirect to signIn
     console.log(session);
 
     return (
     <main className="flex flex-col h-screen relative ">
         <Container>
-            <NavBar />
+            <NavBar session={session}/> {/* ส่ง Prop session ไปที่ nav */}
             {/* === Welcome User, Profile === */}
             <div className='flex-grow bg-[#191925]'>
                 <h1 className=" my-8  mx-4 text-white text-3xl font-medium text-center animate-floating ">Welcome,{session?.user?.name} </h1>

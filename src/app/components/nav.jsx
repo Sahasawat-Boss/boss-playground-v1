@@ -1,11 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 
-function NavBar() {
-    const { data: session } = useSession();
-
+function NavBar({session}) { //รับค่า session จากหน้า Welcome Page
 return (
     <div
         className="navbar bg-[#1d1d1d] text-white shadow-[0_4px_15px_rgba(250,0,0,0.4)] top-0 z-50"
@@ -21,56 +19,56 @@ return (
         </a>
         </div>
         <div className="flex-none">
-        {!session ? (
-            // If user is not signed in, show Sign In and Sign Up links  //
-            <ul className="menu menu-horizontal px-1 space-x-2">
-                <li className="group">
-                    <Link href="/signIn"
-                    className="relative transition duration-300 text-white hover:text-blue-400"
-                    style={{ animation: "fadeUp 0.65s ease-in-out" }}>
-                    Sign In
-                    <span className="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
-                    </Link>
-                </li>
-                <li className="group">
-                    <Link href="/signUp"
-                    className="relative transition duration-300 text-white hover:text-blue-400"
-                    style={{ animation: "fadeUp 0.65s ease-in-out" }}>
-                    Sign Up
-                    <span className="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
-                    </Link>
-                </li>
-            </ul>
-        ) : (
-            // If user sign show below lists //
-            <ul className="menu menu-horizontal px-1 space-x-2">
-                <li className="group">
-                    <Link href="/WelcomePage"
-                    className="relative transition duration-300 text-white hover:text-blue-400"
-                    style={{ animation: "fadeUp 0.65s ease-in-out" }}>
-                    Dashboard
-                    <span className="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
-                    </Link>
-                </li>
-                <li className="group">
-                    <Link href="/pg1"
-                    className="relative transition duration-300 text-white hover:text-blue-400"
-                    style={{ animation: "fadeUp 0.65s ease-in-out" }}>
-                    PlayGround 1
-                    <span className="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
-                    </Link>
-                </li>
-                <li className="group">
-                    <a
-                    onClick={() => signOut()}
-                    className="relative transition duration-300 text-white hover:text-red-400 cursor-pointer"
-                    style={{ animation: "fadeUp 0.65s ease-in-out" }}>
-                    Sign Out
-                    <span className="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-red-400 transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                </li>
-            </ul>
-        )}
+            {!session ? (
+                // If no sesssion or user is not signed in >> show Sign In and Sign Up links  //
+                <ul className="menu menu-horizontal px-1 space-x-2">
+                    <li className="group">
+                        <Link href="/signIn"
+                        className="relative transition duration-300 text-white hover:text-blue-400"
+                        style={{ animation: "fadeUp 0.65s ease-in-out" }}>
+                        Sign In
+                        <span className="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
+                        </Link>
+                    </li>
+                    <li className="group">
+                        <Link href="/signUp"
+                        className="relative transition duration-300 text-white hover:text-blue-400"
+                        style={{ animation: "fadeUp 0.65s ease-in-out" }}>
+                        Sign Up
+                        <span className="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
+                        </Link>
+                    </li>
+                </ul>
+            ) : (
+                // If have sesssion or user signed in >> show below lists //
+                <ul className="menu menu-horizontal px-1 space-x-2">
+                    <li className="group">
+                        <Link href="/WelcomePage"
+                        className="relative transition duration-300 text-white hover:text-blue-400"
+                        style={{ animation: "fadeUp 0.65s ease-in-out" }}>
+                        Dashboard
+                        <span className="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
+                        </Link>
+                    </li>
+                    <li className="group">
+                        <Link href="/pg1"
+                        className="relative transition duration-300 text-white hover:text-blue-400"
+                        style={{ animation: "fadeUp 0.65s ease-in-out" }}>
+                        PlayGround 1
+                        <span className="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
+                        </Link>
+                    </li>
+                    <li className="group">
+                        <a
+                        onClick={() => signOut()}
+                        className="relative transition duration-300 text-white hover:text-red-400 cursor-pointer"
+                        style={{ animation: "fadeUp 0.65s ease-in-out" }}>
+                        Sign Out
+                        <span className="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-red-400 transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                    </li>
+                </ul>
+            )}
         </div>
 
         {/* Add keyframe animations */}

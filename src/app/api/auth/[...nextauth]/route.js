@@ -44,7 +44,31 @@ const authOptions = {
         pages: {
             signIn: "/signIn"
         },
-}
+        // ส่งค่าเพิ่มเติม
+        callbacks: {
+            async jwt({ token, user, session }) {
+                if (user) {
+                    return {
+                        ...token,
+                        id: user.id,
+                        role: user.role
+                    }
+                }
+    
+                return token;
+            },
+            async session({ session, user, token }) {
+                return {
+                    ...session,
+                    user: {
+                        ...session.user,
+                        id: token.id,
+                        role: token.role
+                    }
+                }
+            }
+        }
+    }
 
 const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST }

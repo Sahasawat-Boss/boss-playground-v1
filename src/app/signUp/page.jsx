@@ -5,6 +5,9 @@ import Container from "../Components/container";
 import NavBar from "../Components/nav";
 import Footer from "../Components/footer";
 import Link from 'next/link';
+import { useSession } from 'next-auth/react'
+import { redirect } from 'next/navigation'
+
 
 function SignUp() {
 
@@ -15,6 +18,8 @@ const [confirmPassword, setConfirmPassword] = useState("");
 const [error, setError] = useState(""); //State for error message
 const [success, setSuccess] = useState(""); //State for success message
 
+const { data: session } = useSession();
+if (session) redirect('/WelcomePage'); //if have session or signed in redirect to welcome Page
 
 const handleSubmit = async (e) => {
 e.preventDefault(); // Prevent the form from refreshing the page

@@ -7,7 +7,7 @@ import Footer from "../Components/footer";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation"; //hook
-
+import { useSession } from 'next-auth/react'
 
 function SignIn() {
 
@@ -16,6 +16,9 @@ function SignIn() {
     const [error, setError] = useState("");
 
     const router = useRouter();
+
+    const { data: session } = useSession();
+    if (session) router.replace("WelcomePage")
 
     const handleSubmit = async (e) => {
         e.preventDefault();
