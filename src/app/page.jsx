@@ -6,6 +6,7 @@ import Footer from "../app/Components/footer";
 import { useSession } from 'next-auth/react'
 import Hero from "./components/hero";
 import AboutMe from "./components/aboutMe";
+import Port from "./components/port";
 
 {/*===  Landing Page - First Page  ===*/}
 export default function FirstPage() {
@@ -18,6 +19,7 @@ export default function FirstPage() {
         <NavBar session={session}/>
         <Hero />
         <AboutMe/>
+        <Port/>
         <Footer/>
       </Container>
     </main>
