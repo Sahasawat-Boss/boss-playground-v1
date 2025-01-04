@@ -43,7 +43,7 @@ function WelcomePage() {
                                     <div className="flex justify-left gap-8">
                                         <Image src="https://images.unsplash.com/photo-1499673610122-01c7122c5dcb?q=80&w=1927&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                                         width={180}
-                                        height={0}
+                                        height={100}
                                         alt="Image Code"/>
                                         <p className="my-4">      
                                             The image showcases a serene library with towering bookshelves, warm golden lighting, and a central wooden table perfect for quiet study. The cozy atmosphere and intricate architecture create an inviting space for learning, reflection, and discovery.

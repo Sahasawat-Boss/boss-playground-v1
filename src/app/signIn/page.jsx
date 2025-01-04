@@ -1,12 +1,42 @@
 "use client";
 
+import React, { useState } from 'react'
 import Container from "../Components/container";
 import NavBar from "../Components/nav";
 import Footer from "../Components/footer";
 import Link from "next/link";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation"; //hook
 
 
 function SignIn() {
+
+    const [email, setEmail] = useState(""); //state for email
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+
+    const router = useRouter();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+
+            const res = await signIn("credentials", { //credentials from auth
+                email, password, redirect: false //SignIn แล้วไม่ต้อง redirect ไปไหน
+            })
+
+            if (res.error) {
+                setError("Invalid Credentials");
+                return;
+            }
+
+            router.replace("WelcomePage"); //SignIn แล้วไปหน้า WelcomePage
+        } catch(error) {
+            console.log(error);
+        }
+    }
+
 return (
     <Container>
     <NavBar />
@@ -32,49 +62,59 @@ return (
         </div>
         <div className="card w-[380px] shrink-0 bg-base-100 shadow-2xl ">
             {/* Form SignIn */}
-            <form
+            <form onSubmit={handleSubmit}
             className="card-body pt-4 pb-4 shadow-xl" >
 
-            <div className="form-control">
+            {error && (
+                <div className="flex justify-center">
+                    <div className="bg-red-500 w-fit text-white text-sm px-2 py-1 rounded-md">
+                    {error}
+                    </div>
+                </div>
+                )}
+
+                <div className="form-control">
                 <label className="label">
-                <span className="label-text">Email</span>
+                    <span className="label-text">Email</span>
                 </label>
                 <input
-                type="email"
-                placeholder="email"
-                className="input input-bordered focus:border-blue-500 focus:ring-2 focus:ring-blue-400"
+                    type="email"
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="email"
+                    className="input input-bordered focus:border-blue-500 focus:ring-2 focus:ring-blue-400"
                 />
-            </div>
-            <div className="form-control">
+                </div>
+                <div className="form-control">
                 <label className="label">
-                <span className="label-text">Password</span>
+                    <span className="label-text">Password</span>
                 </label>
                 <input
-                type="password"
-                placeholder="password"
-                className="input input-bordered focus:border-blue-500 focus:ring-2 focus:ring-blue-400"
+                    type="password"
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="password"
+                    className="input input-bordered focus:border-blue-500 focus:ring-2 focus:ring-blue-400"
                 />
-            </div>
-            <div className="form-control mt-6">
+                </div>
+                <div className="form-control mt-6">
                 <button
-                className="btn btn-primary px-16 py-3 text-white text-xl font-semibold bg-black shadow-md shadow-red-300 rounded-lg hover:bg-[#585858] hover:text-white hover:shadow-sky-500"
-                type="submit"
+                    className="btn btn-primary px-16 py-3 text-white text-xl font-semibold bg-black shadow-md shadow-red-300 rounded-lg hover:bg-[#585858] hover:text-white hover:shadow-sky-500"
+                    type="submit"
                 >
-                Sign In
+                    Sign In
                 </button>
-            </div>
-            <label className="label mt-2">
-                <a href="#" className="link-hover link label-text-alt text-[14px]">
+                </div>
+                <label className="label mt-2">
+                    <a href="#" className="link-hover link label-text-alt text-[14px]">
                     Forgot password?
-                </a>
-            </label>
-            <p className="mt-0">
+                    </a>
+                </label>
+                <p className="mt-0">
                 Don't have an account?
                 <Link
-                href="/signUp"
-                className="text-blue-600 font-medium hover:underline ml-1"
+                    href="/signUp"
+                    className="text-blue-600 font-medium hover:underline ml-1"
                 >Sign Up</Link>
-            </p>
+                </p>
             </form>
             {/* Form SignIn */}
         </div>
