@@ -37,12 +37,26 @@ if (!name || !email || !password || !confirmPassword) {
 }
 
 try {
-        // ======= Send the data to the server (ยิง Request ส่งข้อมูลได้แล้ว) =======//
+
+    // ======= 1.Check Email with DB or not =======//
+        const resUserExists = await fetch("http://localhost:3000/api/userExists",{
+        method: "POST",
+        headers: {"Content-Type": "application/json",},
+        body: JSON.stringify({ email }),
+        });
+
+        const {user} = await resUserExists.json(); //รับค่า user จากที่ยิง request ไปหา email ใน DB
+
+        if (user){
+        setError("This email already exists!"); //If email exist, show message
+        return;
+        }
+        // ======= 1.Check Email with DB or not =======//
+
+        // ======= 2.Send the data to the server (ยิง Request ส่งข้อมูล to DB) =======//
         const res = await fetch("http://localhost:3000/api/signUp", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
+        headers: {"Content-Type": "application/json",},
         body: JSON.stringify({ name, email, password }),
         });
 
@@ -58,7 +72,7 @@ try {
     } catch (error) {
         console.log("Error during sign up process: ", error);
     }
-    // ======= Send the data to the server =======//
+    // ======= 2.Send the data to the server (ยิง Request ส่งข้อมูล to DB) =======//
 }
 
 return (
