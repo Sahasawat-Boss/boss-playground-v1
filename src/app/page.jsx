@@ -12,9 +12,10 @@ export default function FirstPage() {
   const { data: session } = useSession();
 
   return (
-    <main className="flex flex-col h-screen relative">
+    <main className="flex flex-col relative">
       <Container>
         <NavBar session={session}/>
+        {/* Hero Section */}
         <div
           className="relative flex items-center justify-center flex-grow p-10"
           style={{
@@ -31,7 +32,7 @@ export default function FirstPage() {
             }}
           ></div>
 
-          {/* Content */} {/* Add Animation: animate-floating and animate-fade-in-up*/}
+          {/* Add Animation: animate-floating and animate-fade-in-up*/}
           <div className="flex-col justify-center items-center text-center z-10 text-white">
             <h3 className="text-6xl mb-12 font-bold animate-floating">Boss PlayGround</h3> 
             {/* ===Top Content=== */}
@@ -50,6 +51,7 @@ export default function FirstPage() {
             
           </div>
         </div>
+        {/* Hero Section */}
         <Footer />
       </Container>
     </main>
