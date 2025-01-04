@@ -12,7 +12,9 @@ const [name, setName] = useState("");
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
 const [confirmPassword, setConfirmPassword] = useState("");
-const [error, setError] = useState("");
+const [error, setError] = useState(""); //State for error message
+const [success, setSuccess] = useState(""); //State for success message
+
 
 const handleSubmit = async (e) => {
 e.preventDefault(); // Prevent the form from refreshing the page
@@ -47,6 +49,7 @@ try {
         if (res.ok) {
         const form = e.target; // Get the form element
         setError(""); // Clear any previous error
+        setSuccess("Sign up successfully, please sign in");  //set success message
         form.reset(); // Reset the form
         } else {
         console.log("Registeration failed!");
@@ -83,9 +86,15 @@ return (
             <form onSubmit={handleSubmit} className="card-body pt-4 pb-4">
 
                 {error && (
-                <div className="flex justify-center">
+                    <div className="flex justify-center">
                     <div className="bg-red-500 w-fit text-white text-sm px-2 py-1 rounded-md">{error}</div>
-                </div>
+                    </div>
+                )}
+
+                {success && (
+                    <div className="flex justify-center">
+                    <div className="bg-green-600 w-fit text-white text-sm px-2 py-1 rounded-md">{success}</div>
+                    </div>
                 )}
 
                 <div className="form-control">
