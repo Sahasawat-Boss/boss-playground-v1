@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'; // add use effect [from GPT]
 import Container from "../Components/container";
 import NavBar from "../Components/nav";
 import Footer from "../Components/footer";
@@ -18,7 +18,14 @@ function SignIn() {
     const router = useRouter();
 
     const { data: session } = useSession();
-    if (session) router.replace("WelcomePage")
+
+    // === Use useEffect for navigation to avoid state update during rendering [from GPT] === 
+    useEffect(() => {
+        if (session) {
+            router.replace("WelcomePage");
+        }
+    }, [session, router]);
+    // === Use useEffect for navigation to avoid state update during rendering [from GPT] === 
 
     const handleSubmit = async (e) => {
         e.preventDefault();

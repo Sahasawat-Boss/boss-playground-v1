@@ -18,8 +18,6 @@ return (
             <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
         </aside>
 
-        <a href="/WelcomePage" className='hover:underline'>Welcome-Test</a>
-
         <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
             <a>
             <svg
