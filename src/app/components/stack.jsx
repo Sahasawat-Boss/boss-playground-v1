@@ -3,7 +3,7 @@ import React from 'react';
 function CardInterest() {
     return (
         <>
-        <div className="bg-black py-12 px-4">
+        <div className="bg-black py-24 px-10">
             <div className="flex gap-5 justify-center items-center">
                 {/* Designer Card */}
                 <div className="w-[500px] bg-white p-8 rounded-xl shadow-lg text-center">

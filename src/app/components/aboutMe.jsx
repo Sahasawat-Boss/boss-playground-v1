@@ -2,7 +2,7 @@ import React from 'react'
 
 function AboutMe() {
     return (
-        <div className='flex-col items-center justify-center px-16 pb-12 bg-[#11111f]'>
+        <div className='flex-col items-center justify-center px-16 pb-24 bg-black '>
             {/*-- Hello Section --*/}
             <section className="text-center py-10 text-white">
                 <div className="container mx-auto">

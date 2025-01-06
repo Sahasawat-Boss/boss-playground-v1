@@ -39,14 +39,15 @@ function Port() {
 
     return (
         <>
-            <h1 className='bg-black text-white text-center text-4xl font-bold p-10'>
+            <h1 className='bg-black text-white text-center text-4xl font-bold pt-20 pb-16'>
                 MY Recent Project
             </h1>
 
-            <section className="bg-black py-8  text-white">
+            {/*Port1 Section*/}
+            <section className="bg-black pt-8  text-white">
                 <div className="container mx-auto px-2 md:px-12 ">
                     <h2 className="text-2xl font-bold text-center mb-4">BOSSFLIX</h2>
-                    <h2 className="text-lg text-center mb-10">UI Project created by using tailwind</h2>
+                    <h2 className="text-lg text-center mb-10">BOSSFLIX is a personal project I created to replicate the look and feel of Netflix, using HTML and Tailwind CSS to design a user interface. The project helped me practice modern web design principles like responsiveness, component-based design, and utility-first styling.</h2>
                     <div className="grid grid-cols-2 gap-4 ">
                         {Portfolio1s.map((item, index) => (
                             <Portfolio1 key={index} image={item.image} title={item.title} />
@@ -54,11 +55,13 @@ function Port() {
                     </div>
                 </div>
             </section>
+            {/*Port1 Section*/}
 
-            <section className="bg-black pt-8 pb-28 text-white">
+            {/*Port2 Section*/}
+            <section className="bg-black py-20 text-white">
                 <div className="container mx-auto px-2 md:px-12 ">
                     <h2 className="text-2xl font-bold text-center mb-4">MyWeb1.2 </h2>
-                    <h2 className="text-lg text-center mb-10 ">UI Project created by using HTML and pure CSS</h2>
+                    <h2 className="text-lg text-center mb-10 ">MyWeb1.2 is a personal project I created using HTML and pure CSS to practice building web applications from scratch. This project helped me improve my skills in designing responsive layouts, creating custom styles, and building reusable components without relying on frameworks.</h2>
                     <div className="grid grid-cols-2 gap-4 ">
                         <div className="relative group animation-appearUp">
                             <img
@@ -83,6 +86,7 @@ function Port() {
                     </div>
                 </div>
             </section>
+            {/*Port2 Section*/}
         </>
     );
 }
