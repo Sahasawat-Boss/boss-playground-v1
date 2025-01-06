@@ -7,6 +7,8 @@ import { useSession } from 'next-auth/react'
 import Hero from "./components/hero";
 import AboutMe from "./components/aboutMe";
 import Port from "./components/port";
+import CardInterest from './components/stack';
+
 
 {/*===  Landing Page - First Page  ===*/}
 
@@ -24,6 +26,7 @@ export default function FirstPage() {
         <Hero />
         <AboutMe/>
         <Port/>
+        <CardInterest/>
         <Footer/>
       </Container>
     </main>

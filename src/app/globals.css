@@ -64,9 +64,18 @@ html{
 .animation-appearUp{
     animation: appearUp linear;
     animation-timeline: view(); /*animate when element on screen*/
-    animation-range: entry 0% cover 40%;
+    animation-range: entry 0% cover 35%;
     /*entry 0% >>animate start when enter screen*/
     /*cover 30% >> animate finish when 30% of screen*/
 }
+/*Parallax Effect*/
+.parallax {
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
 
 /* ==== Custom CSS Animation==== */
