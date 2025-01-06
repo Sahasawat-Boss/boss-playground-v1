@@ -9,9 +9,13 @@ import AboutMe from "./components/aboutMe";
 import Port from "./components/port";
 
 {/*===  Landing Page - First Page  ===*/}
+
+
 export default function FirstPage() {
 
   const { data: session } = useSession();
+
+  
 
   return (
     <main className="flex-col min-h-screen">
