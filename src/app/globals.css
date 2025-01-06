@@ -7,6 +7,7 @@ html{
 }
 
 /* ==== Custom CSS fo Animation==== */
+/* fade transition when page loaded*/
 @keyframes fade-in {
     from {
     opacity: 0.8;
@@ -26,8 +27,6 @@ html{
     transform: translateY(0);
     }
 }
-
-/* ==== Custom CSS fo Animation==== */
 
 @keyframes floating {
     0%, 100% {
@@ -50,4 +49,24 @@ html{
     animation: floating 3s ease-in-out infinite;
 }
 
-/* ==== Custom CSS fo Animation==== */
+/* fade transition when page loaded*/
+@keyframes appearUp{
+    from{
+        opacity: 0;
+        scale: 0;
+    }
+    to{
+        opacity: 1;
+        scale: 1;
+    }
+}
+
+.animation-appearUp{
+    animation: appearUp linear;
+    animation-timeline: view(); /*animate when element on screen*/
+    animation-range: entry 0% cover 40%;
+    /*entry 0% >>animate start when enter screen*/
+    /*cover 30% >> animate finish when 30% of screen*/
+}
+
+/* ==== Custom CSS Animation==== */

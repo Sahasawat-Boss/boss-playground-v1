@@ -3,7 +3,7 @@ import React from 'react';
 // Reusable PortfolioItem Component
 const PortfolioItem = ({ image, title }) => {
     return (
-        <div className="relative group">
+        <div className="relative group animation-appearUp">
             <img
                 src={image}
                 alt={title}
@@ -38,17 +38,19 @@ function Port() {
     ];
 
     return (
-        <section className="bg-black py-12 pb-32 text-white">
-            <div className="container mx-auto px-2 md:px-12">
-                <h2 className="text-2xl font-bold text-center">BOSSFLIX</h2>
-                <h2 className="text-lg font-bold text-center my-10">UI Project created by using tailwind</h2>
-                <div className="grid grid-cols-2 gap-4">
-                    {portfolioItems.map((item, index) => (
-                        <PortfolioItem key={index} image={item.image} title={item.title} />
-                    ))}
+        <>
+            <section className="bg-black py-12 pb-32 text-white">
+                <div className="container mx-auto px-2 md:px-12 ">
+                    <h2 className="text-2xl font-bold text-center">BOSSFLIX</h2>
+                    <h2 className="text-lg font-bold text-center my-10">UI Project created by using tailwind</h2>
+                    <div className="grid grid-cols-2 gap-4 ">
+                        {portfolioItems.map((item, index) => (
+                            <PortfolioItem key={index} image={item.image} title={item.title} />
+                        ))}
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </>
     );
 }
 

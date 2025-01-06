@@ -12,7 +12,7 @@ function AboutMe() {
                         <img
                             src="\picture\MyPic.jpg"
                             alt="Profile"
-                            className="mx-auto rounded-full w-60 h-60 transform transition-all duration-300 ease-in-out hover:scale-125 hover:rotate-3 hover:shadow-white"
+                            className="mx-auto rounded-full w-60 h-60 transform transition-all duration-300 ease-in-out hover:scale-125 hover:rotate-3 hover:shadow-white animate-fade-in-up animate-fade"
                         />
                     </div>
                 </div>
@@ -20,7 +20,7 @@ function AboutMe() {
             {/*-- Hero Section --*/}
 
             {/*-- Hero Section --*/}
-            <section className="bg-gray-100 px-10 pt-6 pb-10 animate-fade-in-up rounded-xl">
+            <section className="bg-gray-100 px-10 pt-6 pb-10 rounded-xl animation-appearUp">
                 <div className="container mx-auto text-center ">
                     <h2 className="text-2xl font-bold">About Me</h2>
                     <p className="text-lg mt-4">I began my career in IT at the age of 22 as a Junior Business Analyst. Over the years, I have gained extensive experience in gathering both business and technical requirements, designing workflows, creating mockups, and testing systems. My role also involves evaluating system flows, user experience and interface (UX/UI), identifying bugs, and ensuring that the final product is error-free before it is delivered to clients.</p>

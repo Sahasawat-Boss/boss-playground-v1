@@ -26,7 +26,7 @@ function Hero() {
         <p className="pt-6 pb-6  px-36 text-xl animate-fade-in-up">Welcome to Boss Playground!</p>
         <p className="px-36 text-xl mb-16 animate-fade-in-up">Sign in to access your personalized dashboard, explore exclusive features, and take your experience to the next level.</p>
         <Link
-          className="relative px-16 py-3 text-black text-xl font-bold bg-white shadow-lg shadow-red-500 rounded-lg 
+          className="relative px-16 py-3 text-black text-xl font-semibold bg-white shadow-lg shadow-red-500 rounded-lg 
                   hover:bg-black hover:text-white hover:shadow-sky-500 transition animate-fade-in-up"
           href="/signIn">
           <span className="relative z-0">Get Start Now</span>
