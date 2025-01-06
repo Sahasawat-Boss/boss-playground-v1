@@ -3,8 +3,8 @@ import React from 'react';
 function CardInterest() {
     return (
         <>
-        <div className="bg-black py-24 px-10">
-            <div className="flex gap-5 justify-center items-center">
+        <div className="bg-black py-24 px-10 ">
+            <div className="flex gap-5 justify-center items-center animation-appearUp">
                 {/* Designer Card */}
                 <div className="w-[500px] bg-white p-8 rounded-xl shadow-lg text-center">
                     <h3 className="text-xl font-bold mb-2">IT Business Analyst</h3>
@@ -18,7 +18,7 @@ function CardInterest() {
                 </div>
 
                 {/* Frontend Developer Card */}
-                <div className="w-[500px] bg-white p-8 rounded-xl shadow-lg text-center">
+                <div className="w-[500px] bg-white p-8 rounded-xl shadow-lg text-center animation-appearUp">
                     <h3 className="text-xl font-bold mb-2">Frontend Developer</h3>
                     <p className="text-gray-600 mb-4">
                         I like to code things from scratch and enjoy bringing ideas to life in the browser.
