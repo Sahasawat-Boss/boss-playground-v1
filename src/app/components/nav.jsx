@@ -51,7 +51,7 @@ return (
                         </Link>
                     </li>
                     <li className="group">
-                        <Link href="/pg1"
+                        <Link href="pg1"
                         className="relative transition duration-300 text-white hover:text-blue-400"
                         style={{ animation: "fadeUp 0.65s ease-in-out" }}>
                         PlayGround 1

@@ -9,7 +9,7 @@ function CardInterest() {
                 <div className="w-[500px] bg-white p-8 rounded-xl shadow-lg text-center">
                     <h3 className="text-xl font-bold mb-2">IT Business Analyst</h3>
                     <p className="text-gray-600 mb-4">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rerum, adipisci vitae numquam moles
+                        Lorem ipsum sasd sadasds adipisicing elit. Rerum, adipisci vitae numquam moles
                     </p>
                     <h4 className="text-purple-700 font-bold">Things I enjoy designing:</h4>
                     <p className="text-gray-600 mb-4">UX, UI, Web, Apps</p>
@@ -24,10 +24,10 @@ function CardInterest() {
                         I like to code things from scratch and enjoy bringing ideas to life in the browser.
                     </p>
                     <h4 className="text-purple-700 font-bold">Languages I speak:</h4>
-                    <p className="text-gray-600 mb-4">HTML, CSS</p>
+                    <p className="text-gray-600 mb-4">HTML, CSS, JavaScript, Next.js (React)</p>
                     <h4 className="text-purple-700 font-bold">Dev Tools:</h4>
                     <p className="text-gray-600">
-                        Github, Tailwind CSS, VS Code
+                        Tailwind CSS, Github, VS Code
                     </p>
                 </div>
             </div>
