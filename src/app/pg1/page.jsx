@@ -9,8 +9,8 @@ import Link from "next/link";
 // Define the card data
 const cardsNav = [
     {
-        title: "Learning Code",
-        description: "Space for exploring new code and discovering new functions and creativity.",
+        title: "Resful API",
+        description: "Lorem ipsum dolor sit amet.",
         link: "/pg1/app1",
     },
     {
@@ -30,11 +30,14 @@ const pg1 = () => {
         <main className="bg-[#131212] flex flex-col h-screen ">
             <Container>
                 <NavBar />
-                {/* Card Nav Section */}
+                {/* Top Section */}
                 <div className="flex flex-grow flex-col items-center">
                     <h1 className="text-3xl text-center text-white py-10 font-semibold animate-floating">
                         PlayGround 1
                     </h1>
+                    <p className="text-white text-center w-[500px] ">
+                        Boss Playground is a creative space where I explore new coding concepts and bring my ideas to life by developing small applications.
+                    </p>
                     <img
                         className="my-4"
                         src="https://media0.giphy.com/media/eNAsjO55tPbgaor7ma/giphy.gif?cid=6c09b9520xrtc3u0zk574kj6fokty3nmbx7xhaj966m9hskt&ep=v1_stickers_search&rid=giphy.gif&ct=s"
@@ -42,6 +45,8 @@ const pg1 = () => {
                         height={0}
                         width={50}
                     />
+                    {/* Top Section */}
+                    {/* Card Nav Section */}
                     <div>
                         {cardsNav.map((card, index) => (
                             <Link key={index} href={card.link}>
@@ -54,9 +59,9 @@ const pg1 = () => {
                     </div>
                 </div>
                 {/* Card Nav Section */}
-            <Footer />
+                <Footer />
             </Container>
-            
+
         </main>
     );
 };

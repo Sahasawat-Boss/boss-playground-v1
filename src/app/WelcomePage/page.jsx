@@ -44,14 +44,31 @@ function WelcomePage() {
                         </div>
                         {/* === Welcome User, Profile === */}
                         <div className="text-white text-xl text-center flex flex-col items-center justify-center bg-[#4d0e0e] w-full">
-                                <p>Section for Playground Card</p>
-                                <p>....Under Construction....</p>
+                            <p>Section for Playground Card</p>
+                            <img className="my-4" src="https://media.tenor.com/MRCIli40TYoAAAAj/under-construction90s-90s.gif" width={80} alt="Gif Construction" />
+                            <p>....Under Construction....</p>
                         </div>
                     </div>
                     {/* === Welcome User, Profile === */}
 
+                    {/* === YT VDO-Embed Code === */}
+                    <div className="flex text-white py-14 gap-8 justify-center items-center">
+                        {/*VDO Card*/}
+                        <div>
+                            <iframe width="320" height="200" src="https://www.youtube.com/embed/zhauOY7qLog?si=IZytsSCrcztJ4Aqe" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                        </div>
+                        <div>
+                            <iframe width="320" height="200" src="https://www.youtube.com/embed/i0qxKh4qNNk?si=75HaW1eqWLxY1lfB"  title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                        </div>
+
+                    </div>
+                    {/* === VDO - Embed Code === */}
+
+
+
+
                     {/* === Content Section === */}
-                    <div className='container flex-col bg-white mx-auto shadow-xl my-10 px-10 py-7 mb-20 rounded-xl'>
+                    <div className='container flex-col bg-white mx-auto shadow-xl mb-10 px-10 py-7 mb-20 rounded-xl'>
                         <div className="flex justify-end">
                             <Link className='mr-2 px-3 py-2 font-semibold bg-[#226922] text-white rounded-lg hover:bg-[#79b479] hover:text-[#ffffff] transition shadow-lg hover:shadow-[0_0_10px_rgba(33, 116, 33, 1)]'
                                 href="/create">Create Content</Link>
