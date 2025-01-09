@@ -5,13 +5,14 @@ import Container from "../Components/container";
 import NavBar from "../Components/nav";
 import Footer from "../Components/footer";
 import Link from "next/link";
+import BackButton from "../components/backButton"
 
 // Define the card data
 const cardsNav = [
     {
         title: "Resful API",
         description: "Lorem ipsum dolor sit amet.",
-        link: "/pg1/app1",
+        link: "/pg1/apiLession",
     },
     {
         title: "In progress..",
@@ -30,9 +31,10 @@ const pg1 = () => {
         <main className="bg-[#131212] flex flex-col h-screen ">
             <Container>
                 <NavBar />
+                <BackButton/>
                 {/* Top Section */}
                 <div className="flex flex-grow flex-col items-center">
-                    <h1 className="text-3xl text-center text-white py-10 font-semibold animate-floating">
+                    <h1 className="text-3xl text-center text-white py-8 font-semibold animate-floating">
                         PlayGround 1
                     </h1>
                     <p className="text-white text-center w-[500px] ">
@@ -46,6 +48,7 @@ const pg1 = () => {
                         width={50}
                     />
                     {/* Top Section */}
+
                     {/* Card Nav Section */}
                     <div>
                         {cardsNav.map((card, index) => (
@@ -57,8 +60,8 @@ const pg1 = () => {
                             </Link>
                         ))}
                     </div>
+                    {/* Card Nav Section */}
                 </div>
-                {/* Card Nav Section */}
                 <Footer />
             </Container>
 

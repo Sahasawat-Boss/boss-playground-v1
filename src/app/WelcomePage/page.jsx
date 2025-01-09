@@ -5,6 +5,7 @@ import NavBar from "../Components/nav";
 import Footer from "../Components/footer";
 import Link from 'next/link';
 import Image from 'next/image'
+import ScrollUpButton from '../components/scrollUp'
 import { CgProfile } from "react-icons/cg";
 import { useSession } from 'next-auth/react'
 import { redirect } from 'next/navigation'
@@ -27,7 +28,7 @@ function WelcomePage() {
                         {/* === Welcome User, Profile === */}
                         <div className=" py-12 px-24">
                             <h1 className=" mb-6 text-white text-3xl font-medium text-center animate-floating ">Welcome,{session?.user?.name} </h1>
-                            <div className='bg-white w-fit mx-auto shadow-xl p-4 px-8 rounded-xl'>
+                            <div className='bg-white w-fit mx-auto shadow-xl p-4 px-8 rounded-md'>
                                 <div className='flex justify-center'>
                                     <div className="flex-col items-start ">
                                         <div className="flex items-center">
@@ -52,13 +53,13 @@ function WelcomePage() {
                     {/* === Welcome User, Profile === */}
 
                     {/* === YT VDO-Embed Code === */}
-                    <div className="flex text-white py-14 gap-8 justify-center items-center">
+                    <div className="flex text-white py-14 gap-8 justify-center items-center ">
                         {/*VDO Card*/}
-                        <div>
-                            <iframe width="320" height="200" src="https://www.youtube.com/embed/zhauOY7qLog?si=IZytsSCrcztJ4Aqe" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                        <div className="transform transition-all duration-300 ease-in-out hover:scale-105" >
+                            <iframe width="355" height="200" src="https://www.youtube.com/embed/zhauOY7qLog?si=IZytsSCrcztJ4Aqe" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
                         </div>
-                        <div>
-                            <iframe width="320" height="200" src="https://www.youtube.com/embed/i0qxKh4qNNk?si=75HaW1eqWLxY1lfB"  title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                        <div className="transform transition-all duration-300 ease-in-out hover:scale-105">
+                            <iframe width="355" height="200" src="https://www.youtube.com/embed/i0qxKh4qNNk?si=75HaW1eqWLxY1lfB"  title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
                         </div>
 
                     </div>
@@ -68,7 +69,7 @@ function WelcomePage() {
 
 
                     {/* === Content Section === */}
-                    <div className='container flex-col bg-white mx-auto shadow-xl mb-10 px-10 py-7 mb-20 rounded-xl'>
+                    <div className='container flex-col bg-white mx-auto shadow-xl px-10 py-7 mb-20 rounded-xl'>
                         <div className="flex justify-end">
                             <Link className='mr-2 px-3 py-2 font-semibold bg-[#226922] text-white rounded-lg hover:bg-[#79b479] hover:text-[#ffffff] transition shadow-lg hover:shadow-[0_0_10px_rgba(33, 116, 33, 1)]'
                                 href="/create">Create Content</Link>
@@ -100,6 +101,7 @@ function WelcomePage() {
                 </div>
                 {/* === Welcome User and Content Section === */}
                 <Footer />
+                <ScrollUpButton/>
             </Container>
         </main>
     )

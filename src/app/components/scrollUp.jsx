@@ -6,7 +6,7 @@ const ScrollUpButton = () => {
 
     useEffect(() => {
         const toggleVisibility = () => {
-            if (window.scrollY > 200) {
+            if (window.scrollY > 100) {
                 setIsVisible(true);
             } else {
                 setIsVisible(false);
@@ -34,6 +34,9 @@ const ScrollUpButton = () => {
             ${isVisible ? "opacity-100" : "opacity-0 pointer-events-none"
                 }`}
             aria-label="Scroll to top"
+            style={{
+                zIndex: 50, // Ensure it appears above other elements
+            }}
         >
             <IoMdArrowDropup />
         </button>

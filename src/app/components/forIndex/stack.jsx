@@ -3,7 +3,10 @@ import React from 'react';
 function CardInterest() {
     return (
         <>
-        <div className="bg-black py-24 px-10 ">
+        <div className="bg-black pb-24 px-10 ">
+            <h1 className='text-white font-semibold text-3xl text-center pt-12 pb-8'>
+                Career Skills and Tools
+            </h1>
             <div className="flex gap-5 justify-center items-center animation-appearUp">
                 {/* Designer Card */}
                 <div className="w-[500px] bg-white p-8 rounded-xl shadow-lg text-center">
