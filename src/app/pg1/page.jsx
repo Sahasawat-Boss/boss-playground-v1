@@ -27,12 +27,12 @@ const cardsNav = [
 
 const pg1 = () => {
     return (
-        <main className="bg-[#191925] flex flex-col h-screen ">
+        <main className="bg-[#131212] flex flex-col h-screen ">
             <Container>
                 <NavBar />
                 {/* Card Nav Section */}
-                <div className="h-screen pt-10 flex flex-col items-center">
-                    <h1 className="text-3xl text-center text-white font-semibold animate-floating">
+                <div className="flex flex-grow flex-col items-center">
+                    <h1 className="text-3xl text-center text-white py-10 font-semibold animate-floating">
                         PlayGround 1
                     </h1>
                     <img

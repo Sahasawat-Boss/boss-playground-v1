@@ -2,7 +2,7 @@ import React from 'react'
 
 function Footer() {
     return (
-        <footer className="footer footer-center bg-[#181818] text-white rounded p-10 shadow-red-400">
+        <footer className="footer footer-center bg-[#181818] text-white rounded p-10 shadow-[0_-2px_20px_rgba(250,0,0,0.4)] z-10">
             <nav className="grid grid-flow-col gap-4">
                 <a className="link link-hover">About us</a>
                 <a className="link link-hover">Contact</a>
@@ -49,11 +49,6 @@ function Footer() {
             </aside>
 
             {/* Add custom styles for the red shadow */}
-            <style jsx>{`
-                footer {
-                    box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
-                }
-            `}</style>
         </footer>
     )
 }

@@ -6,7 +6,7 @@ import { signOut } from "next-auth/react";
 function NavBar({session}) { //รับค่า session จากหน้า Welcome Page
 return (
     <div
-        className="navbar bg-[#181818] text-white shadow-[0_4px_15px_rgba(250,0,0,0.4)] top-0 z-50"
+        className="navbar bg-[#181818] text-white shadow-[0_2px_20px_rgba(250,0,0,0.4)] top-0 z-50"
         
     >
         <div className="flex-1 group">
