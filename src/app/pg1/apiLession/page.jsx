@@ -12,7 +12,7 @@ const ApiLessionPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("/api/sampleData"); // This points to the new API route
+      const response = await fetch("/api/sampleData"); // This points to the sampleData route.js
       const data = await response.json();
       setSampleData(data.sampleData);
       console.log("Successful Fetched Sample Data:", data.sampleData); // Logs the sampleData to the console
@@ -27,30 +27,40 @@ const ApiLessionPage = () => {
         <NavBar />
         <BackButton />
         {/* Top Section */}
-        <div className="flex flex-grow flex-col items-center">
-          <h1 className="text-3xl text-center text-white py-8 font-semibold animate-floating">
-            Restful API - Method "GET"
+        <div className="flex flex-col items-center">
+          <h1 className="text-3xl text-center text-white py-3 font-semibold animate-floating">
+            Restful API - Method: GET
           </h1>
-          <p className="text-white text-center w-[500px]">
-            Boss Playground is a creative space where I explore new coding concepts and bring my ideas to life by developing small applications.
+          <p className="text-white text-center w-[580px]">
+            This page demonstrates and tests the HTTP GET method for retrieving sample data from a MongoDB database, showcasing efficient querying and data fetching.
           </p>
           <img
-            className="my-4"
-            src="https://media0.giphy.com/media/eNAsjO55tPbgaor7ma/giphy.gif?cid=6c09b9520xrtc3u0zk574kj6fokty3nmbx7xhaj966m9hskt&ep=v1_stickers_search&rid=giphy.gif&ct=s"
+            className="mt-4 animate-fade-in-up"
+            src="https://developers.giphy.com/branch/master/static/api-512d36c09662682717108a38bbb5c57d.gif"
             alt="React Gif"
             height={0}
-            width={50}
+            width={300}
           />
         </div>
 
-        <div className="text-white">
-          <h1>Sample Data</h1>
-          <pre>{JSON.stringify(sampleData, null, 2)}</pre> {/* HTML element is used to display text exactly as it's written, preserving white spaces, line breaks, and indentation.*/}
+        <div className="flex items-center justify-center  py-10">
+          <div className="text-white w-[650px]">
+            <h1 className="text-xl font-semibold my-2">Sample Data from Boss's MongoDB</h1>
+            <p style={{ textIndent: "1.2rem" }} className="text-lg mb-4">This is a sample dataset created by inserting a document into a MongoDB collection. It is fetched directly from the database to demonstrate how data can be stored, queried, and retrieved efficiently in real time.</p>
+            <div className="border-2 border-white h-64 overflow-y-scroll">
+              <pre className="text-[#52cf52]">
+                {JSON.stringify(sampleData, null, 2)}
+              </pre>
+            </div>
+          </div>
         </div>
+
+        
+
 
         <Footer />
       </Container>
-      <ScrollUpButton/>
+      <ScrollUpButton />
     </main>
   );
 };

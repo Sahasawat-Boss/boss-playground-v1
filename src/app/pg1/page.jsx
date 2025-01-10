@@ -10,7 +10,7 @@ import BackButton from "../components/backButton"
 // Define the card data
 const cardsNav = [
     {
-        title: "Resful API",
+        title: "Restful API - Method: GET ",
         description: "Lorem ipsum dolor sit amet.",
         link: "/pg1/apiLession",
     },
@@ -34,7 +34,7 @@ const pg1 = () => {
                 <BackButton/>
                 {/* Top Section */}
                 <div className="flex flex-grow flex-col items-center">
-                    <h1 className="text-3xl text-center text-white py-8 font-semibold animate-floating">
+                    <h1 className="text-3xl text-center text-white py-3 font-semibold animate-floating">
                         PlayGround 1
                     </h1>
                     <p className="text-white text-center w-[500px] ">
