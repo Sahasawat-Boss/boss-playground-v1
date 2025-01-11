@@ -6,7 +6,7 @@ html{
     overflow-y: scroll; /* Always show vertical scrollbar */ ;
 }
 
-/* ==== Custom CSS fo Animation==== */
+/* ========= Custom CSS fo Animation ========== */
 /* fade transition when page loaded*/
 @keyframes fade-in {
     from {
@@ -75,8 +75,15 @@ html{
     background-position: center;
     background-repeat: no-repeat;
 }
+/* ========= Custom CSS Animation ========== */
 
 
-/* ==== Custom CSS Animation==== */
+/* Custom Scroll Bar CSS */
+* {
+    scrollbar-color: #424242 #222222; /* Default: Gray thumb, Black track */
+}
 
-/* styles/globals.css */
+*:hover {
+    scrollbar-color: #424242 #222222; /* Hover: White thumb, Black track */
+}
+/* Custom Scroll Bar CSS */

@@ -11,7 +11,7 @@ import BackButton from "../components/backButton"
 const cardsNav = [
     {
         title: "Restful API - Method: GET ",
-        description: "Lorem ipsum dolor sit amet.",
+        description: "Demonstrates and Tests the GET method",
         link: "/pg1/apiLession",
     },
     {
@@ -28,10 +28,10 @@ const cardsNav = [
 
 const pg1 = () => {
     return (
-        <main className="bg-[#131212] flex flex-col h-screen ">
+        <main className="bg-[#131212] flex flex-col h-screen">
             <Container>
                 <NavBar />
-                <BackButton/>
+                <BackButton />
                 {/* Top Section */}
                 <div className="flex flex-grow flex-col items-center">
                     <h1 className="text-3xl text-center text-white py-3 font-semibold animate-floating">

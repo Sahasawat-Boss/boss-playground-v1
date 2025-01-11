@@ -1,12 +1,14 @@
 import React from 'react'
+import Link from 'next/link';  // Import Link component
 
 function Footer() {
     return (
         <footer className="footer footer-center bg-[#181818] text-white rounded p-10 shadow-[0_-2px_20px_rgba(250,0,0,0.4)] z-10">
             <nav className="grid grid-flow-col gap-4">
-                <a className="link link-hover">About us</a>
-                <a className="link link-hover">Contact</a>
+                <Link href="/" className="link link-hover">About us</Link>
+                <Link href="/" className="link link-hover">Contact</Link>
             </nav>
+
             <nav>
                 <div className="grid grid-flow-col gap-4">
                     <a>
@@ -44,9 +46,10 @@ function Footer() {
                     </a>
                 </div>
             </nav>
-            <aside>
+
+            <div>
                 <p>Copyright © {new Date().getFullYear()} - All right reserved by Boss PlayGround</p>
-            </aside>
+            </div>
 
             {/* Add custom styles for the red shadow */}
         </footer>

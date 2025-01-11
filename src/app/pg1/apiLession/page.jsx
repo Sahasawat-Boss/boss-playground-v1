@@ -73,11 +73,11 @@ const ApiLessionPage = () => {
             This page demonstrates and tests the HTTP GET method for retrieving sample data from a MongoDB database, showcasing efficient querying and data fetching.
           </p>
           <img
-            className="mt-4 my-10 animate-fade-in-up"
+            className="mt-4 my-10 animate-fade-in-up rounded-lg"
             src="https://developers.giphy.com/branch/master/static/api-512d36c09662682717108a38bbb5c57d.gif"
             alt="React Gif"
             height={0}
-            width={300}
+            width={280}
           />
         </div>
 
