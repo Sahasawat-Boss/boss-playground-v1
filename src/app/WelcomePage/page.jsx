@@ -7,6 +7,7 @@ import Link from 'next/link';
 import Image from 'next/image'
 import ScrollUpButton from '../components/scrollUp'
 import YTvdo from "./components/YTvdo";
+import UnderDev from "../components/underDev";
 import { CgProfile } from "react-icons/cg";
 import { useSession } from 'next-auth/react'
 import { redirect } from 'next/navigation'
@@ -23,7 +24,7 @@ function WelcomePage() {
         <main className="flex flex-col h-screen relative ">
             <Container>
                 <NavBar session={session} /> {/* ส่ง Prop session ไปที่ nav */}
-                <div className='flex-col bg-[#131212]'>
+                <div className='flex flex-col bg-[#131212]'>
                     {/* === Top Content === */}
                     <div className="flex">
                         {/* === Welcome User, Profile === */}
@@ -44,16 +45,14 @@ function WelcomePage() {
                                 </div>
                             </div>
                         </div>
-                        {/* === Welcome User, Profile === */}
-                        <div className="text-white text-xl text-center flex flex-col items-center justify-center bg-[#4d0e0e] w-full">
-                            <p>Section for Playground Card</p>
-                            <img className="my-4" src="https://media.tenor.com/MRCIli40TYoAAAAj/under-construction90s-90s.gif" width={80} alt="Gif Construction" />
-                            <p>....Under Construction....</p>
+                        {/* === Under Development Section === */}
+                        <div className="here w-full">
+                            <UnderDev/>
                         </div>
                     </div>
-                    {/* === Welcome User, Profile === */}
+                    {/* === Under Development Section === */}
 
-                    <YTvdo/>
+                    <YTvdo />
 
                     {/* === Content Section === */}
                     <div className='container flex-col bg-white mx-auto my-10 shadow-xl px-10 py-7 mb-20 rounded-xl'>
@@ -88,7 +87,7 @@ function WelcomePage() {
                 </div>
                 {/* === Welcome User and Content Section === */}
                 <Footer />
-                <ScrollUpButton/>
+                <ScrollUpButton />
             </Container>
         </main>
     )

@@ -23,7 +23,7 @@ const ApiLessionPage = () => {
   }, []);
 
   // Define the columns you want to display in the table
-  const columnsToDisplay = ["username", "name", "address", "birthdate", "email",];
+  const columnsToDisplay = ["username", "name", "birthdate", "email", "accounts",];
 
   // Function to create table from Sample Data from Boss's MongoDB
   const renderTable = () => {
@@ -106,9 +106,9 @@ const ApiLessionPage = () => {
         {/* Table Convert from Sample Data with Horizontal Scroll */}
         <div className="flex items-center justify-center py-2">
           <div className="text-white w-[80%]">
-            <h1 className="text-xl font-semibold my-2">Sample Data from Boss's MongoDB</h1>
+            <h1 className="text-xl font-semibold my-2">Converting Sample Data to Table</h1>
             <p style={{ textIndent: "1.2rem" }} className="text-lg mb-4">
-              This table is a dynamically generated representation of the JSON sample data fetched from Boss's MongoDB database            </p>
+              This table is a dynamically generated representation of the JSON sample data fetched from Boss's MongoDB database</p>
             <div className="mb-20 overflow-x-auto">
               {renderTable()}
             </div>

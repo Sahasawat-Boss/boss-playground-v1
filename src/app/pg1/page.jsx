@@ -53,7 +53,7 @@ const pg1 = () => {
                     <div>
                         {cardsNav.map((card, index) => (
                             <Link key={index} href={card.link}>
-                                <div className="text-center max-w-sm w-96 p-4 my-3 rounded-lg shadow-md bg-white cursor-pointer hover:shadow-white hover:shadow-sd transition hover:scale-105 animate-fade-in-up">
+                                <div className="text-center max-w-sm w-96 p-4 my-3 rounded-lg  bg-white cursor-pointer hover:shadow-blue-600 hover:shadow-lg transition hover:scale-105 animate-fade-in-up">
                                     <h2 className="text-xl font-bold mb-2">{card.title}</h2>
                                     <p className="text-gray-600">{card.description}</p>
                                 </div>
