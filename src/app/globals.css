@@ -2,38 +2,62 @@
 @tailwind components;
 @tailwind utilities;
 
-html{
-    overflow-y: scroll; /* Always show vertical scrollbar */ ;
+html {
+    overflow-y: scroll; /* Always show vertical scrollbar */
+    transition: background-color 3s, color 3s; /* Smooth transition for background and text colors */
 }
+
+/* ========= Theme ========== */
+:root {
+    --background: #ffffff;
+    --foreground: #000000;
+}
+
+.dark {
+    --background: #000000;
+    --foreground: #ffffff;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--foreground);
+}
+/* ========= Theme ========== */
+
 
 /* ========= Custom CSS fo Animation ========== */
 /* fade transition when page loaded*/
 @keyframes fade-in {
     from {
-    opacity: 0.8;
+        opacity: 0.8;
     }
+
     to {
-    opacity: 1;
+        opacity: 1;
     }
 }
 
 @keyframes fade-in-up {
     from {
-    opacity: 0;
-    transform: translateY(20px);
+        opacity: 0;
+        transform: translateY(20px);
     }
+
     to {
-    opacity: 1;
-    transform: translateY(0);
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
 @keyframes floating {
-    0%, 100% {
-    transform: translateY(0);
+
+    0%,
+    100% {
+        transform: translateY(0);
     }
+
     50% {
-    transform: translateY(-6px);
+        transform: translateY(-6px);
     }
 }
 
@@ -50,24 +74,27 @@ html{
 }
 
 /* fade transition when page loaded*/
-@keyframes appearUp{
-    from{
+@keyframes appearUp {
+    from {
         opacity: 0;
         scale: 0;
     }
-    to{
+
+    to {
         opacity: 1;
         scale: 1;
     }
 }
 
-.animation-appearUp{
+.animation-appearUp {
     animation: appearUp linear;
-    animation-timeline: view(); /*animate when element on screen*/
+    animation-timeline: view();
+    /*animate when element on screen*/
     animation-range: entry 0% cover 35%;
     /*entry 0% >>animate start when enter screen*/
     /*cover 30% >> animate finish when 30% of screen*/
 }
+
 /*Parallax Effect*/
 .parallax {
     background-attachment: fixed;
@@ -75,15 +102,19 @@ html{
     background-position: center;
     background-repeat: no-repeat;
 }
+
 /* ========= Custom CSS Animation ========== */
 
 
 /* Custom Scroll Bar CSS */
 * {
-    scrollbar-color: #424242 #222222; /* Default: Gray thumb, Black track */
+    scrollbar-color: #424242 #222222;
+    /* Default: Gray thumb, Black track */
 }
 
 *:hover {
-    scrollbar-color: #424242 #222222; /* Hover: White thumb, Black track */
+    scrollbar-color: #424242 #222222;
+    /* Hover: White thumb, Black track */
 }
+
 /* Custom Scroll Bar CSS */

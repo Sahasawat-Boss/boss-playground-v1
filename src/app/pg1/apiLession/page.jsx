@@ -126,16 +126,16 @@ const ApiLessionPage = () => {
   };
 
   return (
-    <main className="bg-[#161616] flex flex-col">
+    <main className="bg-white dark:bg-black flex flex-col">
       <Container>
         <NavBar />
         <BackButton />
         {/* Top Section */}
         <div className="flex flex-col items-center">
-          <h1 className="text-3xl text-center text-white py-3 font-semibold animate-floating">
+          <h1 className="text-3xl text-center text-black dark:text-white py-3 font-semibold animate-floating">
             Restful API - Method: GET
           </h1>
-          <p className="text-white text-center w-[580px]">
+          <p className="text-black dark:text-white text-center w-[580px]">
             This page demonstrates and tests the HTTP GET method for retrieving sample data from a MongoDB database, showcasing efficient querying and data fetching.
           </p>
           <img
@@ -149,12 +149,12 @@ const ApiLessionPage = () => {
 
         {/* Sample Data from Boss's MongoDB in JSON */}
         <div className="flex items-center justify-center py-16">
-          <div className="text-white w-[650px]">
+          <div className="text-black dark:text-white w-[650px]">
             <h1 className="text-xl font-semibold my-2">Sample Data from Boss's MongoDB</h1>
             <p style={{ textIndent: "1.2rem" }} className="text-lg mb-4">
               This is a sample dataset created by inserting a document into a MongoDB collection. It is fetched directly from the database to demonstrate how data can be stored, queried, and retrieved efficiently in real time.
             </p>
-            <div className="border-2 border-white h-64 overflow-y-scroll">
+            <div className="bg-[#242424] border-2 border-white h-64 overflow-y-scroll">
               <pre className="text-[#52cf52]">
                 {JSON.stringify(sampleData, null, 2)}
               </pre>
@@ -167,7 +167,7 @@ const ApiLessionPage = () => {
 
         {/* Table Convert from Sample Data*/}
         <div className="flex flex-col items-center justify-center py-10">
-          <div className="text-white w-[80%]">
+          <div className="text-black dark:text-white w-[80%]">
             <h1 className="text-xl font-semibold my-2">Converting Sample Data to Simple Table</h1>
             <p style={{ textIndent: "1.2rem" }} className="text-lg mb-4">
               Converting sample data into a table format involves displaying key attributes in columns such as
@@ -176,7 +176,7 @@ const ApiLessionPage = () => {
             </p>
           </div>
 
-          <div className="overflow-x-auto">
+          <div className="bg-black overflow-x-auto">
             {renderTable()}
           </div>
         </div>
@@ -188,9 +188,9 @@ const ApiLessionPage = () => {
 
 
         {/* Table 2 that Convert from Sample Data */}
-        <div className="flex flex-col items-center justify-center py-10">
-          <div className="text-white w-[80%]">
-            <h1 className="text-xl font-semibold">
+        <div className="flex flex-col items-center justify-center py-10 ">
+          <div className="text-black dark:text-white w-[80%]">
+            <h1 className="text-xl font-bold">
               Transformed a Simple Table into a Sleek and Polished Design
             </h1>
             <p style={{ textIndent: "1.2rem" }} className="text-lg mb-4">
@@ -208,11 +208,11 @@ const ApiLessionPage = () => {
               placeholder="Search by Username......"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="px-4 py-2 text-black rounded-md"
+              className="px-4 py-2 rounded-md"
             />
           </div>
 
-          <div className=" pb-24 ">
+          <div className=" pb-24 text-black dark:text-black">
             <RenderTable2 />
           </div>
         </div>

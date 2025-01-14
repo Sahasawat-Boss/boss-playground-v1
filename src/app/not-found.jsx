@@ -31,7 +31,7 @@ export default function NotFound() {
             </div>
 
             {/* BackButton*/}
-            <div className="group bg-gray-800 rounded-2xl py-2 px-4 hover:bg-gray-600 shadow-lg my-20">
+            <div className="group bg-white rounded-2xl py-2 px-4 hover:bg-gray-600 shadow-lg my-20">
                 <BackButton />
             </div>
 

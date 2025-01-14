@@ -24,14 +24,14 @@ function WelcomePage() {
         <main className="flex flex-col h-screen relative ">
             <Container>
                 <NavBar session={session} /> {/* ส่ง Prop session ไปที่ nav */}
-                <div className='flex flex-col bg-[#131212]'>
+                <div className='flex flex-col bg-white dark:bg-black '>
                     {/* === Top Content === */}
                     <div className="flex">
                         {/* === Welcome User, Profile === */}
-                        <div className=" py-12 px-24">
-                            <h1 className=" mb-6 text-white text-3xl font-medium text-center animate-floating ">Welcome,{session?.user?.name} </h1>
-                            <div className='bg-white w-fit mx-auto shadow-xl p-4 px-8 rounded-md'>
-                                <div className='flex justify-center'>
+                        <div className=" py-12 px-24 text-black">
+                            <h1 className=" mb-6 dark:text-white text-3xl font-medium text-center animate-floating ">Welcome,{session?.user?.name} </h1>
+                            <div className='bg-white w-fit mx-auto p-4 px-8 rounded-md  shadow-lg shadow-[#b3b3b3] dark:shadow-none'>
+                                <div className='flex justify-center '>
                                     <div className="flex-col items-start ">
                                         <div className="flex items-center">
                                             <h3 className="text-lg">Profile</h3>
@@ -55,14 +55,14 @@ function WelcomePage() {
                     <YTvdo />
 
                     {/* === Content Section === */}
-                    <div className='container flex-col bg-white mx-auto my-10 shadow-xl px-10 py-7 mb-20 rounded-xl'>
+                    <div className='container flex-col bg-gray-100 mx-auto my-10 px-10 py-7 mb-20 rounded-xl'>
                         <div className="flex justify-end">
                             <Link className='mr-2 px-3 py-2 font-semibold bg-[#226922] text-white rounded-lg hover:bg-[#79b479] hover:text-[#ffffff] transition shadow-lg hover:shadow-[0_0_10px_rgba(33, 116, 33, 1)]'
                                 href="/create">Create Content</Link>
                         </div>
                         {/* === User Content Data API GET === */}
                         <div>
-                            <div className="shadow-2xl my-0 p-10 rounded-xl">
+                            <div className="my-0 p-10 rounded-xl bg-white text-black shadow-md shadow-[#b3b3b3] dark:shadow-none ">
                                 <h3 className="text-xl font-semibold  my-3 underline">Title...........</h3>
                                 <div className="flex justify-left gap-8">
                                     <Image src="https://images.unsplash.com/photo-1499673610122-01c7122c5dcb?q=80&w=1927&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"

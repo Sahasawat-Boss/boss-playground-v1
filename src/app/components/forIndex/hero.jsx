@@ -12,22 +12,22 @@ function Hero() {
     >
       {/* Dark overlay + Animated Background Zoom*/}
       <div
-        className="absolute inset-0 bg-black "
+        className="absolute inset-0 bg-white dark:bg-black opacity-80 "
         style={{
           zIndex: 0,
-          opacity: 0.75, // Ensure the overlay is behind the content
+
         }}
       ></div>
 
       {/* Add Animation: animate-floating and animate-fade-in-up*/}
-      <div className="flex-col justify-center items-center text-center z-10 text-white">
-        <h3 className="text-6xl mb-12 font-bold animate-floating">Boss PlayGround</h3>
+      <div className="flex-col justify-center items-center text-center z-10 text-black font-semibold dark:text-white dark:font-normal ">
+        <h3 className="text-6xl mb-12 font-bold animate-floating drop-shadow-lg">Boss PlayGround</h3>
 
         {/* ===Top Content=== */}
         <p className="pt-6 pb-6  px-36 text-xl animate-fade-in-up">Welcome to Boss Playground!</p>
         <p className="px-36 text-xl mb-16 animate-fade-in-up">Sign in to access your personalized dashboard, explore exclusive features, and take your experience to the next level.</p>
         <Link
-          className="relative px-16 py-3 text-black text-xl font-semibold bg-white shadow-lg shadow-red-500 rounded-full 
+          className="relative px-16 py-3 text-white dark:text-black text-xl font-semibold bg-black dark:bg-white shadow-lg shadow-red-500 rounded-full 
                   hover:bg-black hover:text-white hover:shadow-sky-500 transition animate-fade-in-up"
           href="/signIn">
           <span className="relative z-0">Get Start Now</span>

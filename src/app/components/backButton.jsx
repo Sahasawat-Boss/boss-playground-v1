@@ -4,7 +4,7 @@ const BackButton = () => {
     return (
         <button
             onClick={() => window.history.back()}
-            className="flex p-2 text-[#e4e3e3] w-fit hover:text-blue-400 group-hover:text-blue-400">
+            className="flex p-2 text-black  dark:text-[#c5c5c5] w-fit hover:text-blue-600 dark:hover:text-blue-400 group-hover:text-blue-400">
             <MdKeyboardDoubleArrowLeft className="text-2xl"/>
             <span>Previous Page</span>
         </button>
