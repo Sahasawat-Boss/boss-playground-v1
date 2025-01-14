@@ -13,7 +13,7 @@ function NavBar({ session }) { //รับค่า session จากหน้�
             <div className="flex-1 group">
                 <a
                     href="/"
-                    className="btn btn-ghost text-xl relative transition-all duration-300 hover:text-blue-400"
+                    className="btn btn-ghost text-xl relative transition-all duration-300 hover:text-blue-600"
                 >
                     Boss PlayGround
                 </a>

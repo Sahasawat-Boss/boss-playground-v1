@@ -55,14 +55,14 @@ function WelcomePage() {
                     <YTvdo />
 
                     {/* === Content Section === */}
-                    <div className='container flex-col bg-gray-100 mx-auto my-10 px-10 py-7 mb-20 rounded-xl'>
+                    <div className='container flex-col bg-gray-100 mx-auto my-10 px-10 py-7 mb-20 rounded-xl shadow-sm shadow-[#b3b3b3]'>
                         <div className="flex justify-end">
                             <Link className='mr-2 px-3 py-2 font-semibold bg-[#226922] text-white rounded-lg hover:bg-[#79b479] hover:text-[#ffffff] transition shadow-lg hover:shadow-[0_0_10px_rgba(33, 116, 33, 1)]'
                                 href="/create">Create Content</Link>
                         </div>
                         {/* === User Content Data API GET === */}
                         <div>
-                            <div className="my-0 p-10 rounded-xl bg-white text-black shadow-md shadow-[#b3b3b3] dark:shadow-none ">
+                            <div className="my-0 p-10 rounded-xl bg-white text-black shadow-sm shadow-[#b3b3b3]">
                                 <h3 className="text-xl font-semibold  my-3 underline">Title...........</h3>
                                 <div className="flex justify-left gap-8">
                                     <Image src="https://images.unsplash.com/photo-1499673610122-01c7122c5dcb?q=80&w=1927&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
