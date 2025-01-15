@@ -3,9 +3,24 @@
 @tailwind utilities;
 
 html {
-    overflow-y: scroll; /* Always show vertical scrollbar */
-    transition: background-color 3s, color 3s; /* Smooth transition for background and text colors */
+    overflow-y: scroll;
+    /* Always show vertical scrollbar */
+    transition: background-color 3s, color 3s;
+    /* Smooth transition for background and text colors */
 }
+
+/* Custom Scroll Bar CSS */
+* {
+    scrollbar-color: #424242 #222222;
+    /* Default: Gray thumb, Black track */
+}
+
+*:hover {
+    scrollbar-color: #424242 #222222;
+    /* Hover: White thumb, Black track */
+}
+
+/* Custom Scroll Bar CSS */
 
 /* ========= Theme ========== */
 :root {
@@ -22,6 +37,7 @@ body {
     background-color: var(--background);
     color: var(--foreground);
 }
+
 /* ========= Theme ========== */
 
 
@@ -48,6 +64,17 @@ body {
         transform: translateY(0);
     }
 }
+@keyframes fade-in-left-right {
+    from {
+        opacity: 0;
+        transform: translatex(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
 @keyframes floating {
 
@@ -67,6 +94,9 @@ body {
 
 .animate-fade-in-up {
     animation: fade-in-up 1.5s ease-in-out;
+}
+.animate-fade-in-left-right{
+    animation: fade-in-left-right 1.5s ease-in-out;
 }
 
 .animate-floating {
@@ -105,16 +135,3 @@ body {
 
 /* ========= Custom CSS Animation ========== */
 
-
-/* Custom Scroll Bar CSS */
-* {
-    scrollbar-color: #424242 #222222;
-    /* Default: Gray thumb, Black track */
-}
-
-*:hover {
-    scrollbar-color: #424242 #222222;
-    /* Hover: White thumb, Black track */
-}
-
-/* Custom Scroll Bar CSS */

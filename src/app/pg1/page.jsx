@@ -7,25 +7,6 @@ import Footer from "../Components/footer";
 import Link from "next/link";
 import BackButton from "../components/backButton"
 
-// Define the card data
-const cardsNav = [
-    {
-        title: "Restful API - Method: GET ",
-        description: "Demonstrates and Tests the GET method",
-        link: "/pg1/apiLession",
-    },
-    {
-        title: "In progress..",
-        description: "In progress..",
-        link: "/pg1/page2",
-    },
-    {
-        title: "In progress..",
-        description: "In progress..",
-        link: "/pg1/page3",
-    },
-];
-
 const pg1 = () => {
     return (
         <main className="bg-white dark:bg-black flex flex-col h-screen">
@@ -41,7 +22,7 @@ const pg1 = () => {
                         Boss Playground is a creative space where I explore new coding concepts and bring my ideas to life by developing small applications.
                     </p>
                     <img
-                        className="my-4 drop-shadow-xl"
+                        className="my-8 drop-shadow-xl"
                         src="https://media0.giphy.com/media/eNAsjO55tPbgaor7ma/giphy.gif?cid=6c09b9520xrtc3u0zk574kj6fokty3nmbx7xhaj966m9hskt&ep=v1_stickers_search&rid=giphy.gif&ct=s"
                         alt="React Gif"
                         height={0}
@@ -49,22 +30,65 @@ const pg1 = () => {
                     />
                     {/* Top Section */}
 
-                    {/* Card Nav Section */}
-                    <div>
-                        {cardsNav.map((card, index) => (
-                            <Link key={index} href={card.link}>
-                                <div className="text-center max-w-sm w-96 p-4 my-5 rounded-lg text-black dark:text-black bg-white shadow-md shadow-[#a3a3a3] dark:shadow-none cursor-pointer hover:shadow-blue-600 hover:shadow-lg transition hover:scale-105 animate-fade-in-up">
-                                    <h2 className="text-xl font-bold mb-2">{card.title}</h2>
-                                    <p className="">{card.description}</p>
+                    <div className="flex w-screen justify-evenly gap-10">
+                        {/* Left Section */}
+                        <div>
+                            <div className=" w-[250px] h-[250px]">
+                                <div
+                                    className="relative w-[290px] h-[250px] bg-cover bg-center bg-no-repeat border-white border-2 shadow-lg shadow-[#838383] animate-fade-in-left-right"
+                                    style={{
+                                        backgroundImage: "url('/picture-pg1/DB Pic1.jpg')",
+                                    }}>
+                                    <div
+                                        className="absolute -bottom-8 -right-8 w-[280px] h-[250px] bg-cover bg-center bg-no-repeat border-white border-2 z-10 shadow-lg shadow-[#838383] animate-fade-in-left-right"
+                                        style={{
+                                            backgroundImage: "url('/picture-pg1/DB Pic1.jpg')",
+                                        }}>
+                                    </div>
                                 </div>
-                            </Link>
-                        ))}
+                            </div>
+                        </div>
+
+                        {/* Left Section */}
+
+                        {/* Right Section */}
+                        <div className=" flex flex-col gap-4">
+                            {/* Card 1 */}
+                            <div className="mb-1">
+                                <Link href={"/pg1/apiLession"}>
+                                    <div className="text-center max-w-sm w-80 p-4 rounded-lg text-black dark:text-black bg-white shadow-md shadow-[#a3a3a3] dark:shadow-none cursor-pointer hover:shadow-blue-600 dark:hover:shadow-blue-600 hover:shadow-lg dark:hover:shadow-lg transition hover:scale-105 animate-fade-in-up">
+                                        <h2 className="text-xl font-bold mb-2">Restful API - Method: GET</h2>
+                                        <p>Demonstrate and Test the GET method</p>
+                                    </div>
+                                </Link>
+                            </div>
+
+                            {/* Card 2 */}
+                            <div className="mb-1">
+                                <Link href={"/pg1/apiLession2"}>
+                                    <div className="text-center max-w-sm w-80 p-4 rounded-lg text-black dark:text-black bg-white shadow-md shadow-[#a3a3a3] dark:shadow-none cursor-pointer hover:shadow-blue-600 dark:hover:shadow-blue-600 hover:shadow-lg dark:hover:shadow-lg transition hover:scale-105 animate-fade-in-up">
+                                        <h2 className="text-xl font-bold mb-2">Get and Post Data</h2>
+                                        <p>Test the GET and Post method</p>
+                                    </div>
+                                </Link>
+                            </div>
+
+                            {/* Card 3 */}
+                            <div className="mb-1">
+                                <Link href={"/pg1/page3"}>
+                                    <div className="text-center max-w-sm w-80 p-4 rounded-lg text-black dark:text-black bg-white shadow-md shadow-[#a3a3a3] dark:shadow-none cursor-pointer hover:shadow-blue-600 dark:hover:shadow-blue-600 hover:shadow-lg dark:hover:shadow-lg ransition hover:scale-105 animate-fade-in-up">
+                                        <h2 className="text-xl font-bold mb-2">In progress...</h2>
+                                        <p>In progress...</p>
+                                    </div>
+                                </Link>
+                            </div>
+                        </div>
+                        {/* Right Section */}
                     </div>
-                    {/* Card Nav Section */}
+
                 </div>
                 <Footer />
             </Container>
-
         </main>
     );
 };

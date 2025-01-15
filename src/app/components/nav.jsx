@@ -10,14 +10,14 @@ function NavBar({ session }) { //รับค่า session จากหน้�
             className="navbar bg-[#181818] text-white shadow-[0_2px_20px_rgba(250,0,0,0.4)] top-0 z-50"
 
         >
-            <div className="flex-1 group">
+            <div className="flex-1">
                 <a
                     href="/"
-                    className="btn btn-ghost text-xl relative transition-all duration-300 hover:text-blue-600"
+                    className="mr-3 btn btn-ghost text-xl relative transition-all duration-300 hover:text-blue-500"
                 >
                     Boss PlayGround
                 </a>
-                <ThemeToggle/>
+                <ThemeToggle />
             </div>
             <div className="flex-none">
                 {!session ? (

@@ -6,10 +6,10 @@ import NavBar from "../../Components/nav";
 import Footer from "../../Components/footer";
 import BackButton from "../../components/backButton";
 import ScrollUpButton from "@/app/components/scrollUp";
-import ArrowDown from "../component/arrowDown";
+import ArrowDown from "./component/arrowDown";
 
 const ApiLessionPage = () => {
-  const [sampleData, setSampleData] = useState([]);
+  const [sampleData, setSampleData] = useState([]); // Ensure this is set to an empty array.
   const [searchQuery, setSearchQuery] = useState(""); // State for search query
 
   useEffect(() => {
@@ -28,7 +28,14 @@ const ApiLessionPage = () => {
 
   // Function to create table from Sample Data from Boss's MongoDB
   const renderTable = () => {
-    if (sampleData.length === 0) return <p>Loading...</p>;
+
+    if (sampleData.length === 0) {
+      return (
+        <div className="text-center text-white py-4 bg-gray-800 rounded-lg">
+          Fetching Sample Data from Boss's MongoDB...
+        </div>
+      );
+    }
 
     return (
       <table className="border-collapse border border-white">
@@ -59,6 +66,7 @@ const ApiLessionPage = () => {
       </table>
     );
   };
+
 
   const RenderTable2 = () => {
     // Function to create table rows dynamically
@@ -184,9 +192,6 @@ const ApiLessionPage = () => {
 
         <ArrowDown />
 
-        {/* Search Bar */}
-
-
         {/* Table 2 that Convert from Sample Data */}
         <div className="flex flex-col items-center justify-center py-10 ">
           <div className="text-black dark:text-white w-[80%]">
@@ -198,8 +203,8 @@ const ApiLessionPage = () => {
             </p>
           </div>
 
-          {/* Move the search input to the left */}
-          <div className="flex py-3 px-8 gap-3 bg-gray-700 rounded-xl mt-6 my-8 animation-appearUp">
+          {/* Search Bar */}
+          <div className="flex py-3 px-8 gap-3 bg-gray-600 rounded-xl mt-6 my-8 animation-appearUp">
             <label className="label text-white font-semibold">
               Search by Username:
             </label>
@@ -208,9 +213,10 @@ const ApiLessionPage = () => {
               placeholder="Search by Username......"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="px-4 py-2 rounded-md"
+              className="px-4 py-2 rounded-md text-black"
             />
           </div>
+          {/* Search Bar */}
 
           <div className=" pb-24 text-black dark:text-black">
             <RenderTable2 />
