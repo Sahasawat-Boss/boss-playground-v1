@@ -24,7 +24,7 @@ export default function ThemeToggle() {
     return (
         <button
             onClick={toggleTheme}
-            className="p-1 rounded-full bg-gray-800 text-gray-400 transition-colors duration-2000 hover:bg-[#2b3bc5]"
+            className="p-1 rounded-full bg-gray-800 text-gray-400 hover:text-gray-800 transition-colors duration-2000 hover:bg-blue-400"
         >
             {theme === "light" ? (
                 <MdNightlightRound size={22} />

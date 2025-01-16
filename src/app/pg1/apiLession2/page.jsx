@@ -140,7 +140,7 @@ const ApiLessonPage2 = () => {
                         "This page demonstrates fetching (GET) and submitting (POST) data to the sampleData database, with features for displaying, searching, and adding new records."
                     </p>
                     <img
-                        className="mt-4 rounded-xl animate-fade-in-up  "
+                        className="mt-4 rounded-xl animate-fade-in"
                         src="https://miro.medium.com/v2/resize:fit:1400/1*BzUPMYwp_bMx8z1BVnWkbw.gif"
                         alt="React Gif"
                         height={0}

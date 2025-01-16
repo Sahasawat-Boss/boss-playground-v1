@@ -48,9 +48,9 @@ function Port() {
                 <div className="container mx-auto px-2 md:px-12 ">
                     <h2 className="text-2xl font-bold text-center mb-4">BOSSFLIX</h2>
                     <h2 className="text-lg text-center mb-10">BOSSFLIX is a personal project I created to replicate the look and feel of Netflix, using HTML and Tailwind CSS to design a user interface. The project helped me practice modern web design principles like responsiveness, component-based design, and utility-first styling.</h2>
-                    <div className="grid grid-cols-2 gap-4  ">
+                    <div className="grid grid-cols-2 gap-4 ">
                         {Portfolio1s.map((item, index) => (
-                            <Portfolio1 key={index} image={item.image} title={item.title} className="shadow-lg shadow-[#424242] dark:shadow-none"/>
+                            <Portfolio1 key={index} image={item.image} title={item.title}/>
                         ))}
                     </div>
                 </div>

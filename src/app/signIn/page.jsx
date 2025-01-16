@@ -91,7 +91,7 @@ function SignIn() {
                                     type="email"
                                     onChange={(e) => setEmail(e.target.value)}
                                     placeholder="email"
-                                    className="input input-bordered focus:border-blue-500 focus:ring-2 focus:ring-blue-400"
+                                    className="text-black input input-bordered focus:border-blue-500 focus:ring-2 focus:ring-blue-400"
                                 />
                             </div>
                             <div className="form-control">
@@ -102,7 +102,7 @@ function SignIn() {
                                     type="password"
                                     onChange={(e) => setPassword(e.target.value)}
                                     placeholder="password"
-                                    className="input input-bordered focus:border-blue-500 focus:ring-2 focus:ring-blue-400"
+                                    className="text-black input input-bordered focus:border-blue-500 focus:ring-2 focus:ring-blue-400"
                                 />
                             </div>
                             <div className="form-control mt-6">

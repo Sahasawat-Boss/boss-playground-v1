@@ -162,7 +162,7 @@ const ApiLessionPage = () => {
             <p style={{ textIndent: "1.2rem" }} className="text-lg mb-4">
               This is a sample dataset created by inserting a document into a MongoDB collection. It is fetched directly from the database to demonstrate how data can be stored, queried, and retrieved efficiently in real time.
             </p>
-            <div className="bg-[#242424] border-2 border-white h-64 overflow-y-scroll">
+            <div className="bg-[#242424] border-2 border-white h-64 overflow-y-scroll animate-fade-in">
               <pre className="text-[#52cf52]">
                 {JSON.stringify(sampleData, null, 2)}
               </pre>

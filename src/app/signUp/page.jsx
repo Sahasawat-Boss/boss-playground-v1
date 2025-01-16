@@ -123,28 +123,28 @@ function SignUp() {
                                     <span className="label-text">Name</span>
                                 </label>
                                 <input type="text" onChange={(e) => setName(e.target.value)} placeholder="Plese input your name"
-                                    className="input input-bordered focus:border-blue-500 focus:ring-2 focus:ring-blue-400" />
+                                    className="text-black input input-bordered focus:border-blue-500 focus:ring-2 focus:ring-blue-400" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
                                 <input type="email" onChange={(e) => setEmail(e.target.value)} placeholder="Plese input your email"
-                                    className="input input-bordered focus:border-blue-500 focus:ring-2 focus:ring-blue-400" />
+                                    className="text-black input input-bordered focus:border-blue-500 focus:ring-2 focus:ring-blue-400" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
                                 <input type="password" onChange={(e) => setPassword(e.target.value)} placeholder="Plese input your password"
-                                    className="input input-bordered focus:border-blue-500 focus:ring-2 focus:ring-blue-400" />
+                                    className="text-black input input-bordered focus:border-blue-500 focus:ring-2 focus:ring-blue-400" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Confirm Password</span>
                                 </label>
                                 <input type="password" onChange={(e) => setConfirmPassword(e.target.value)} placeholder="Plese re-input your password"
-                                    className="input input-bordered focus:border-blue-500 focus:ring-2 focus:ring-blue-400" />
+                                    className="text-black input input-bordered focus:border-blue-500 focus:ring-2 focus:ring-blue-400" />
                             </div>
                             <div className="form-control mt-4">
                                 <button className="btn btn-primary px-16 py-3 text-white text-xl font-semibold bg-black shadow-md shadow-red-300 rounded-lg hover:bg-[#585858] hover:text-white hover:shadow-sky-500" type='submit'>Sign Up</button>

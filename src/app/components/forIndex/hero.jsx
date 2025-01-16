@@ -28,7 +28,7 @@ function Hero() {
         <p className="px-36 text-xl mb-16 animate-fade-in-up">Sign in to access your personalized dashboard, explore exclusive features, and take your experience to the next level.</p>
         <Link
           className="relative px-16 py-3 text-white dark:text-black text-xl font-semibold bg-black dark:bg-white shadow-lg shadow-red-500 rounded-full 
-                  hover:bg-black hover:text-white hover:shadow-sky-500 transition animate-fade-in-up"
+                  hover:bg-black hover:text-white hover:shadow-sky-500 transition animate-fade-in"
           href="/signIn">
           <span className="relative z-0">Get Start Now</span>
           <span

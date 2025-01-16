@@ -6,15 +6,16 @@ import NavBar from "../Components/nav";
 import Footer from "../Components/footer";
 import Link from "next/link";
 import BackButton from "../components/backButton"
+import AppNav from "./components/appNav";
 
 const pg1 = () => {
     return (
-        <main className="bg-white dark:bg-black flex flex-col h-screen">
+        <main className="bg-white dark:bg-black flex flex-col">
             <Container>
                 <NavBar />
                 <BackButton />
                 {/* Top Section */}
-                <div className="flex flex-grow flex-col items-center">
+                <div className="flex flex-grow flex-col items-center pb-20">
                     <h1 className="text-3xl text-center text-black dark:text-white py-3 font-semibold animate-floating">
                         PlayGround 1
                     </h1>
@@ -22,7 +23,7 @@ const pg1 = () => {
                         Boss Playground is a creative space where I explore new coding concepts and bring my ideas to life by developing small applications.
                     </p>
                     <img
-                        className="my-8 drop-shadow-xl"
+                        className="my-8 drop-shadow-xl animate-fade-in"
                         src="https://media0.giphy.com/media/eNAsjO55tPbgaor7ma/giphy.gif?cid=6c09b9520xrtc3u0zk574kj6fokty3nmbx7xhaj966m9hskt&ep=v1_stickers_search&rid=giphy.gif&ct=s"
                         alt="React Gif"
                         height={0}
@@ -30,8 +31,13 @@ const pg1 = () => {
                     />
                     {/* Top Section */}
 
-                    <div className="flex w-screen justify-evenly gap-10">
-                        {/* Left Section */}
+                    <AppNav/>
+
+                    <h1 className="text-3xl text-center text-black dark:text-white pt-3 pb-16 font-semibold animate-fade-in">
+                        Learning
+                    </h1>
+                    <div className="flex w-full justify-evenly gap-10">
+                        {/* Learning Left Section */}
                         <div>
                             <div className=" w-[250px] h-[250px]">
                                 <div
@@ -48,10 +54,9 @@ const pg1 = () => {
                                 </div>
                             </div>
                         </div>
+                        {/* Learning Left Section */}
 
-                        {/* Left Section */}
-
-                        {/* Right Section */}
+                        {/* Learning Right Section */}
                         <div className=" flex flex-col gap-4">
                             {/* Card 1 */}
                             <div className="mb-1">
@@ -67,7 +72,7 @@ const pg1 = () => {
                             <div className="mb-1">
                                 <Link href={"/pg1/apiLession2"}>
                                     <div className="text-center max-w-sm w-80 p-4 rounded-lg text-black dark:text-black bg-white shadow-md shadow-[#a3a3a3] dark:shadow-none cursor-pointer hover:shadow-blue-600 dark:hover:shadow-blue-600 hover:shadow-lg dark:hover:shadow-lg transition hover:scale-105 animate-fade-in-up">
-                                        <h2 className="text-xl font-bold mb-2">Get and Post Data</h2>
+                                        <h2 className="text-xl font-bold mb-2">GET and POST Data</h2>
                                         <p>Test the GET and Post method</p>
                                     </div>
                                 </Link>
@@ -83,7 +88,7 @@ const pg1 = () => {
                                 </Link>
                             </div>
                         </div>
-                        {/* Right Section */}
+                        {/* Learning Right Section */}
                     </div>
 
                 </div>

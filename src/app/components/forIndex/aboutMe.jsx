@@ -12,7 +12,7 @@ function AboutMe() {
                         <img
                             src="\picture\MyPic.jpg"
                             alt="Profile"
-                            className="mx-auto rounded-full w-60 h-60 transform transition-all duration-300 ease-in-out hover:scale-125 hover:rotate-3 hover:shadow-white animate-fade-in-up animate-fade shadow-lg shadow-[#7c7c7c] dark:shadow-none"
+                            className="mx-auto rounded-full w-60 h-60 transform transition-all duration-300 ease-in-out hover:scale-125 hover:rotate-3 hover:shadow-white animate-fade-in shadow-lg shadow-[#7c7c7c] dark:shadow-none"
                         />
                     </div>
                 </div>
