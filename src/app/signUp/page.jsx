@@ -149,7 +149,7 @@ function SignUp() {
                             <div className="form-control mt-4">
                                 <button className="btn btn-primary px-16 py-3 text-white text-xl font-semibold bg-black shadow-md shadow-red-300 rounded-lg hover:bg-[#585858] hover:text-white hover:shadow-sky-500" type='submit'>Sign Up</button>
                             </div>
-                            <p className="mt-3">Already have an account?
+                            <p className="mt-3 text-black">Already have an account?
                                 <Link href="/signIn" className='text-blue-500 font-medium hover:underline ml-1 '>Sign In</Link>
                             </p>
                         </form>

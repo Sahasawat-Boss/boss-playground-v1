@@ -118,7 +118,7 @@ function SignIn() {
                                     Forgot password?
                                 </a>
                             </label>
-                            <p className="mt-0">
+                            <p className="mt-0 text-black">
                                 Don't have an account?
                                 <Link
                                     href="/signUp"

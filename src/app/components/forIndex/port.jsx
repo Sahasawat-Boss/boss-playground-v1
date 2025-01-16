@@ -39,12 +39,12 @@ function Port() {
 
     return (
         <>
-            <h1 className='dark:bg-black text-black dark:text-white text-center text-4xl font-bold pt-20 pb-16'>
+            <h1 className='dark:bg-black text-black dark:text-white text-center text-4xl font-bold py-16'>
                 MY Recent Project
             </h1>
 
             {/*Port1 Section*/}
-            <section className="bg-white dark:bg-black pt-8  text-black dark:text-white">
+            <section className="bg-white dark:bg-black text-black dark:text-white">
                 <div className="container mx-auto px-2 md:px-12 ">
                     <h2 className="text-2xl font-bold text-center mb-4">BOSSFLIX</h2>
                     <h2 className="text-lg text-center mb-10">BOSSFLIX is a personal project I created to replicate the look and feel of Netflix, using HTML and Tailwind CSS to design a user interface. The project helped me practice modern web design principles like responsiveness, component-based design, and utility-first styling.</h2>
