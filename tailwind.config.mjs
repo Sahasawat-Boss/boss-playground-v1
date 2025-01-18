@@ -12,6 +12,9 @@ const tailwindConfig = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      animation: {
+        bounce: 'bounce 2.5s infinite', // Adjust the duration as needed
+      },
     },
   },
   plugins: [require("daisyui")],

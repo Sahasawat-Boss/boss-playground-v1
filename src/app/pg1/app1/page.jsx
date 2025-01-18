@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { MdAppRegistration } from "react-icons/md";
 import Container from "../../components/container";
 import NavBar from "../../Components/nav";
 import Footer from "../../Components/footer";
@@ -130,8 +131,8 @@ const Crude2 = () => {
                 <BackButton />
                 {/* Title Section*/}
                 <div className="flex flex-col items-center pb-10 animate-fade-in-up">
-                    <h1 className="text-3xl text-center text-black dark:text-white py-3 font-semibold ">
-                        CRUD Application v2
+                    <h1 className="flex text-3xl items-center text-center text-black dark:text-white py-3 font-semibold ">
+                    <span className="mr-1 mt-1 text-3xl animate-bounce"><MdAppRegistration /></span> CRUD Application v2
                     </h1>
                     <p className="text-black dark:text-white text-center w-[550px]">
                         "CRUD Application v2 enables users to efficiently GET, POST, and DELETE data from a database for streamlined management."

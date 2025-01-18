@@ -23,4 +23,21 @@ export async function GET(request) {
     } finally {
         client.close();
     }
+};
+
+export async function POST(request) {
+    const { client, collection } = await connectToDatabase();
+    try {
+        const body = await request.json(); // Parse the incoming JSON data
+        const result = await collection.insertOne(body); // Insert the data into MongoDB
+        return new Response(
+            JSON.stringify({ message: "Data added successfully", insertedId: result.insertedId }),
+            { status: 201, headers: { "Content-Type": "application/json" } }
+        );
+    } catch (error) {
+        console.error("Error adding data to CRUDv2:", error);
+        return new Response("Failed to add data", { status: 500 });
+    } finally {
+        client.close();
+    }
 }
