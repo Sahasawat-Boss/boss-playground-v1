@@ -71,9 +71,9 @@ const ButtonAdd = () => {
             </button>
 
             <dialog id="my_modal_2" className="modal text-black">
-                <div className="modal-box rounded-md h-fit max-w-fit px-8">
-                    <div className="flex justify-between items-center">
-                        <h3 className="font-bold text-xl px-6">Add Data</h3>
+                <div className="modal-box rounded-md h-fit max-w-fit px-12">
+                    <div className="flex justify-between items-center pb-3">
+                        <h3 className="font-bold text-[1.35rem] px-6">Add Data</h3>
                         <button
                             className="text-[#a0a0a0] hover:text-[#384f8f] text-3xl focus:outline-none"
                             onClick={() => document.getElementById("my_modal_2").close()}
@@ -81,11 +81,12 @@ const ButtonAdd = () => {
                             <IoCloseCircleSharp />
                         </button>
                     </div>
+                    <hr className=" mb-4 border-t-1 border-gray-300 w-full" />
 
-                    <div className="max-w-xl mx-auto py-4 px-6 bg-white">
+                    <div className="max-w-xl mx-auto pt-4 px-6 bg-white">
                         <form onSubmit={handleSubmit}>
                             <div className="grid grid-cols-2 gap-4">
-                                <div>
+                                <div className="flex flex-col">
                                     <label>Name</label>
                                     <input
                                         type="text"
@@ -96,7 +97,7 @@ const ButtonAdd = () => {
                                         className="p-2 border border-gray-300 rounded-md"
                                     />
                                 </div>
-                                <div>
+                                <div className="flex flex-col">
                                     <label>Email</label>
                                     <input
                                         type="email"
@@ -110,7 +111,7 @@ const ButtonAdd = () => {
                             </div>
 
                             <div className="grid grid-cols-2 gap-4 mt-4">
-                                <div>
+                                <div className="flex flex-col">
                                     <label>Age</label>
                                     <input
                                         type="number"
@@ -121,7 +122,7 @@ const ButtonAdd = () => {
                                         className="p-2 border border-gray-300 rounded-md"
                                     />
                                 </div>
-                                <div>
+                                <div className="flex flex-col">
                                     <label>Phone</label>
                                     <input
                                         type="text"
@@ -142,21 +143,22 @@ const ButtonAdd = () => {
                                     value={formData.company_name}
                                     onChange={handleInputChange}
                                     placeholder="Enter company name"
-                                    className="p-2 border border-gray-300 rounded-md w-full"
+                                    className="p-2 mt-1 border border-gray-300 rounded-md w-full"
                                 />
                             </div>
 
-                            <div className="mt-4">
+                            <div className="mt-4 flex flex-col">
                                 <label>Preferred Fruits</label>
-                                <div>
+                                <div className="flex flex-wrap my-2 gap-x-6 gap-y-4">
                                     {["Apple", "Banana", "Water Melon"].map((fruit) => (
-                                        <label key={fruit} className="mr-2">
+                                        <label key={fruit} className="mr-2 flex items-center gap-x-2 gap-y-4">
                                             <input
                                                 type="checkbox"
                                                 name="fruit"
                                                 value={fruit}
                                                 checked={formData.fruit.includes(fruit)}
                                                 onChange={handleInputChange}
+                                                className="mt-1 w-5 h-5 mr-2 "
                                             />
                                             {fruit}
                                         </label>
@@ -164,9 +166,9 @@ const ButtonAdd = () => {
                                 </div>
                             </div>
 
-                            <div className="mt-4">
+                            <div className="mt-4 flex flex-col">
                                 <label>Status</label>
-                                <div>
+                                <div className="flex flex-wrap gap-x-6 gap-y-4 mt-2">
                                     {["Active", "Inactive"].map((status) => (
                                         <label key={status} className="mr-2">
                                             <input
@@ -175,6 +177,7 @@ const ButtonAdd = () => {
                                                 value={status}
                                                 checked={formData.status === status}
                                                 onChange={handleInputChange}
+                                                className="mt-1 w-5 h-5 mr-2"
                                             />
                                             {status}
                                         </label>
@@ -189,7 +192,7 @@ const ButtonAdd = () => {
                                     value={formData.comments}
                                     onChange={handleInputChange}
                                     placeholder="Write comments here..."
-                                    className="w-full p-2 border border-gray-300 rounded-md"
+                                    className="w-full p-2 mt-2 border border-gray-300 rounded-md"
                                     rows="4"
                                 />
                             </div>
@@ -198,13 +201,13 @@ const ButtonAdd = () => {
                                 <button
                                     type="button"
                                     onClick={() => document.getElementById("my_modal_2").close()}
-                                    className="px-4 py-2 bg-gray-500 text-white rounded-sm hover:bg-gray-400"
+                                    className="px-6 py-[8px] bg-gray-500 text-white rounded-sm hover:bg-gray-400"
                                 >
                                     Cancel
                                 </button>
                                 <button
                                     type="submit"
-                                    className="px-4 py-2 bg-blue-600 text-white rounded-sm hover:bg-blue-700"
+                                    className="px-5 py-[8px] bg-blue-600 text-white rounded-sm hover:bg-blue-700"
                                 >
                                     Confirm
                                 </button>
