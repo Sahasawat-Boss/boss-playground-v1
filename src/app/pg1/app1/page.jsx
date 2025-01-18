@@ -11,23 +11,29 @@ import SearchOptions from "./components/searchOption";
 import ButtonAdd from "./components/buttonAdd";
 
 const Crude2 = () => {
-    const [sampleData, setSampleData] = useState([]);
-    const [searchQuery, setSearchQuery] = useState("");
+    const [crudv2Data, setCrudv2Data] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch("/api/sampleData");
-            const data = await response.json();
-            setSampleData(data.sampleData);
-            console.log("Successfully Fetched Sample Data:", data.sampleData);
+            try {
+                const response = await fetch("/api/crudV2");
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch data: ${response.statusText}`);
+                }
+                const data = await response.json();
+                setCrudv2Data(data.crudv2Data);
+                console.log("Successfully Fetched crudv2 Data:", data.crudv2Data);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
         };
 
         fetchData();
     }, []);
 
-    const columnsToDisplay = ["username", "name", "birthdate", "email", "accounts"];
+    const columnsToDisplay = ["name", "company_name", "status", "age", "gender","phone", "email", "comments"];
 
-    const RenderTable2 = () => {
+    const RenderTableCrudV2 = () => {
         const [selectedRows, setSelectedRows] = useState([]);
 
         const toggleRowSelection = (row) => {
@@ -39,28 +45,26 @@ const Crude2 = () => {
         };
 
         const toggleSelectAll = () => {
-            if (selectedRows.length === sampleData.length) {
+            if (selectedRows.length === crudv2Data.length) {
                 setSelectedRows([]); // Deselect all
             } else {
-                setSelectedRows(sampleData); // Select all
+                setSelectedRows(crudv2Data); // Select all
             }
         };
 
-        const isAllSelected = selectedRows.length === sampleData.length;
+        const isAllSelected = selectedRows.length === crudv2Data.length;
 
-        const filteredData = sampleData.filter((row) =>
-            row.username.toLowerCase().includes(searchQuery.toLowerCase())
-        );
+        const filteredData = crudv2Data; // No filtering or search option yet
 
         return (
             <div className="shadow-lg overflow-x-auto mx-8">
                 <table className="table-auto w-full">
                     <thead>
                         <tr className="bg-gray-200">
-                            <th className="sticky left-0 z-50 bg-[#d6d6d6] py-4 px-6 text-left font-bold uppercase border border-gray-400 w-[60px]">
+                            <th className="sticky left-0 z-50 bg-[#dbdbdb] py-3 px-5 text-left font-bold uppercase border border-[#ffffff] w-[60px]">
                                 <input
                                     type="checkbox"
-                                    className="w-6 h-6 rounded-full"
+                                    className="w-6 h-6"
                                     checked={isAllSelected}
                                     onChange={toggleSelectAll}
                                     style={{
@@ -72,7 +76,7 @@ const Crude2 = () => {
                             {columnsToDisplay.map((column, index) => (
                                 <th
                                     key={column}
-                                    className={`sticky ${index === 0 ? "left-0" : ""} z-10 bg-[#d6d6d6] py-4 px-6 text-left font-bold uppercase border border-gray-400 ${index === 0 ? "w-[200px]" : ""}`}
+                                    className={`sticky ${index === 0 ? "left-0" : ""} z-10 bg-[#dbdbdb] py-3 px-6 text-left font-bold uppercase border border-[#ffffff] ${index === 0 ? "w-[200px]" : ""}`}
                                 >
                                     {column}
                                 </th>
@@ -86,20 +90,20 @@ const Crude2 = () => {
                             );
                             return (
                                 <tr key={index} className={`${isSelected ? "bg-blue-100" : ""}`}>
-                                    <td className="sticky left-0 z-50 py-4 px-6 border border-gray-400 w-[60px] hover:bg-blue-100">
+                                    <td className="sticky left-0 z-50 bg-[#dbdbdb] py-3 px-5 text-left font-bold uppercase border border-[#ffffff] w-[60px]">
                                         <input
                                             type="checkbox"
                                             className="w-6 h-6"
                                             checked={isSelected}
                                             onChange={() => toggleRowSelection(row)}
                                             style={{
-                                                backgroundColor: isSelected ? "#1E3A8A" : "transparent",
+                                                backgroundColor: isSelected ? "#1E3A8A" : "",
                                                 borderColor: "#1E3A8A",
                                             }}
                                         />
                                     </td>
                                     {columnsToDisplay.map((column) => (
-                                        <td key={column} className="py-4 px-6 border  border-gray-400 hover:bg-blue-100">
+                                        <td key={column} className="py-2 px-6 border  border-[#d8d8d8] hover:bg-blue-100">
                                             {row[column]}
                                         </td>
                                     ))}
@@ -113,10 +117,10 @@ const Crude2 = () => {
     };
 
     const exportToExcel = () => {
-        const ws = XLSX.utils.json_to_sheet(sampleData);
+        const ws = XLSX.utils.json_to_sheet(crudv2Data);
         const wb = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(wb, ws, "Sample Data");
-        XLSX.writeFile(wb, "sample_data.xlsx");
+        XLSX.utils.book_append_sheet(wb, ws, "crudv2 Data");
+        XLSX.writeFile(wb, "crudv2Data_data.xlsx");
     };
 
     return (
@@ -124,8 +128,9 @@ const Crude2 = () => {
             <Container>
                 <NavBar />
                 <BackButton />
-                <div className="flex flex-col items-center pb-10">
-                    <h1 className="text-3xl text-center text-black dark:text-white py-3 font-semibold">
+                {/* Title Section*/}
+                <div className="flex flex-col items-center pb-10 animate-fade-in-up">
+                    <h1 className="text-3xl text-center text-black dark:text-white py-3 font-semibold ">
                         CRUD Application v2
                     </h1>
                     <p className="text-black dark:text-white text-center w-[550px]">
@@ -133,28 +138,16 @@ const Crude2 = () => {
                     </p>
                 </div>
 
-                <div className="px-10 flex flex-col bg-white dark:bg-[#292929]">
+                {/* CRUDv2 Section*/}
+                <div className="px-10 flex flex-col bg-white dark:bg-black animate-fade-in">
+                    
                     <SearchOptions />
 
-                    <div className="px-8">
-                        <div className="flex items-center justify-center w-[fit%] py-3 my-4 gap-3 bg-gray-200">
-                            <label className="label text-black font-semibold">
-                                Search by Username:
-                            </label>
-                            <input
-                                type="text"
-                                placeholder="please enter username .........."
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                                className="px-4 py-2 rounded-md text-black"
-                            />
-                        </div>
-                    </div>
-                    
-                    <div className="flex px-8 mb-2 gap-2">
-                        
+                    {/* Button Section */}
+                    <div className="flex px-8 mb-2 gap-2 animate-fade-in">
+
                         <ButtonAdd/>
-                        
+
                         <button
                             onClick={exportToExcel}
                             className="py-2 px-3 bg-blue-700 hover:bg-blue-600 text-white rounded-sm"
@@ -165,8 +158,10 @@ const Crude2 = () => {
                             Delete
                         </button>
                     </div>
+                    
+                    {/* Render Table From CRUDv2 Collection */}
                     <div className="pb-24 w-full text-black dark:text-black">
-                        <RenderTable2 />
+                        <RenderTableCrudV2 />
                     </div>
                 </div>
                 <Footer />
