@@ -31,7 +31,7 @@ const Crude2 = () => {
         fetchData();
     }, []);
 
-    const columnsToDisplay = ["name", "company_name", "status", "age", "gender","phone", "email", "comments"];
+    const columnsToDisplay = ["name", "company_name", "status", "age", "fruit","phone", "email", "comments"];
 
     const RenderTableCrudV2 = () => {
         const [selectedRows, setSelectedRows] = useState([]);

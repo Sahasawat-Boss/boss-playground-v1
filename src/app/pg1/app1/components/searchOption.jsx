@@ -12,14 +12,14 @@ const SearchOptions = () => {
             {/* Search Options Top Section */}
             <button
                 onClick={toggleCollapse}
-                className="w-full flex items-center justify-between p-4 bg-gray-300 font-semibold focus:outline-none"
+                className="w-full flex items-center justify-between p-4 bg-gray-300 hover:bg-[#a7a7a7] font-semibold focus:outline-none"
                 aria-expanded={isOpen}
             >
                 {/* Add Transition to Arrow */}
                 <span className="flex items-center">
                     <span
                         className={`transform transition-transform duration-500 ${isOpen ? '0' : 'rotate-180'}`}
-                    >▼</span><span className="ml-3">Search Options</span>
+                    >▼</span><span className="ml-3 ">Search Options</span>
                 </span>
             </button>
 
@@ -55,7 +55,7 @@ const SearchOptions = () => {
                             <button className="w-fit px-6 py-2 mr-2 bg-gray-500 text-white rounded-sm hover:bg-gray-400">
                                 Clear
                             </button>
-                            <button className="w-fit px-4 py-2 bg-blue-600 text-white rounded-sm hover:bg-blue-500">
+                            <button className="w-fit px-4 py-2 bg-blue-700 text-white rounded-sm hover:bg-blue-500">
                                 Confirm
                             </button>
                         </div>
