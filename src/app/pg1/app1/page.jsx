@@ -8,6 +8,7 @@ import BackButton from "../../components/backButton";
 import ScrollUpButton from "@/app/components/scrollUp";
 import * as XLSX from 'xlsx'; // Import the xlsx library
 import SearchOptions from "./components/searchOption";
+import ButtonAdd from "./components/buttonAdd";
 
 const Crude2 = () => {
     const [sampleData, setSampleData] = useState([]);
@@ -134,6 +135,7 @@ const Crude2 = () => {
 
                 <div className="px-10 flex flex-col bg-white dark:bg-[#292929]">
                     <SearchOptions />
+
                     <div className="px-8">
                         <div className="flex items-center justify-center w-[fit%] py-3 my-4 gap-3 bg-gray-200">
                             <label className="label text-black font-semibold">
@@ -150,21 +152,8 @@ const Crude2 = () => {
                     </div>
                     
                     <div className="flex px-8 mb-2 gap-2">
-                        <button
-                            className="bg-blue-700 hover:bg-blue-600 text-white rounded-sm py-2 px-3"
-                            onClick={() => document.getElementById('my_modal_2').showModal()}
-                        >
-                            Add Data
-                        </button>
-                        <dialog id="my_modal_2" className="modal text-black ">
-                            <div className="modal-box rounded-md h-[600px] w-[500px]">
-                                <h3 className="font-bold text-lg">Add Data</h3>
-                                <p className="py-4">Press ESC key or click outside to close</p>
-                            </div>
-                            <form method="dialog" className="modal-backdrop  bg-black opacity-25">
-                                <button>close</button>
-                            </form>
-                        </dialog>
+                        
+                        <ButtonAdd/>
                         
                         <button
                             onClick={exportToExcel}
