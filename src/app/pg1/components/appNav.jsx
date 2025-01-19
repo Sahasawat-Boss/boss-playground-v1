@@ -16,9 +16,9 @@ function AppNav() {
                             <h2 className="text-2xl font-bold flex"><span className='mt-1 mr-1'><MdAppRegistration /></span>CRUD v.2</h2>
                             {/* Tag */}
                             <span
-                                className="absolute -top-2 -left-3 bg-yellow-500 text-white text-sm font-semibold px-[7px] py-[2.5px] rounded-full shadow-md animate-bounce"
+                                className="absolute -top-2 -left-5 bg-[#f5de7a] border border-yellow-500 text-black text-sm font-semibold px-[7px] py-[2.5px] rounded-full shadow-md animate-bounce"
                                 style={{
-                                    animationDuration: "1.3s", // Faster bounce animation
+                                    animationDuration: "1.35s", // Faster bounce animation
                                 }}>
                                 NEW
                             </span>

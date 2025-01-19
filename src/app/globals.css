@@ -64,6 +64,17 @@ body {
         transform: translateY(0);
     }
 }
+@keyframes fade-in-down {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 @keyframes fade-in-left-right {
     from {
         opacity: 0;
@@ -105,6 +116,9 @@ body {
 
 .animate-fade-in-up {
     animation: fade-in-up 1.5s ease-in-out;
+}
+.animate-fade-in-down {
+    animation: fade-in-down 1.2s ease-in-out;
 }
 .animate-fade-in-left-right{
     animation: fade-in-left-right 1.5s ease-in-out;

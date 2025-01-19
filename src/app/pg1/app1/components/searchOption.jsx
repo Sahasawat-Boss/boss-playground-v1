@@ -12,7 +12,7 @@ const SearchOptions = () => {
             {/* Search Options Top Section */}
             <button
                 onClick={toggleCollapse}
-                className="w-full flex items-center justify-between p-4 bg-[#dddddd] hover:bg-[#ececec] font-semibold focus:outline-none"
+                className="w-full flex items-center justify-between p-4 bg-[#e2e2e2] hover:bg-[#cfcfcf] font-semibold focus:outline-none"
                 aria-expanded={isOpen}
             >
                 {/* Add Transition to Arrow */}

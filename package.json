@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "jspdf": "^2.5.2",
+    "jspdf-autotable": "^3.8.4",
     "mongoose": "^8.9.3",
     "next": "15.1.3",
     "next-auth": "^4.24.11",

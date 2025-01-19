@@ -72,11 +72,10 @@ const ButtonAdd = () => {
                     <span className="font-semibold text-xl mr-2"><FaRegCheckCircle /></span>
                     <span className="font-semibold ">Added Data Successfully</span>
                 </div>
-            )
-            }
+            )}
 
             <button
-                className="bg-blue-700 hover:bg-blue-600 text-white rounded-sm py-2 px-3"
+                className="bg-blue-700 hover:bg-blue-600 text-white rounded-sm py-2 px-3 "
                 onClick={() => document.getElementById("my_modal_2").showModal()}
             >
                 Add Data

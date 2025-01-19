@@ -9,6 +9,7 @@ import Footer from "../../Components/footer";
 import BackButton from "../../components/backButton";
 import ScrollUpButton from "@/app/components/scrollUp";
 import ExportToExcel from "./components/exportToExcel ";
+import ExportToPDF from "./components/exportToPdf";
 import SearchOptions from "./components/searchOption";
 import ButtonAdd from "./components/buttonAdd";
 
@@ -62,9 +63,9 @@ const Crude2 = () => {
 
         const getStatusTagStyles = (status) => {
             if (status.toLowerCase() === "active") {
-                return "bg-[#ebffe7] text-green-600 border-green-600 text-[1.08rem] rounded-lg px-2 pb-1";
+                return "bg-[#ebffe7] text-green-600 border-green-400 rounded-full border px-2 pb-1";
             } else if (status.toLowerCase() === "inactive") {
-                return "bg-[#ffe7e7] text-red-600 border-red-600 text-[1.08rem] rounded-lg px-2 pb-1";
+                return "bg-[#ffe7e7] text-red-600 border-red-300 rounded-full border px-2 pb-1";
             }
             return "";
         };
@@ -126,7 +127,7 @@ const Crude2 = () => {
                                     (selectedRow) => selectedRow.index === index
                                 );
                                 return (
-                                    <tr key={index} className={`${isSelected ? "bg-blue-100" : ""}`}>
+                                    <tr key={index} className={`${isSelected ? "bg-blue-200" : ""}`}>
                                         <td className="sticky left-0 z-50 bg-[#e7e7e7] py-3 px-5 text-left font-bold uppercase border border-[#ffffff] w-[60px]">
                                             <input
                                                 type="checkbox"
@@ -170,19 +171,24 @@ const Crude2 = () => {
                 <BackButton />
                 <div className="flex flex-col items-center pb-10 animate-fade-in-up">
                     <h1 className="flex text-3xl items-center text-center text-black dark:text-white py-3 font-semibold ">
-                        <span className="mr-1 mt-1 text-3xl animate-bounce"><MdAppRegistration /></span> CRUD Application v2
+                        <span className="mr-1 mt-1 text-3xl animate-bounce">
+                            <MdAppRegistration />
+                        </span>
+                        CRUD Application v2
                     </h1>
                     <p className="text-black dark:text-white text-center w-[550px]">
-                        CRUD Application v2 enables efficient GET, POST, and DELETE operations on the CRUDv2 data collection in MongoDB. It also allows data filtering and supports exporting results to an Excel file for easy sharing and analysis.
+                        CRUD Application v2 enables efficient GET, POST, and DELETE operations on the CRUDv2 data collection
+                        in MongoDB. It also allows data filtering and supports exporting results to an Excel file for easy
+                        sharing and analysis.
                     </p>
                 </div>
 
                 <div className="px-10 flex flex-col flex-grow bg-white dark:bg-black animate-fade-in ">
                     <SearchOptions />
 
-                    <div className="flex px-8 mb-2 gap-2 animate-fade-in-left-right">
+                    <div className="flex px-8 mb-2 gap-1 animate-fade-in-left-right">
                         <button
-                            className="px-3 text-xl bg-slate-400 dark:bg-gray-700 hover:bg-slate-200 hover:dark:bg-slate-500 text-white rounded-sm"
+                            className="px-3 text-xl bg-slate-300 dark:bg-gray-700 hover:bg-slate-200 hover:dark:bg-slate-500 text-black dark:text-white rounded-sm"
                             onClick={fetchData} // Reload table data
                         >
                             <IoReload />
@@ -190,12 +196,22 @@ const Crude2 = () => {
 
                         <ButtonAdd />
 
+                        {/* Export to PDF button */}
+                        <ExportToPDF
+                            data={crudv2Data}
+                            columnsToDisplay={columnsToDisplay}
+                            fileName="CRUDv2_Table_Data.pdf"
+                        />
+
+                        {/* Export to Excel button */}
                         <ExportToExcel
                             data={crudv2Data}
                             columnsToDisplay={columnsToDisplay}
                             fileName="CRUDv2 Table Data.xlsx"
                         />
-                        <button className="py-2 px-3 bg-slate-500 hover:bg-slate-400 text-white rounded-sm">
+
+
+                        <button className="py-2 px-3 bg-[#f04747] dark:bg-[#a72e2e] hover:bg-[#f09393] hover:dark:bg-[#f36464] text-white rounded-sm">
                             Delete
                         </button>
                     </div>
