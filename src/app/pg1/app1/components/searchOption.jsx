@@ -18,7 +18,7 @@ const SearchOptions = () => {
                 {/* Add Transition to Arrow */}
                 <span className="flex items-center">
                     <span
-                        className={`transform transition-transform duration-[0.4s] ${isOpen ? '0' : 'rotate-180'}`}
+                        className={`transform transition-transform duration-[0.4s] ${isOpen ? 'rotate-180' : '0'}`}
                     >▼</span><span className="ml-3 ">Search Options</span>
                 </span>
             </button>

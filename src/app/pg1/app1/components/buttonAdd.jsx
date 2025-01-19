@@ -15,6 +15,7 @@ const ButtonAdd = () => {
     });
 
     const [successMessage, setSuccessMessage] = useState(false); // State for success message
+    const [fadeOut, setFadeOut] = useState(false); // State for fade-out animation
 
     const handleInputChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -43,7 +44,11 @@ const ButtonAdd = () => {
             });
             if (response.ok) {
                 setSuccessMessage(true); // Show success message
-                setTimeout(() => setSuccessMessage(false), 3300); // Hide success message after...seconds
+                setTimeout(() => setFadeOut(true), 2700); // Trigger fade-out after 2.7 seconds
+                setTimeout(() => {
+                    setSuccessMessage(false); // Remove success message
+                    setFadeOut(false); // Reset fade-out state
+                }, 3000); // Fully hide the message after 3 seconds
                 setFormData({
                     name: "",
                     email: "",
@@ -68,7 +73,9 @@ const ButtonAdd = () => {
         <div className="relative">
             {/* Success Message */}
             {successMessage && (
-                <div className="fixed left-1/2 top-16 z-50 flex w-fit -translate-x-1/2 transform items-center justify-center text-center rounded-md border px-8 py-3 border-green-600 bg-white text-green-600 shadow-md">
+                <div
+                    className={`fixed left-1/2 top-16 z-50 flex w-fit -translate-x-1/2 transform items-center justify-center text-center rounded-md border px-8 py-3 border-green-600 bg-white text-green-600 shadow-md ${fadeOut ? "opacity-0 transition-opacity duration-300" : "opacity-100"
+                        }`}>
                     <span className="font-semibold text-xl mr-2"><FaRegCheckCircle /></span>
                     <span className="font-semibold ">Added Data Successfully</span>
                 </div>
@@ -82,7 +89,8 @@ const ButtonAdd = () => {
             </button>
 
             <dialog id="my_modal_2" className="modal text-black">
-                <div className="modal-box rounded-md h-fit max-w-fit px-12">
+                <div className="modal-box rounded-lg h-fit max-w-fit px-10">
+
                     <div className="flex justify-between items-center pb-3">
                         <h3 className="font-bold text-[1.35rem] px-6">Add Data</h3>
                         <button
@@ -92,9 +100,11 @@ const ButtonAdd = () => {
                             <IoCloseCircleSharp />
                         </button>
                     </div>
-                    <hr className=" mb-4 border-t-1 border-gray-300 w-full" />
 
-                    <div className="max-w-xl mx-auto pt-4 px-6 bg-white">
+                    <div className="max-w-xl mx-auto px-6 bg-white">
+
+                        <hr className=" mb-5 border-1 border-gray-300 w-full" />
+
                         <form onSubmit={handleSubmit}>
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="flex flex-col">
@@ -203,7 +213,9 @@ const ButtonAdd = () => {
                                 </div>
                             </div>
 
-                            <div className="mt-4">
+                            <hr className=" mt-4 border-1 border-gray-300 w-full" />
+
+                            <div className="mt-3">
                                 <label>Comments</label>
                                 <textarea
                                     name="comments"

@@ -12,7 +12,7 @@ function AppNav() {
                 {/* App Link */}
                 <div>
                     <Link href={"/pg1/app1"}>
-                        <div className="relative w-fit p-5 rounded-lg border-2 border-blue-600 text-blue-600 bg-white shadow-md shadow-[#a3a3a3] dark:shadow-none cursor-pointer hover:shadow-blue-500 dark:hover:shadow-blue-500 hover:shadow-lg dark:hover:shadow-lg transition hover:scale-105 animate-fade-in-up">
+                        <div className="relative w-fit px-6 py-4 rounded-lg border-2 border-blue-600 text-blue-600 bg-white shadow-md shadow-[#a3a3a3] dark:shadow-none cursor-pointer hover:shadow-blue-500 dark:hover:shadow-blue-500 hover:shadow-lg dark:hover:shadow-lg transition hover:scale-110 animate-fade-in-up">
                             <h2 className="text-2xl font-bold flex"><span className='mt-1 mr-1'><MdAppRegistration /></span>CRUD v.2</h2>
                             {/* Tag */}
                             <span

@@ -63,9 +63,9 @@ const Crude2 = () => {
 
         const getStatusTagStyles = (status) => {
             if (status.toLowerCase() === "active") {
-                return "bg-[#ebffe7] text-green-600 border-green-400 rounded-full border px-2 pb-1";
+                return "bg-[#ebffe7] text-sm text-green-600 border-green-400 rounded-full border px-2 pb-[2px]";
             } else if (status.toLowerCase() === "inactive") {
-                return "bg-[#ffe7e7] text-red-600 border-red-300 rounded-full border px-2 pb-1";
+                return "bg-[#ffe7e7] text-sm text-red-600 border-red-300 rounded-full border px-2 pb-[2px]";
             }
             return "";
         };
@@ -101,7 +101,7 @@ const Crude2 = () => {
                     </thead>
                     <tbody className="bg-white">
                         {loading
-                            ? Array(2)
+                            ? Array(5)
                                 .fill(null)
                                 .map((_, index) => (
                                     <tr key={`loading-${index}`} className="bg-gray-100 animate-pulse">
