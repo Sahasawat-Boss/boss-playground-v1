@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { MdAppRegistration } from "react-icons/md";
+import { IoReload } from "react-icons/io5";
 import Container from "../../components/container";
 import NavBar from "../../Components/nav";
 import Footer from "../../Components/footer";
@@ -13,25 +14,25 @@ import ButtonAdd from "./components/buttonAdd";
 
 const Crude2 = () => {
     const [crudv2Data, setCrudv2Data] = useState([]);
-    const [loading, setLoading] = useState(true); // Added loading state
+    const [loading, setLoading] = useState(true);
+
+    const fetchData = async () => {
+        try {
+            const response = await fetch("/api/crudV2");
+            if (!response.ok) {
+                throw new Error(`Failed to fetch data: ${response.statusText}`);
+            }
+            const data = await response.json();
+            setCrudv2Data(data.crudv2Data);
+            console.log("Successfully fetched CRUDv2 data:", data.crudv2Data);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch("/api/crudV2");
-                if (!response.ok) {
-                    throw new Error(`Failed to fetch data: ${response.statusText}`);
-                }
-                const data = await response.json();
-                setCrudv2Data(data.crudv2Data);
-                console.log("Successfully Fetched crudv2 Data:", data.crudv2Data);
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            } finally {
-                setLoading(false); // Set loading to false when data is fetched
-            }
-        };
-
         fetchData();
     }, []);
 
@@ -73,7 +74,7 @@ const Crude2 = () => {
                 <table className="table-auto w-full">
                     <thead>
                         <tr className="bg-gray-200">
-                            <th className="sticky left-0 z-50 bg-[#e7e7e7] py-3 px-5 text-left font-bold uppercase border border-[#ffffff] w-[60px]">
+                            <th className="sticky left-0 z-50 bg-[#e7e7e7] py-3 px-5 border border-[#ffffff] w-[60px]">
                                 <input
                                     type="checkbox"
                                     className="w-6 h-6"
@@ -88,8 +89,8 @@ const Crude2 = () => {
                             {columnsToDisplay.map((column, index) => (
                                 <th
                                     key={column}
-                                    className={`sticky ${index === 0 ? "left-0" : ""
-                                        } z-10 bg-[#e7e7e7] py-3 px-6 text-left font-bold uppercase border border-[#ffffff] ${index === 0 ? "w-[200px]" : ""
+                                    className={`sticky ${index === 0 ? "left-0 " : ""
+                                        } z-10 bg-[#e7e7e7] py-3 px-6 text-left font-semibold uppercase border border-[#ffffff] ${index === 0 ? "w-[200px] " : ""
                                         }`}
                                 >
                                     {column}
@@ -99,7 +100,7 @@ const Crude2 = () => {
                     </thead>
                     <tbody className="bg-white">
                         {loading
-                            ? Array(1)
+                            ? Array(2)
                                 .fill(null)
                                 .map((_, index) => (
                                     <tr key={`loading-${index}`} className="bg-gray-100 animate-pulse">
@@ -115,7 +116,7 @@ const Crude2 = () => {
                                                 key={column}
                                                 className="py-2 px-6 border border-[#e7e7e7] truncate"
                                             >
-                                                <div className="bg-gray-300 h-4 rounded-md"></div>
+                                                <div className="text-gray-600">Loading Data ...</div>
                                             </td>
                                         ))}
                                     </tr>
@@ -167,23 +168,25 @@ const Crude2 = () => {
             <Container>
                 <NavBar />
                 <BackButton />
-                {/* Title Section*/}
                 <div className="flex flex-col items-center pb-10 animate-fade-in-up">
                     <h1 className="flex text-3xl items-center text-center text-black dark:text-white py-3 font-semibold ">
                         <span className="mr-1 mt-1 text-3xl animate-bounce"><MdAppRegistration /></span> CRUD Application v2
                     </h1>
                     <p className="text-black dark:text-white text-center w-[550px]">
-                        "CRUD Application v2 enables users to efficiently GET, POST, and DELETE data from a database for streamlined management."
+                        CRUD Application v2 enables efficient GET, POST, and DELETE operations on the CRUDv2 data collection in MongoDB. It also allows data filtering and supports exporting results to an Excel file for easy sharing and analysis.
                     </p>
                 </div>
 
-                {/* CRUDv2 Section*/}
                 <div className="px-10 flex flex-col flex-grow bg-white dark:bg-black animate-fade-in ">
-
                     <SearchOptions />
 
-                    {/* Button Section */}
-                    <div className="flex px-8 mb-2 gap-2 animate-fade-in">
+                    <div className="flex px-8 mb-2 gap-2 animate-fade-in-left-right">
+                        <button
+                            className="px-3 text-xl bg-slate-400 dark:bg-gray-700 hover:bg-slate-200 hover:dark:bg-slate-500 text-white rounded-sm"
+                            onClick={fetchData} // Reload table data
+                        >
+                            <IoReload />
+                        </button>
 
                         <ButtonAdd />
 
@@ -192,13 +195,11 @@ const Crude2 = () => {
                             columnsToDisplay={columnsToDisplay}
                             fileName="CRUDv2 Table Data.xlsx"
                         />
-
-                        <button className="py-2 px-3 bg-gray-500 hover:bg-gray-400 text-white rounded-sm">
+                        <button className="py-2 px-3 bg-slate-500 hover:bg-slate-400 text-white rounded-sm">
                             Delete
                         </button>
                     </div>
 
-                    {/* Render Table From CRUDv2 Collection */}
                     <div className="pb-24 w-full text-black dark:text-black">
                         <RenderTableCrudV2 />
                     </div>

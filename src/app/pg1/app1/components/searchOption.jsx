@@ -52,7 +52,7 @@ const SearchOptions = () => {
 
                         {/* Clear and Confirm Section */}
                         <div>
-                            <button className="w-fit px-6 py-2 mr-2 bg-gray-500 text-white rounded-sm hover:bg-gray-400">
+                            <button className="w-fit px-6 py-2 mr-2 bg-slate-500 text-white rounded-sm hover:bg-slate-400">
                                 Clear
                             </button>
                             <button className="w-fit px-4 py-2 bg-blue-700 text-white rounded-sm hover:bg-blue-500">

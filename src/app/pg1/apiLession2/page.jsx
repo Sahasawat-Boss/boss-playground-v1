@@ -137,7 +137,7 @@ const ApiLessonPage2 = () => {
                     </h1>
                     <p className="text-black dark:text-white text-center w-[580px]">
 
-                        "This page demonstrates fetching (GET) and submitting (POST) data to the sampleData database, with features for displaying, searching, and adding new records."
+                        This page demonstrates fetching (GET) and submitting (POST) data to the sampleData database, with features for displaying, searching, and adding new records.
                     </p>
                     <img
                         className="mt-4 rounded-xl animate-fade-in"

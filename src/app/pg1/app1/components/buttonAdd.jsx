@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { IoCloseCircleSharp } from "react-icons/io5";
+import { FaRegCheckCircle } from "react-icons/fa";
 
 const ButtonAdd = () => {
     const [formData, setFormData] = useState({
@@ -7,11 +8,13 @@ const ButtonAdd = () => {
         email: "",
         age: "",
         phone: "",
-        company_name: "", // Correct key
-        fruit: [], // Default to an empty array for checkboxes
-        status: "", // Default to an empty string for radio buttons
-        comments: "", // Default to an empty string for textarea
+        company_name: "",
+        fruit: [],
+        status: "",
+        comments: "",
     });
+
+    const [successMessage, setSuccessMessage] = useState(false); // State for success message
 
     const handleInputChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -31,7 +34,7 @@ const ButtonAdd = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Data added to the database:", formData); // Log the data being submitted
+        console.log("Data added to the database:", formData);
         try {
             const response = await fetch("/api/crudV2", {
                 method: "POST",
@@ -39,7 +42,8 @@ const ButtonAdd = () => {
                 body: JSON.stringify(formData),
             });
             if (response.ok) {
-                alert("Added data to DataBase successfully");
+                setSuccessMessage(true); // Show success message
+                setTimeout(() => setSuccessMessage(false), 3300); // Hide success message after...seconds
                 setFormData({
                     name: "",
                     email: "",
@@ -50,19 +54,27 @@ const ButtonAdd = () => {
                     status: "",
                     comments: "",
                 });
-                document.getElementById("my_modal_2").close();
-                window.location.reload(); // Reload the page after closing the modal
+                document.getElementById("my_modal_2").close(); // Close the modal
             } else {
                 alert("Failed to add data");
             }
         } catch (error) {
-            console.error("Error adding data to DataBase:", error);
+            console.error("Error adding data to the database:", error);
             alert("An error occurred while adding data.");
         }
     };
 
     return (
-        <>
+        <div className="relative">
+            {/* Success Message */}
+            {successMessage && (
+                <div className="fixed left-1/2 top-16 z-50 flex w-fit -translate-x-1/2 transform items-center justify-center text-center rounded-md border px-8 py-3 border-green-600 bg-white text-green-600 shadow-md">
+                    <span className="font-semibold text-xl mr-2"><FaRegCheckCircle /></span>
+                    <span className="font-semibold ">Added Data Successfully</span>
+                </div>
+            )
+            }
+
             <button
                 className="bg-blue-700 hover:bg-blue-600 text-white rounded-sm py-2 px-3"
                 onClick={() => document.getElementById("my_modal_2").showModal()}
@@ -118,7 +130,7 @@ const ButtonAdd = () => {
                                         name="age"
                                         value={formData.age}
                                         onChange={(e) => {
-                                            const ageValue = parseInt(e.target.value, 10) || 0; // Convert to Int32
+                                            const ageValue = parseInt(e.target.value, 10) || 0;
                                             setFormData((prevData) => ({
                                                 ...prevData,
                                                 age: ageValue,
@@ -208,7 +220,7 @@ const ButtonAdd = () => {
                                 <button
                                     type="button"
                                     onClick={() => document.getElementById("my_modal_2").close()}
-                                    className="px-6 py-[8px] bg-gray-500 text-white rounded-sm hover:bg-gray-400"
+                                    className="px-6 py-[8px] bg-slate-500 text-white rounded-sm hover:bg-slate-400"
                                 >
                                     Cancel
                                 </button>
@@ -223,7 +235,7 @@ const ButtonAdd = () => {
                     </div>
                 </div>
             </dialog>
-        </>
+        </div >
     );
 };
 
