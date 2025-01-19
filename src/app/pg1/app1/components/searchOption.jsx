@@ -12,13 +12,13 @@ const SearchOptions = () => {
             {/* Search Options Top Section */}
             <button
                 onClick={toggleCollapse}
-                className="w-full flex items-center justify-between p-4 bg-gray-300 hover:bg-[#a7a7a7] font-semibold focus:outline-none"
+                className="w-full flex items-center justify-between p-4 bg-[#dddddd] hover:bg-[#ececec] font-semibold focus:outline-none"
                 aria-expanded={isOpen}
             >
                 {/* Add Transition to Arrow */}
                 <span className="flex items-center">
                     <span
-                        className={`transform transition-transform duration-500 ${isOpen ? '0' : 'rotate-180'}`}
+                        className={`transform transition-transform duration-[0.4s] ${isOpen ? '0' : 'rotate-180'}`}
                     >▼</span><span className="ml-3 ">Search Options</span>
                 </span>
             </button>

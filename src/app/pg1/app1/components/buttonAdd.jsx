@@ -117,11 +117,18 @@ const ButtonAdd = () => {
                                         type="number"
                                         name="age"
                                         value={formData.age}
-                                        onChange={handleInputChange}
+                                        onChange={(e) => {
+                                            const ageValue = parseInt(e.target.value, 10) || 0; // Convert to Int32
+                                            setFormData((prevData) => ({
+                                                ...prevData,
+                                                age: ageValue,
+                                            }));
+                                        }}
                                         placeholder="Enter age"
                                         className="p-2 border border-gray-300 rounded-md"
                                     />
                                 </div>
+
                                 <div className="flex flex-col">
                                     <label>Phone</label>
                                     <input

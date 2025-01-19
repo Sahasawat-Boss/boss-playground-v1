@@ -13,6 +13,7 @@ import ButtonAdd from "./components/buttonAdd";
 
 const Crude2 = () => {
     const [crudv2Data, setCrudv2Data] = useState([]);
+    const [loading, setLoading] = useState(true); // Added loading state
 
     useEffect(() => {
         const fetchData = async () => {
@@ -26,6 +27,8 @@ const Crude2 = () => {
                 console.log("Successfully Fetched crudv2 Data:", data.crudv2Data);
             } catch (error) {
                 console.error("Error fetching data:", error);
+            } finally {
+                setLoading(false); // Set loading to false when data is fetched
             }
         };
 
@@ -58,11 +61,11 @@ const Crude2 = () => {
 
         const getStatusTagStyles = (status) => {
             if (status.toLowerCase() === "active") {
-                return "bg-[#37a556] text-white text-[1.05rem] rounded-full px-3 pb-1";
+                return "bg-[#ebffe7] text-green-600 border-green-600 text-[1.08rem] rounded-lg px-2 pb-1";
             } else if (status.toLowerCase() === "inactive") {
-                return "bg-[#e95151] text-white text-[1.05rem] rounded-full px-3 pb-1";
+                return "bg-[#ffe7e7] text-red-600 border-red-600 text-[1.08rem] rounded-lg px-2 pb-1";
             }
-            return "bg-gray-300 text-black rounded-full px-3 py-1 pb-2";
+            return "";
         };
 
         return (
@@ -70,7 +73,7 @@ const Crude2 = () => {
                 <table className="table-auto w-full">
                     <thead>
                         <tr className="bg-gray-200">
-                            <th className="sticky left-0 z-50 bg-[#dbdbdb] py-3 px-5 text-left font-bold uppercase border border-[#ffffff] w-[60px]">
+                            <th className="sticky left-0 z-50 bg-[#e7e7e7] py-3 px-5 text-left font-bold uppercase border border-[#ffffff] w-[60px]">
                                 <input
                                     type="checkbox"
                                     className="w-6 h-6"
@@ -86,7 +89,7 @@ const Crude2 = () => {
                                 <th
                                     key={column}
                                     className={`sticky ${index === 0 ? "left-0" : ""
-                                        } z-10 bg-[#dbdbdb] py-3 px-6 text-left font-bold uppercase border border-[#ffffff] ${index === 0 ? "w-[200px]" : ""
+                                        } z-10 bg-[#e7e7e7] py-3 px-6 text-left font-bold uppercase border border-[#ffffff] ${index === 0 ? "w-[200px]" : ""
                                         }`}
                                 >
                                     {column}
@@ -95,49 +98,69 @@ const Crude2 = () => {
                         </tr>
                     </thead>
                     <tbody className="bg-white">
-                        {filteredData.map((row, index) => {
-                            const isSelected = selectedRows.some(
-                                (selectedRow) => selectedRow.index === index
-                            );
-                            return (
-                                <tr key={index} className={`${isSelected ? "bg-blue-100" : ""}`}>
-                                    <td className="sticky left-0 z-50 bg-[#dbdbdb] py-3 px-5 text-left font-bold uppercase border border-[#ffffff] w-[60px]">
-                                        <input
-                                            type="checkbox"
-                                            className="w-6 h-6"
-                                            checked={isSelected}
-                                            onChange={() => toggleRowSelection(row, index)}
-                                            style={{
-                                                backgroundColor: isSelected ? "#1E3A8A" : "",
-                                                borderColor: "#1E3A8A",
-                                            }}
-                                        />
-                                    </td>
-                                    {columnsToDisplay.map((column) => (
-                                        <td
-                                            key={column}
-                                            className={`py-2 px-6 border border-[#d8d8d8] hover:bg-blue-100 truncate ${column === "status" ? "text-center" : ""
-                                                }`}
-                                        >
-                                            {column === "status" ? (
-                                                <span className={getStatusTagStyles(row[column])}>
-                                                    {row[column]}
-                                                </span>
-                                            ) : (
-                                                row[column]
-                                            )}
+                        {loading
+                            ? Array(1)
+                                .fill(null)
+                                .map((_, index) => (
+                                    <tr key={`loading-${index}`} className="bg-gray-100 animate-pulse">
+                                        <td className="py-3 px-5 text-left font-bold uppercase border border-[#e7e7e7]">
+                                            <input
+                                                type="checkbox"
+                                                className="w-6 h-6"
+                                                disabled
+                                            />
                                         </td>
-                                    ))}
-                                </tr>
-                            );
-                        })}
+                                        {columnsToDisplay.map((column) => (
+                                            <td
+                                                key={column}
+                                                className="py-2 px-6 border border-[#e7e7e7] truncate"
+                                            >
+                                                <div className="bg-gray-300 h-4 rounded-md"></div>
+                                            </td>
+                                        ))}
+                                    </tr>
+                                ))
+                            : filteredData.map((row, index) => {
+                                const isSelected = selectedRows.some(
+                                    (selectedRow) => selectedRow.index === index
+                                );
+                                return (
+                                    <tr key={index} className={`${isSelected ? "bg-blue-100" : ""}`}>
+                                        <td className="sticky left-0 z-50 bg-[#e7e7e7] py-3 px-5 text-left font-bold uppercase border border-[#ffffff] w-[60px]">
+                                            <input
+                                                type="checkbox"
+                                                className="w-6 h-6"
+                                                checked={isSelected}
+                                                onChange={() => toggleRowSelection(row, index)}
+                                                style={{
+                                                    backgroundColor: isSelected ? "#1E3A8A" : "",
+                                                    borderColor: "#1E3A8A",
+                                                }}
+                                            />
+                                        </td>
+                                        {columnsToDisplay.map((column) => (
+                                            <td
+                                                key={column}
+                                                className={`py-2 px-6 border border-[#e7e7e7] hover:bg-blue-100 truncate ${column === "status" ? "text-center" : ""
+                                                    }`}
+                                            >
+                                                {column === "status" ? (
+                                                    <span className={getStatusTagStyles(row[column])}>
+                                                        {row[column]}
+                                                    </span>
+                                                ) : (
+                                                    row[column]
+                                                )}
+                                            </td>
+                                        ))}
+                                    </tr>
+                                );
+                            })}
                     </tbody>
                 </table>
             </div>
         );
     };
-
-
 
     return (
         <main className="bg-white dark:bg-black flex flex-col ">
@@ -155,7 +178,7 @@ const Crude2 = () => {
                 </div>
 
                 {/* CRUDv2 Section*/}
-                <div className="px-10 flex flex-col bg-white dark:bg-black animate-fade-in">
+                <div className="px-10 flex flex-col flex-grow bg-white dark:bg-black animate-fade-in ">
 
                     <SearchOptions />
 

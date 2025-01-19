@@ -13,7 +13,7 @@ const tailwindConfig = {
         foreground: "var(--foreground)",
       },
       animation: {
-        bounce: 'bounce 2.5s infinite', // Adjust the duration as needed
+        bounce: 'bounce 2.2s infinite', // Adjust the duration as needed
       },
     },
   },
