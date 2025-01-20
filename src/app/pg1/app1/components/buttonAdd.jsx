@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { IoCloseCircleSharp } from "react-icons/io5";
 import { FaRegCheckCircle } from "react-icons/fa";
+import { FaAsterisk } from "react-icons/fa";
 
 const ButtonAdd = () => {
     const [formData, setFormData] = useState({
@@ -31,6 +32,20 @@ const ButtonAdd = () => {
         } else {
             setFormData((prevData) => ({ ...prevData, [name]: value }));
         }
+    };
+
+    const handleClear = () => {
+        // Reset all form fields to empty state
+        setFormData({
+            name: "",
+            email: "",
+            age: "",
+            phone: "",
+            company_name: "",
+            fruit: [],
+            status: "",
+            comments: "",
+        });
     };
 
     const handleSubmit = async (e) => {
@@ -82,14 +97,14 @@ const ButtonAdd = () => {
             )}
 
             <button
-                className="bg-blue-700 hover:bg-blue-600 text-white rounded-sm py-2 px-3 "
+                className="bg-blue-700 hover:bg-blue-600 text-white rounded-sm py-2 px-3 shadow-md"
                 onClick={() => document.getElementById("my_modal_2").showModal()}
             >
                 Add Data
             </button>
 
             <dialog id="my_modal_2" className="modal text-black">
-                <div className="modal-box rounded-lg h-fit max-w-fit px-10">
+                <div className="modal-box rounded-lg h-fit max-w-fit px-8">
 
                     <div className="flex justify-between items-center pb-3">
                         <h3 className="font-bold text-[1.35rem] px-6">Add Data</h3>
@@ -108,7 +123,12 @@ const ButtonAdd = () => {
                         <form onSubmit={handleSubmit}>
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="flex flex-col">
-                                    <label>Name</label>
+                                    <label className="relative">
+                                        <span className="absolute -top-1 -left-3 text-red-500 text-[10px] mr-1 animate-pulse">
+                                            <FaAsterisk />
+                                        </span>
+                                        Name
+                                    </label>
                                     <input
                                         type="text"
                                         name="name"
@@ -116,6 +136,7 @@ const ButtonAdd = () => {
                                         onChange={handleInputChange}
                                         placeholder="Enter name"
                                         className="p-2 border border-gray-300 rounded-md"
+                                        required
                                     />
                                 </div>
                                 <div className="flex flex-col">
@@ -194,8 +215,13 @@ const ButtonAdd = () => {
                                 </div>
                             </div>
 
-                            <div className="mt-4 flex flex-col">
-                                <label>Status</label>
+                            <div className="mt-2 flex flex-col">
+                                <label className="relative">
+                                    <span className="absolute -top-1 -left-3 text-red-500 text-[10px] mr-1 animate-pulse">
+                                        <FaAsterisk />
+                                    </span>
+                                    Status
+                                </label>
                                 <div className="flex flex-wrap gap-x-6 gap-y-4 mt-2">
                                     {["Active", "Inactive"].map((status) => (
                                         <label key={status} className="mr-2">
@@ -206,6 +232,7 @@ const ButtonAdd = () => {
                                                 checked={formData.status === status}
                                                 onChange={handleInputChange}
                                                 className="mt-1 w-5 h-5 mr-2"
+                                                required
                                             />
                                             {status}
                                         </label>
@@ -227,17 +254,26 @@ const ButtonAdd = () => {
                                 />
                             </div>
 
-                            <div className="mt-4 flex justify-center space-x-3">
+                            <div className="mt-5 mb-2 flex justify-center space-x-2">
                                 <button
                                     type="button"
                                     onClick={() => document.getElementById("my_modal_2").close()}
-                                    className="px-6 py-[8px] bg-slate-500 text-white rounded-sm hover:bg-slate-400"
+                                    className="px-6 py-[8px] bg-slate-400 text-white shadow-md rounded-sm hover:bg-slate-500"
                                 >
                                     Cancel
                                 </button>
+
+                                <button
+                                    type="button"
+                                    className="px-6 py-[8px] bg-white text-black border shadow-md border-[#a5a5a5] rounded-sm hover:bg-gray-200"
+                                    onClick={handleClear} // Attach clear function
+                                >
+                                    Clear
+                                </button>
+
                                 <button
                                     type="submit"
-                                    className="px-5 py-[8px] bg-blue-600 text-white rounded-sm hover:bg-blue-700"
+                                    className="px-5 py-[8px] bg-blue-600 text-white shadow-md first-letter:rounded-sm hover:bg-blue-700"
                                 >
                                     Confirm
                                 </button>
@@ -246,7 +282,7 @@ const ButtonAdd = () => {
                     </div>
                 </div>
             </dialog>
-        </div >
+        </div>
     );
 };
 

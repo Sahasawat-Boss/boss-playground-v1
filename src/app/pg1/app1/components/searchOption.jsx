@@ -8,7 +8,7 @@ const SearchOptions = () => {
     };
 
     return (
-        <div className="bg-base-200 mx-8 mb-6 text-black rounded-md shadow-md overflow-hidden">
+        <div className="bg-base-200 mx-8 mb-6 text-black rounded-sm shadow-md overflow-hidden">
             {/* Search Options Top Section */}
             <button
                 onClick={toggleCollapse}
@@ -52,10 +52,10 @@ const SearchOptions = () => {
 
                         {/* Clear and Confirm Section */}
                         <div>
-                            <button className="w-fit px-6 py-2 mr-2 bg-slate-500 text-white rounded-sm hover:bg-slate-400">
+                            <button className="w-fit px-6 py-2 mr-2 bg-slate-400 text-white rounded-sm hover:bg-slate-500 shadow-md">
                                 Clear
                             </button>
-                            <button className="w-fit px-4 py-2 bg-blue-700 text-white rounded-sm hover:bg-blue-500">
+                            <button className="w-fit px-4 py-2 bg-blue-700 text-white rounded-sm hover:bg-blue-500 shadow-md">
                                 Confirm
                             </button>
                         </div>

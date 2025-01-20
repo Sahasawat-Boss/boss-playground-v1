@@ -28,7 +28,7 @@ const ExportToExcel = ({ data, columnsToDisplay, fileName = "exported_data.xlsx"
     return (
         <button
             onClick={handleExport}
-            className="py-2 px-3 bg-blue-700 hover:bg-blue-600 text-white rounded-sm"
+            className="py-2 px-3 bg-blue-700 hover:bg-blue-600 text-white rounded-sm shadow-md"
         >
             Export to Excel
         </button>

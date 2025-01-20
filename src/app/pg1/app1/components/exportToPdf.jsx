@@ -45,7 +45,7 @@ const ExportToPDF = ({ data, columnsToDisplay, fileName = "CRUDv2_Table_Data.pdf
     return (
         <button
             onClick={handleExportToPDF}
-            className="py-2 px-3 bg-blue-700 hover:bg-blue-500 text-white rounded-sm"
+            className="py-2 px-3 bg-blue-700 hover:bg-blue-500 text-white rounded-sm shadow-md"
         >
             Export to PDF
         </button>
