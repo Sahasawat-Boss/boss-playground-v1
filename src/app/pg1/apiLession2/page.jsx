@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useSession } from 'next-auth/react'
 import Container from "../../components/container";
 import NavBar from "../../Components/nav";
 import Footer from "../../Components/footer";
@@ -9,6 +10,9 @@ import ScrollUpButton from "@/app/components/scrollUp";
 import ReloadButton from "./components/reloadButton ";
 
 const ApiLessonPage2 = () => {
+
+    const { data: session } = useSession();
+    
     const [sampleData, setSampleData] = useState([]); // Ensure this is set to an empty array.
     const [searchQuery, setSearchQuery] = useState(""); // State for search query
     const [formData, setFormData] = useState({
@@ -128,7 +132,7 @@ const ApiLessonPage2 = () => {
     return (
         <main className="bg-white dark:bg-black flex flex-col">
             <Container>
-                <NavBar />
+                <NavBar session={session}/>
                 <BackButton />
                 {/* Top Section */}
                 <div className="flex flex-col items-center">

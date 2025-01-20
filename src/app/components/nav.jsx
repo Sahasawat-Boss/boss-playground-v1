@@ -3,98 +3,74 @@
 import Link from "next/link";
 import { signOut } from "next-auth/react";
 import ThemeToggle from "./themeToggle";
+import { Tooltip } from 'react-tooltip';
 
-function NavBar({ session }) { //รับค่า session จากหน้า Welcome Page
+function NavBar({ session }) {
     return (
         <div
             className="navbar bg-[#181818] text-white shadow-[0_2px_20px_rgba(250,0,0,0.4)] top-0 z-50"
-
         >
             <div className="flex-1">
-                <a
+                <Link
                     href="/"
                     className="mr-3 btn btn-ghost text-xl relative transition-all duration-300 hover:text-blue-400"
+                    data-tooltip-id="index-tooltip"
                 >
                     Boss PlayGround
-                </a>
-                <ThemeToggle />
+                </Link>
+                <Tooltip id="index-tooltip" content="Go to first page" place="top" />
+                <div data-tooltip-id="theme-toggle-tooltip">
+                    <ThemeToggle />
+                </div>
+                <Tooltip id="theme-toggle-tooltip" content="Toggle Light/Dark Mode" place="top" />
             </div>
             <div className="flex-none">
                 {!session ? (
-                    // If no sesssion or user is not signed in >> show Sign In and Sign Up links  //
                     <ul className="menu menu-horizontal px-1 space-x-2">
-                        <li className="group">
-                            <Link href="/signIn"
-                                className="relative transition duration-300 text-white hover:text-blue-400"
-                                style={{ animation: "fadeUp 0.65s ease-in-out" }}>
+                        <li>
+                            <Link href="/signIn" className="text-white hover:text-blue-400">
                                 Sign In
-                                <span className="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
                             </Link>
                         </li>
-                        <li className="group">
-                            <Link href="/signUp"
-                                className="relative transition duration-300 text-white hover:text-blue-400"
-                                style={{ animation: "fadeUp 0.65s ease-in-out" }}>
+                        <li>
+                            <Link href="/signUp" className="text-white hover:text-blue-400">
                                 Sign Up
-                                <span className="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
                             </Link>
                         </li>
                     </ul>
                 ) : (
-                    // If have sesssion or user signed in >> show below lists //
                     <ul className="menu menu-horizontal px-1 space-x-2">
-                        <li className="group">
-                            <Link href="/WelcomePage"
-                                className="relative transition duration-300 text-white hover:text-blue-400"
-                                style={{ animation: "fadeUp 0.65s ease-in-out" }}>
+                        <li>
+                            <Link
+                                href="/WelcomePage"
+                                className="text-white hover:text-blue-400"
+                                data-tooltip-id="dashboard-tooltip"
+                            >
                                 Dashboard
-                                <span className="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
                             </Link>
+                            <Tooltip id="dashboard-tooltip" content="Go to Dashboard page" place="top" />
                         </li>
-                        <li className="group">
-                            <Link href="pg1"
-                                className="relative transition duration-300 text-white hover:text-blue-400"
-                                style={{ animation: "fadeUp 0.65s ease-in-out" }}>
+                        <li>
+                            <Link
+                                href="/pg1"
+                                className="text-white hover:text-blue-400"
+                                data-tooltip-id="pg1-tooltip"
+                            >
                                 PlayGround 1
-                                <span className="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
                             </Link>
+                            <Tooltip id="pg1-tooltip" content="Go to PlayGround1 page" place="top" />
                         </li>
-                        <li className="group">
+                        <li>
                             <a
                                 onClick={() => signOut()}
-                                className="relative transition duration-300 text-white hover:text-red-400 cursor-pointer"
-                                style={{ animation: "fadeUp 0.65s ease-in-out" }}>
+                                className="text-white hover:text-red-400 cursor-pointer"
+                            >
                                 Sign Out
-                                <span className="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-red-400 transition-all duration-300 group-hover:w-full"></span>
                             </a>
                         </li>
                     </ul>
                 )}
             </div>
-
-            {/* Add keyframe animations */}
-            <style jsx>{`
-        @keyframes fadeIn {
-            from {
-            opacity: 0;
-            transform: translateY(-5px);
-            }
-            to {
-            opacity: 1;
-            transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeUp {
-            from {
-            opacity: 0;
-            transform: translateY(15px);
-            }
-            to {
-            opacity: 1;
-            transform: translateY(0);
-            }
-        }`}</style>
         </div>
     );
 }

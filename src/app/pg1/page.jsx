@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import { useSession } from 'next-auth/react'
 import Container from "../Components/container";
 import NavBar from "../Components/nav";
 import Footer from "../Components/footer";
@@ -9,10 +9,14 @@ import BackButton from "../components/backButton"
 import AppNav from "./components/appNav";
 
 const pg1 = () => {
+
+
+    const { data: session } = useSession();
+
     return (
         <main className="bg-white dark:bg-black flex flex-col">
             <Container>
-                <NavBar />
+                <NavBar session={session} />
                 <BackButton />
                 {/* Top Section */}
                 <div className="flex flex-grow flex-col items-center pb-20 animate-fade-in">

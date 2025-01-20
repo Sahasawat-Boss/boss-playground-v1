@@ -1,24 +1,27 @@
 "use client";
 
+import { useSession } from 'next-auth/react'
 import { useState, useEffect } from "react";
-import { MdAppRegistration } from "react-icons/md";
 import { IoReload } from "react-icons/io5";
 import { IoIosWarning } from "react-icons/io";
 import Container from "../../components/container";
 import NavBar from "../../Components/nav";
 import Footer from "../../Components/footer";
 import BackButton from "../../components/backButton";
+import TitleSection from './components/titleSection';
 import ScrollUpButton from "@/app/components/scrollUp";
 import ExportToExcel from "./components/exportToExcel ";
 import ExportToPDF from "./components/exportToPdf";
 import SearchOptions from "./components/searchOption";
 import ButtonAdd from "./components/buttonAdd";
+import { Tooltip } from 'react-tooltip';
 
 const Crude2 = () => {
+    const { data: session } = useSession();
+
     const [crudv2Data, setCrudv2Data] = useState([]);
     const [loading, setLoading] = useState(true);
     const [selectedRows, setSelectedRows] = useState([]);
-
 
     const fetchData = async () => {
         try {
@@ -63,9 +66,9 @@ const Crude2 = () => {
 
         const getStatusTagStyles = (status) => {
             if (status.toLowerCase() === "active") {
-                return "bg-[#ebffe7] text-sm text-green-600 border-green-400 rounded-full border px-2 pb-[2px]";
+                return "bg-[#ebffe7] text-sm text-green-700 border-green-500 rounded-full border px-2 pb-[2px]";
             } else if (status.toLowerCase() === "inactive") {
-                return "bg-[#ffe7e7] text-sm text-red-600 border-red-300 rounded-full border px-2 pb-[2px]";
+                return "bg-[#ffe7e1] text-sm text-red-700 border-red-400 rounded-full border px-2 pb-[2px]";
             }
             return "";
         };
@@ -178,21 +181,15 @@ const Crude2 = () => {
         {/*Generate Table Section*/ }
     };
 
-
+//TODOs: ===== Page Return Over here! ========
 
     return (
         <main className="bg-white dark:bg-black flex flex-col ">
             <Container>
-                <NavBar />
+                <NavBar session={session} />
                 <BackButton />
-                <div className="flex flex-col items-center pb-10 animate-fade-in-up">
-                    <h1 className="flex text-3xl items-center text-center text-black dark:text-white py-3 font-semibold ">
-                        <span className="mr-1 mt-1 text-3xl animate-bounce">
-                            <MdAppRegistration />
-                        </span>
-                        CRUD Application v2
-                    </h1>
-                </div>
+
+                <TitleSection/>
 
                 <div className="px-10 flex flex-col flex-grow bg-white dark:bg-black animate-fade-in ">
 
@@ -203,8 +200,20 @@ const Crude2 = () => {
                         <button
                             className="px-3 py-[9px] text-xl bg-slate-300 dark:bg-gray-700 hover:bg-slate-200 hover:dark:bg-slate-500 text-black dark:text-white rounded-sm"
                             onClick={fetchData}
+                            data-tooltip-id="reload-tooltip"
                         >
                             <IoReload />
+                            <Tooltip
+                                id="reload-tooltip"
+                                content="Reload Table Data from DB"
+                                place="bottom" // Moves tooltip to the bottom
+                                style={{
+                                    fontSize: "13.5px", // Reduces font size
+                                    padding: "4px 8px", // Adjust padding for size
+                                    borderRadius: "4px", // Optional: round corners
+                                    zIndex: 9999, // Ensure tooltip is above everything
+                                }}
+                            />
                         </button>
 
                         <ButtonAdd />
@@ -228,7 +237,7 @@ const Crude2 = () => {
                         <dialog id="modal_confirm_delete" className="modal text-black">
                             <div className="modal-box rounded-lg h-fit max-w-[580px] px-8">
                                 <div className="flex flex-col justify-center items-center pb-3 font-semibold text-[1.5rem] text-red-500 ">
-                                    <div className="bg-red-100 rounded-full px-2 py-1 pb-2 mb-2"><IoIosWarning  className="text-4xl"/></div>
+                                    <div className="bg-red-100 rounded-full px-2 py-1 pb-2 mb-3"><IoIosWarning className="text-3xl" /></div>
                                     <h3>Are you sure?</h3>
                                 </div>
 
@@ -239,7 +248,7 @@ const Crude2 = () => {
                                     <p>This action cannot be undone.</p>
                                 </div>
 
-                                <div className="mb-4 flex justify-center space-x-3">
+                                <div className="mb-2 flex justify-center space-x-3">
                                     <button
                                         type="button"
                                         onClick={() => document.getElementById("modal_confirm_delete").close()}

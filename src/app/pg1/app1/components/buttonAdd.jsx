@@ -124,7 +124,7 @@ const ButtonAdd = () => {
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="flex flex-col">
                                     <label className="relative">
-                                        <span className="absolute -top-1 -left-3 text-red-500 text-[10px] mr-1 animate-pulse">
+                                        <span className="absolute top-1 -left-3 text-red-400 text-[9.5px] mr-1">
                                             <FaAsterisk />
                                         </span>
                                         Name
@@ -217,7 +217,7 @@ const ButtonAdd = () => {
 
                             <div className="mt-2 flex flex-col">
                                 <label className="relative">
-                                    <span className="absolute -top-1 -left-3 text-red-500 text-[10px] mr-1 animate-pulse">
+                                    <span className="absolute top-1 -left-3  text-red-400 text-[9.5px] mr-1">
                                         <FaAsterisk />
                                     </span>
                                     Status

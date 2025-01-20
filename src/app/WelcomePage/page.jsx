@@ -1,5 +1,7 @@
 "use client"
 
+import { useSession } from 'next-auth/react'
+import { CgProfile } from "react-icons/cg";
 import Container from "../Components/container";
 import NavBar from "../Components/nav";
 import Footer from "../Components/footer";
@@ -7,29 +9,25 @@ import Link from 'next/link';
 import Image from 'next/image'
 import ScrollUpButton from '../components/scrollUp'
 import YTvdo from "./components/YTvdo";
-import UnderDev from "../components/underDev";
-import { CgProfile } from "react-icons/cg";
-import { useSession } from 'next-auth/react'
-import { redirect } from 'next/navigation'
 
 function WelcomePage() {
 
     const { data: session } = useSession();
-    if (!session) redirect('/signIn'); //if no session or no login redirect to signIn
-    console.log("Boss Say: Hello to you");
-    console.log("Log in successfully:", session.user);
+
     console.log("GET /api/auth/session 200",);
 
     return (
         <main className="flex flex-col h-screen relative ">
             <Container>
-                <NavBar session={session} /> {/* ส่ง Prop session ไปที่ nav */}
+                <NavBar session={session} />
+                
                 <div className='flex flex-col bg-white dark:bg-black '>
+
                     {/* === Top Content === */}
-                    <div className="flex">
+                    <div className="flex justify-center gap-36 ">
                         {/* === Welcome User, Profile === */}
-                        <div className=" py-12 px-24 text-black">
-                            <h1 className=" mb-6 dark:text-white text-3xl font-medium text-center animate-floating ">Welcome,{session?.user?.name} </h1>
+                        <div className=" pt-10 pb-12 text-black animate-fade-in-left-right">
+                            <h1 className=" mb-6 dark:text-white text-3xl font-medium text-center">Welcome,{session?.user?.name} </h1>
                             <div className='bg-white w-fit mx-auto p-4 px-8 rounded-md  shadow-lg shadow-[#b3b3b3] dark:shadow-none'>
                                 <div className='flex justify-center '>
                                     <div className="flex-col items-start ">
@@ -45,17 +43,30 @@ function WelcomePage() {
                                 </div>
                             </div>
                         </div>
-                        {/* === Under Development Section === */}
-                        <div className="here w-full">
-                            <UnderDev/>
+
+                        <div className="py-10">
+                            <Link href="/pg1">
+                                <div className='relative animate-fade-in-right-left'>
+                                    {/* Tag */}
+                                    <span
+                                        className="absolute z-20 -top-3 -left-7 bg-[#f5de7a] border border-yellow-500 text-black text-sm font-semibold px-[7px] pt-[2.5px] pb-[5px] rounded-lg shadow-md animate-bounce"
+                                        style={{
+                                            animationDuration: "1.1s", // Faster bounce animation
+                                        }}>
+                                        New Updated!
+                                    </span><img
+                                        src="/picture-pg1/PG1-pic.png"
+                                        alt="pg1 pic"
+                                        className='w-[270px] rounded-xl border hover:cursor-pointer transform transition-all duration-300 ease-in-out hover:scale-105 shadow-xl shadow-[#bdbdbd] dark:shadow-[#474747] hover:shadow-[0_0_20px_10px_rgba(33,150,243,0.6)] dark:hover:shadow-[0_0_20px_10px_rgba(33,150,243,0.6)]'
+                                    /></div>
+                            </Link>
                         </div>
                     </div>
-                    {/* === Under Development Section === */}
 
                     <YTvdo />
 
                     {/* === Content Section === */}
-                    <div className='container flex-col bg-gray-100 mx-auto my-10 px-10 py-7 mb-20 rounded-xl shadow-sm shadow-[#b3b3b3]'>
+                    <div className='container flex-col bg-gray-100 mx-auto my-10 px-10 py-7 mb-20 rounded-xl shadow-sm shadow-[#b3b3b3] animate-fade-in'>
                         <div className="flex justify-end">
                             <Link className='mr-2 px-3 py-2 font-semibold bg-[#226922] text-white rounded-lg hover:bg-[#79b479] hover:text-[#ffffff] transition shadow-lg hover:shadow-[0_0_10px_rgba(33, 116, 33, 1)]'
                                 href="/create">Create Content</Link>

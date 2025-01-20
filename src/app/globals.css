@@ -111,14 +111,14 @@ body {
 }
 
 .animate-fade-in {
-    animation: fade-in 2s ease-in-out;
+    animation: fade-in 1.5s ease-in-out;
 }
 
 .animate-fade-in-up {
     animation: fade-in-up 1.5s ease-in-out;
 }
 .animate-fade-in-down {
-    animation: fade-in-down 1.2s ease-in-out;
+    animation: fade-in-down 1.5s ease-in-out;
 }
 .animate-fade-in-left-right{
     animation: fade-in-left-right 1.5s ease-in-out;

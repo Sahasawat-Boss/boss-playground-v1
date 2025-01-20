@@ -15,21 +15,21 @@ const SearchOptions = () => {
     };
 
     return (
-        <div className="bg-gray-200 mx-8 mb-6 text-black rounded-sm shadow-md overflow-hidden">
+        <div className="bg-gray-200 mx-8 mb-6 text-gray-600 rounded-md shadow-md overflow-hidden">
             {/* Search Options Top Section */}
             <button
                 onClick={toggleCollapse}
-                className="w-full flex items-center justify-between p-4 bg-[#e6e6e6] hover:bg-[#dbdbdb] font-semibold focus:outline-none border border-gray-300"
+                className="w-full flex items-center justify-between py-3 px-4 bg-[#e6e6e6] hover:bg-[#dbdbdb] font-semibold focus:outline-none border border-gray-300"
                 aria-expanded={isOpen}
             >
                 {/* Add Transition to Arrow */}
                 <span className="flex items-center">
                     <span
-                        className={`transform transition-transform duration-[0.4s] ${isOpen ? 'rotate-180' : '0'}`}
+                        className={`transform text-sm transition-transform duration-[0.4s] ${isOpen ? 'rotate-180' : '0'}`}
                     >
                         ▼
                     </span>
-                    <span className="ml-3 ">Search Options</span>
+                    <span className="ml-2 ">Search Options</span>
                 </span>
             </button>
 
