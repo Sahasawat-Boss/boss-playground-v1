@@ -3,7 +3,7 @@ import { IoCloseCircleSharp } from "react-icons/io5";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { FaAsterisk } from "react-icons/fa";
 
-const ButtonAdd = () => {
+const ButtonAdd = ({ fetchData }) => {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -64,6 +64,7 @@ const ButtonAdd = () => {
                     setSuccessMessage(false); // Remove success message
                     setFadeOut(false); // Reset fade-out state
                 }, 3000); // Fully hide the message after 3 seconds
+                
                 setFormData({
                     name: "",
                     email: "",
@@ -75,6 +76,9 @@ const ButtonAdd = () => {
                     comments: "",
                 });
                 document.getElementById("my_modal_2").close(); // Close the modal
+
+                // Call fetchData to refresh data
+                fetchData();
             } else {
                 alert("Failed to add data");
             }
@@ -83,13 +87,12 @@ const ButtonAdd = () => {
             alert("An error occurred while adding data.");
         }
     };
-
     return (
         <div className="relative">
             {/* Success Message */}
             {successMessage && (
                 <div
-                    className={`fixed left-1/2 top-16 z-50 flex w-fit -translate-x-1/2 transform items-center justify-center text-center rounded-md border px-8 py-3 border-green-600 bg-white text-green-600 shadow-md ${fadeOut ? "opacity-0 transition-opacity duration-300" : "opacity-100"
+                    className={`fixed left-1/2 top-16 z-[99999] flex w-fit -translate-x-1/2 transform items-center justify-center text-center rounded-md border px-8 py-3 border-green-600 bg-white text-green-600 shadow-md ${fadeOut ? "opacity-0 transition-opacity duration-300" : "opacity-100"
                         }`}>
                     <span className="font-semibold text-xl mr-2"><FaRegCheckCircle /></span>
                     <span className="font-semibold ">Added Data Successfully</span>

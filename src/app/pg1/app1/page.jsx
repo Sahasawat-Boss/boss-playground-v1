@@ -4,6 +4,7 @@ import { useSession } from 'next-auth/react'
 import { useState, useEffect } from "react";
 import { IoReload } from "react-icons/io5";
 import { IoIosWarning } from "react-icons/io";
+import { FaRegCheckCircle } from "react-icons/fa";
 import Container from "../../components/container";
 import NavBar from "../../Components/nav";
 import Footer from "../../Components/footer";
@@ -24,6 +25,9 @@ const Crude2 = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [name, setName] = useState('');
     const [status, setStatus] = useState('');
+    const [showNotification, setShowNotification] = useState(false);
+    const [fadeOut, setFadeOut] = useState(false);
+
 
     //** FOR Search Option
     const toggleCollapse = () => {
@@ -80,6 +84,16 @@ const Crude2 = () => {
             const result = await response.json();
             console.log("Successfully deleted data:", result);
 
+            // Show notification
+            setShowNotification(true);
+            setTimeout(() => {
+                setFadeOut(true); // Start fade-out
+                setTimeout(() => {
+                    setShowNotification(false); // Hide notification after fade-out
+                    setFadeOut(false); // Reset fade-out state
+                }, 300); // Duration of fade-out transition
+            }, 2000); // Duration to show notification before fade-out
+
             // Refresh data
             fetchData();
             setSelectedRows([]);
@@ -87,6 +101,7 @@ const Crude2 = () => {
             console.error("Error deleting data:", error);
         }
     };
+
 
 
     const columnsToDisplay = ["name", "company_name", "status", "age", "plan", "phone", "email", "comments"];
@@ -237,8 +252,19 @@ const Crude2 = () => {
     return (
         <main className="bg-white dark:bg-black flex flex-col ">
             <Container>
+
                 <NavBar session={session} />
                 <BackButton />
+
+                {showNotification && (
+                    <div
+                        className={`fixed left-1/2 top-16 z-[99999] flex w-fit -translate-x-1/2 transform items-center justify-center text-center rounded-md border px-8 py-3 border-green-600 bg-white text-green-600 shadow-md ${fadeOut ? "opacity-0 transition-opacity duration-3000" : "opacity-100"
+                            }`}
+                    >
+                        <span className="font-semibold text-xl mr-2"><FaRegCheckCircle /></span>
+                        <span className="font-semibold">Deleted Data Successfully</span>
+                    </div>
+                )}
 
                 <TitleSection />
 
@@ -325,26 +351,8 @@ const Crude2 = () => {
 
                     {/* Button Section*/}
                     <div className="flex px-8 mb-2 gap-2 items-center">
-                        <button
-                            className="px-3 py-[9px] text-xl bg-slate-300 dark:bg-gray-700 hover:bg-slate-200 hover:dark:bg-slate-500 text-black dark:text-white rounded-sm"
-                            onClick={fetchData}
-                            data-tooltip-id="reload-tooltip"
-                        >
-                            <IoReload />
-                            <Tooltip
-                                id="reload-tooltip"
-                                content="Reload Table Data from DB"
-                                place="bottom" // Moves tooltip to the bottom
-                                style={{
-                                    fontSize: "13.5px", // Reduces font size
-                                    padding: "4px 8px", // Adjust padding for size
-                                    borderRadius: "4px", // Optional: round corners
-                                    zIndex: 9999, // Ensure tooltip is above everything
-                                }}
-                            />
-                        </button>
 
-                        <ButtonAdd />
+                        <ButtonAdd fetchData={fetchData} />
 
                         <ExportToPDF data={crudv2Data} columnsToDisplay={columnsToDisplay} />
 
