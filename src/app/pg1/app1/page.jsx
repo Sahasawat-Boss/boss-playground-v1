@@ -12,7 +12,6 @@ import TitleSection from './components/titleSection';
 import ScrollUpButton from "@/app/components/scrollUp";
 import ExportToExcel from "./components/exportToExcel ";
 import ExportToPDF from "./components/exportToPdf";
-import SearchOptions from "./components/searchOption";
 import ButtonAdd from "./components/buttonAdd";
 import { Tooltip } from 'react-tooltip';
 
@@ -22,16 +21,36 @@ const Crude2 = () => {
     const [crudv2Data, setCrudv2Data] = useState([]);
     const [loading, setLoading] = useState(true);
     const [selectedRows, setSelectedRows] = useState([]);
+    const [isOpen, setIsOpen] = useState(false);
+    const [name, setName] = useState('');
+    const [status, setStatus] = useState('');
 
+    //** FOR Search Option
+    const toggleCollapse = () => {
+        setIsOpen(!isOpen);
+    };
+
+    const handleClear = () => {
+        setName('');
+        setStatus('');
+        fetchData(); // Fetch all data after clearing filters
+    };
+
+
+    //** GET Data
     const fetchData = async () => {
         try {
-            const response = await fetch("/api/crudV2");
+            const query = new URLSearchParams();
+            if (name) query.append("name", name);
+            if (status) query.append("status", status);
+
+            const response = await fetch(`/api/crudV2?${query.toString()}`);
             if (!response.ok) {
                 throw new Error(`Failed to fetch data: ${response.statusText}`);
             }
             const data = await response.json();
             setCrudv2Data(data.crudv2Data);
-            console.log("Successfully fetched CRUDv2 data:", data.crudv2Data);
+            console.log("Successfully fetched filtered CRUDv2 data:", data.crudv2Data);
         } catch (error) {
             console.error("Error fetching data:", error);
         } finally {
@@ -39,11 +58,38 @@ const Crude2 = () => {
         }
     };
 
+
     useEffect(() => {
         fetchData();
     }, []);
 
-    const columnsToDisplay = ["name", "company_name", "status", "age", "fruit", "phone", "email", "comments"];
+    //** DELETE Data
+    const deleteSelectedRows = async () => {
+        try {
+            const ids = selectedRows.map((row) => row._id); // Extract `_id` from selected rows
+            const response = await fetch("/api/crudV2", {
+                method: "DELETE",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ ids }), // Send IDs as JSON
+            });
+
+            if (!response.ok) {
+                throw new Error(`Failed to delete data: ${response.statusText}`);
+            }
+
+            const result = await response.json();
+            console.log("Successfully deleted data:", result);
+
+            // Refresh data
+            fetchData();
+            setSelectedRows([]);
+        } catch (error) {
+            console.error("Error deleting data:", error);
+        }
+    };
+
+
+    const columnsToDisplay = ["name", "company_name", "status", "age", "plan", "phone", "email", "comments"];
 
     const RenderTableCrudV2 = ({ selectedRows, setSelectedRows, crudv2Data, loading }) => {
         const toggleRowSelection = (row, index) => {
@@ -80,7 +126,7 @@ const Crude2 = () => {
                 <table className="table-auto w-full ">
                     <thead>
                         <tr className="bg-gray-200 text-black">
-                            <th className="sticky left-0 z-50 bg-[#e7e7e7] pt-4 pb-2 px-5 border border-[#ffffff] w-[60px]">
+                            <th className="sticky left-0 z-50 bg-[#e7e7e7] pt-4 pb-2 px-5 border border-[#ffffff] w-[60px] truncate">
                                 <input
                                     type="checkbox"
                                     className="w-6 h-6"
@@ -93,11 +139,12 @@ const Crude2 = () => {
                                 />
                             </th>
 
-                            {["Name", "Company Name", "Status", "Age", "Fruit", "Phone", "Email", "Comments"].map(
+                            {/*//** Edit Table Head Here*/}
+                            {["Name", "Company Name", "Status", "Age", "Plan", "Phone", "Email", "Comments"].map(
                                 (column, index) => (
                                     <th
                                         key={column}
-                                        className={`sticky ${index === 0 ? "left-0 " : ""
+                                        className={`sticky truncate ${index === 0 ? "left-0 " : ""
                                             } z-10 bg-[#e7e7e7] py-3 px-6 text-left font-semibold border border-[#ffffff] ${index === 0 ? "w-[200px] " : ""
                                             }`}
                                     >
@@ -114,14 +161,14 @@ const Crude2 = () => {
                                 .fill(null)
                                 .map((_, index) => (
                                     <tr key={`loading-${index}`} className="bg-gray-100 animate-pulse">
-                                        <td className="pt-2 px-5 text-left font-bold uppercase border border-[#e7e7e7]">
+                                        <td className="pt-2 px-5 text-left font-bold uppercase border border-[#e7e7e7] ">
                                             <input
                                                 type="checkbox"
                                                 className="w-6 h-6"
                                                 disabled
                                             />
                                         </td>
-                                        {["name", "company_name", "status", "age", "fruit", "phone", "email", "comments"].map(
+                                        {["name", "company_name", "status", "age", "plan", "phone", "email", "comments"].map(
                                             (column) => (
                                                 <td
                                                     key={column}
@@ -142,7 +189,7 @@ const Crude2 = () => {
                                         key={index}
                                         className={`${isSelected ? "bg-blue-200" : ""}`}
                                     >
-                                        <td className="sticky left-0 z-50 bg-[#e7e7e7] py-3 px-5 text-left font-bold uppercase border border-[#ffffff] w-[60px]">
+                                        <td className="sticky left-0 z-50 bg-[#e7e7e7] py-3 px-5 text-left font-bold uppercase border border-[#ffffff] w-[60px] truncate">
                                             <input
                                                 type="checkbox"
                                                 className="w-6 h-6"
@@ -154,14 +201,17 @@ const Crude2 = () => {
                                                 }}
                                             />
                                         </td>
-                                        {["name", "company_name", "status", "age", "fruit", "phone", "email", "comments"].map(
+                                        {["name", "company_name", "status", "age", "plan", "phone", "email", "comments"].map(
                                             (column) => (
                                                 <td
                                                     key={column}
                                                     className={`py-2 px-6 border border-[#e7e7e7] hover:bg-blue-100 truncate ${column === "status" ? "text-center" : ""
                                                         }`}
                                                 >
-                                                    {column === "status" ? (
+                                                    {/* Special handling for the 'plan' column */}
+                                                    {column === "plan" ? (
+                                                        Array.isArray(row[column]) ? row[column].join(", ") : row[column]
+                                                    ) : column === "status" ? (
                                                         <span className={getStatusTagStyles(row[column])}>
                                                             {row[column]}
                                                         </span>
@@ -171,6 +221,7 @@ const Crude2 = () => {
                                                 </td>
                                             )
                                         )}
+
                                     </tr>
                                 );
                             })}
@@ -181,7 +232,7 @@ const Crude2 = () => {
         {/*Generate Table Section*/ }
     };
 
-//TODOs: ===== Page Return Over here! ========
+    //TODOs: ===== Page Return Over here! ========
 
     return (
         <main className="bg-white dark:bg-black flex flex-col ">
@@ -189,11 +240,88 @@ const Crude2 = () => {
                 <NavBar session={session} />
                 <BackButton />
 
-                <TitleSection/>
+                <TitleSection />
 
                 <div className="px-10 flex flex-col flex-grow bg-white dark:bg-black animate-fade-in ">
 
-                    <SearchOptions />
+                    {/*//** ===== Search Options =====*/}
+                    <div className="bg-gray-200 mx-8 mb-6 text-gray-600 rounded-md shadow-md overflow-hidden">
+                        <button
+                            onClick={toggleCollapse}
+                            className="w-full flex items-center justify-between py-3 px-4 bg-[#e6e6e6] hover:bg-[#dbdbdb] font-semibold focus:outline-none border border-gray-300"
+                            aria-expanded={isOpen}
+                        >
+                            <span className="flex items-center">
+                                <span className={`transform text-sm transition-transform duration-[0.4s] ${isOpen ? 'rotate-180' : ''}`}>
+                                    ▼
+                                </span>
+                                <span className="ml-2 ">Search Options</span>
+                            </span>
+                        </button>
+
+                        <div
+                            className={`transition-all duration-[0.38s] ${isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'} flex justify-center overflow-hidden bg-white`}
+                        >
+                            <div className="pb-5 flex justify-center items-center text-center bg-gray-100 w-full">
+                                <div className="mt-3 flex flex-col space-y-8 w-full ">
+                                    <div className="grid grid-cols-2 gap-16 px-20">
+                                        <div className="flex flex-col">
+                                            <label htmlFor="name" className="mb-1 text-left font-semibold text-gray-700">
+                                                Name
+                                            </label>
+                                            <input
+                                                id="name"
+                                                type="text"
+                                                value={name}
+                                                onChange={(e) => setName(e.target.value)}
+                                                className="py-2 px-4 border border-gray-300 shadow-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"
+                                                placeholder="Enter name"
+                                            />
+                                        </div>
+
+                                        <div className="flex flex-col">
+                                            <label htmlFor="status" className="mb-1 text-left font-semibold text-gray-700">
+                                                Status
+                                            </label>
+                                            <select
+                                                id="status"
+                                                value={status}
+                                                onChange={(e) => setStatus(e.target.value)}
+                                                className={`py-2 px-4 border border-gray-300 shadow-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition ${status === '' ? 'text-gray-400' : 'text-black'
+                                                    }`}
+                                            >
+                                                <option value="" disabled hidden>
+                                                    Select status
+                                                </option>
+                                                <option value="Active" className="text-black">
+                                                    Active
+                                                </option>
+                                                <option value="Inactive" className="text-black">
+                                                    Inactive
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <button
+                                            onClick={handleClear}
+                                            className="w-fit px-6 py-2 mr-2 bg-slate-400 text-white rounded-sm hover:bg-slate-500 shadow-md"
+                                        >
+                                            Clear
+                                        </button>
+                                        <button
+                                            onClick={fetchData}
+                                            className="w-fit px-4 py-2 bg-blue-700 text-white rounded-sm hover:bg-blue-500 shadow-md"
+                                        >
+                                            Search
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {/*//** ===== Search Options =====*/}
 
                     {/* Button Section*/}
                     <div className="flex px-8 mb-2 gap-2 items-center">
@@ -258,6 +386,10 @@ const Crude2 = () => {
                                     </button>
                                     <button
                                         type="submit"
+                                        onClick={() => {
+                                            deleteSelectedRows();
+                                            document.getElementById("modal_confirm_delete").close();
+                                        }}
                                         className="px-5 py-[8px] bg-red-600 text-white rounded-sm hover:bg-red-400"
                                     >
                                         Confirm

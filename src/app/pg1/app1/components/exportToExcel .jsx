@@ -1,13 +1,13 @@
 import * as XLSX from "xlsx";
 
-const ExportToExcel = ({ data, columnsToDisplay, fileName = "exported_data.xlsx" }) => {
+const ExportToExcel = ({ data, columnsToDisplay, fileName = "CRUDv2_Table_Data.xlsx" }) => {
     const handleExport = () => {
         // Filter the data based on the displayed columns
         const filteredData = data.map((row) => {
             const rowData = {};
             columnsToDisplay.forEach((column) => {
-                if (column === "fruit") {
-                    // Convert the fruit array to a comma-separated string
+                if (column === "plan") {
+                    // Convert the plan array to a comma-separated string
                     rowData[column] = Array.isArray(row[column])
                         ? row[column].join(", ")
                         : row[column] || "";

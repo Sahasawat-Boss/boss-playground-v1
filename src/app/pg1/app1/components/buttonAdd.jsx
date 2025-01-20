@@ -10,7 +10,7 @@ const ButtonAdd = () => {
         age: "",
         phone: "",
         company_name: "",
-        fruit: [],
+        plan: [],
         status: "",
         comments: "",
     });
@@ -23,9 +23,9 @@ const ButtonAdd = () => {
         if (type === "checkbox") {
             setFormData((prevData) => ({
                 ...prevData,
-                fruit: checked
-                    ? [...prevData.fruit, value]
-                    : prevData.fruit.filter((fruit) => fruit !== value),
+                plan: checked
+                    ? [...prevData.plan, value]
+                    : prevData.plan.filter((plan) => plan !== value),
             }));
         } else if (type === "radio") {
             setFormData((prevData) => ({ ...prevData, [name]: value }));
@@ -42,7 +42,7 @@ const ButtonAdd = () => {
             age: "",
             phone: "",
             company_name: "",
-            fruit: [],
+            plan: [],
             status: "",
             comments: "",
         });
@@ -70,7 +70,7 @@ const ButtonAdd = () => {
                     age: "",
                     phone: "",
                     company_name: "",
-                    fruit: [],
+                    plan: [],
                     status: "",
                     comments: "",
                 });
@@ -197,19 +197,19 @@ const ButtonAdd = () => {
                             </div>
 
                             <div className="mt-4 flex flex-col">
-                                <label>Preferred Fruits</label>
+                                <label>Preferred Plans</label>
                                 <div className="flex flex-wrap my-2 gap-x-6 gap-y-4">
-                                    {["Apple", "Banana", "Water Melon"].map((fruit) => (
-                                        <label key={fruit} className="mr-2 flex items-center gap-x-2 gap-y-4">
+                                    {["A", "B", "C"].map((plan) => (
+                                        <label key={plan} className="mr-2 flex items-center gap-x-2 gap-y-4">
                                             <input
                                                 type="checkbox"
-                                                name="fruit"
-                                                value={fruit}
-                                                checked={formData.fruit.includes(fruit)}
+                                                name="plan"
+                                                value={plan}
+                                                checked={formData.plan.includes(plan)}
                                                 onChange={handleInputChange}
                                                 className="mt-1 w-5 h-5 mr-2 "
                                             />
-                                            {fruit}
+                                            {plan}
                                         </label>
                                     ))}
                                 </div>
