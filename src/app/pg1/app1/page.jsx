@@ -2,7 +2,6 @@
 
 import { useSession } from 'next-auth/react'
 import { useState, useEffect } from "react";
-import { IoReload } from "react-icons/io5";
 import { IoIosWarning } from "react-icons/io";
 import { FaRegCheckCircle } from "react-icons/fa";
 import Container from "../../components/container";
@@ -14,7 +13,6 @@ import ScrollUpButton from "@/app/components/scrollUp";
 import ExportToExcel from "./components/exportToExcel ";
 import ExportToPDF from "./components/exportToPdf";
 import ButtonAdd from "./components/buttonAdd";
-import { Tooltip } from 'react-tooltip';
 
 const Crude2 = () => {
     const { data: session } = useSession();
@@ -271,10 +269,10 @@ const Crude2 = () => {
                 <div className="px-10 flex flex-col flex-grow bg-white dark:bg-black animate-fade-in ">
 
                     {/*//** ===== Search Options =====*/}
-                    <div className="bg-gray-200 mx-8 mb-6 text-gray-600 rounded-md shadow-md overflow-hidden">
+                    <div className="bg-gray-200 mx-8 mb-4 text-gray-600 rounded-md shadow-md overflow-hidden">
                         <button
                             onClick={toggleCollapse}
-                            className="w-full flex items-center justify-between py-3 px-4 bg-[#e6e6e6] hover:bg-[#dbdbdb] font-semibold focus:outline-none border border-gray-300"
+                            className="w-full flex items-center justify-between py-3 px-4 bg-[#eeeeee] hover:bg-[#e0e0e0] font-semibold focus:outline-none border border-gray-300"
                             aria-expanded={isOpen}
                         >
                             <span className="flex items-center">
@@ -288,7 +286,7 @@ const Crude2 = () => {
                         <div
                             className={`transition-all duration-[0.38s] ${isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'} flex justify-center overflow-hidden bg-white`}
                         >
-                            <div className="pb-5 flex justify-center items-center text-center bg-gray-100 w-full">
+                            <div className="pb-5 flex justify-center items-center text-center border bg-white dark:bg-gray-100 w-full">
                                 <div className="mt-3 flex flex-col space-y-8 w-full ">
                                     <div className="grid grid-cols-2 gap-16 px-20">
                                         <div className="flex flex-col">
@@ -362,7 +360,7 @@ const Crude2 = () => {
                         <button
                             disabled={selectedRows.length === 0}
                             className={`py-2 px-3 rounded-sm ${selectedRows.length > 0
-                                ? "bg-red-700 hover:bg-red-400 text-white"
+                                ? "bg-[#e63434] dark:bg-[#c22f2f] hover:bg-red-400 dark:hover:bg-red-500 text-white"
                                 : "bg-gray-300 dark:bg-[#afafaf] text-gray-600 dark:text-gray-600 cursor-not-allowed"
                                 }`}
                             onClick={() => document.getElementById("modal_confirm_delete").showModal()}
@@ -370,7 +368,7 @@ const Crude2 = () => {
                             Delete
                         </button>
 
-                        <dialog id="modal_confirm_delete" className="modal text-black">
+                        <dialog id="modal_confirm_delete" className="modal text-black ">
                             <div className="modal-box rounded-lg h-fit max-w-[580px] px-8">
                                 <div className="flex flex-col justify-center items-center pb-3 font-semibold text-[1.5rem] text-red-500 ">
                                     <div className="bg-red-100 rounded-full px-2 py-1 pb-2 mb-3"><IoIosWarning className="text-3xl" /></div>

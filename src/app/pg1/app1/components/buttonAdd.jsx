@@ -107,7 +107,7 @@ const ButtonAdd = ({ fetchData }) => {
             </button>
 
             <dialog id="my_modal_2" className="modal text-black">
-                <div className="modal-box rounded-lg h-fit max-w-fit px-8">
+                <div className="modal-box rounded-lg h-fit max-w-fit px-6">
 
                     <div className="flex justify-between items-center pb-3">
                         <h3 className="font-bold text-[1.35rem] px-6">Add Data</h3>

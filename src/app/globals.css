@@ -64,6 +64,7 @@ body {
         transform: translateY(0);
     }
 }
+
 @keyframes fade-in-down {
     from {
         opacity: 0;
@@ -75,6 +76,7 @@ body {
         transform: translateY(0);
     }
 }
+
 @keyframes fade-in-left-right {
     from {
         opacity: 0;
@@ -86,6 +88,7 @@ body {
         transform: translateX(0);
     }
 }
+
 @keyframes fade-in-right-left {
     from {
         opacity: 0;
@@ -117,13 +120,16 @@ body {
 .animate-fade-in-up {
     animation: fade-in-up 1.5s ease-in-out;
 }
+
 .animate-fade-in-down {
     animation: fade-in-down 1.5s ease-in-out;
 }
-.animate-fade-in-left-right{
+
+.animate-fade-in-left-right {
     animation: fade-in-left-right 1.5s ease-in-out;
 }
-.animate-fade-in-right-left{
+
+.animate-fade-in-right-left {
     animation: fade-in-right-left 1.5s ease-in-out;
 }
 
@@ -162,4 +168,3 @@ body {
 }
 
 /* ========= Custom CSS Animation ========== */
-

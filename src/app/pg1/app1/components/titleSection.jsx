@@ -21,7 +21,7 @@ function TitleSection() {
                     <button
                         type="button"
                         onClick={() => setIsOpen(!isOpen)}
-                        className="flex w-full items-center justify-between gap-3 rounded-md border border-gray-400 py-3 px-5 font-medium text-gray-500 hover:bg-gray-100 focus:ring-1 focus:ring-gray-200 rtl:text-right dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:focus:ring-gray-800"
+                        className="flex w-full items-center justify-between gap-3 rounded-md border border-gray-400 py-3 px-5 font-medium text-gray-500 hover:bg-gray-100 focus:ring-1 focus:ring-gray-200 rtl:text-right dark:border-gray-700 dark:text-gray-400 dark:hover:bg-[#202020] dark:focus:ring-gray-800"
                         aria-expanded={isOpen}
                         aria-controls="accordion-open-body-1"
                     >
@@ -42,8 +42,8 @@ function TitleSection() {
                         </span>
                         <svg
                             data-accordion-icon
-                            className={`h-3 w-3 shrink-0 ${isOpen ? "rotate-180" : ""
-                                } transition-transform`}
+                            className={`h-3 w-3 shrink-0 ${isOpen ? "" : "rotate-180"
+                                } transition-transform duration-300`}
                             aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -62,13 +62,13 @@ function TitleSection() {
                 {isOpen && (
                     <div
                         id="accordion-open-body-1"
-                        className=" border rounded-b-md border-gray-400 p-5 dark:border-gray-700 dark:bg-gray-900"
+                        className=" border rounded-b-md border-gray-400 p-5 dark:border-gray-700 dark:bg-black"
                     >
                         <p className="mb-3 text-black dark:text-gray-300">
-                        CRUD V.2 is a powerful tool for managing data in a MongoDB database. It supports GET, POST, DELETE, and filter operations on a CRUD collection, allowing efficient data retrieval, creation, and deletion. 
+                            <span className="underline font-semibold mr-2">CRUD V.2</span> is a powerful tool for managing data in a MongoDB database. It supports GET, POST, DELETE, and filter operations on a CRUD collection, allowing efficient data retrieval, creation, and deletion.
                         </p>
                         <p className=" text-black dark:text-gray-300">
-                        The interface is user-friendly and includes export options for generating PDF reports or Excel files with a single click. These features make CRUD V.2 ideal for seamless data management, reporting, and analysis.
+                            The interface is user-friendly and includes export options for generating PDF reports or Excel files with a single click. These features make CRUD V.2 ideal for seamless data management, reporting, and analysis.
                         </p>
                     </div>
                 )}
