@@ -21,10 +21,10 @@ function WelcomePage() {
             <Container>
                 <NavBar session={session} />
                 
-                <div className='flex flex-col bg-white dark:bg-black '>
+                <div className='flex flex-col bg-white dark:bg-black'>
 
                     {/* === Top Content === */}
-                    <div className="flex justify-center gap-36 ">
+                    <div className="flex justify-center gap-36 py-6">
                         {/* === Welcome User, Profile === */}
                         <div className=" pt-10 pb-12 text-black animate-fade-in-left-right">
                             <h1 className=" mb-6 dark:text-white text-3xl font-medium text-center">Welcome,{session?.user?.name} </h1>
@@ -51,7 +51,7 @@ function WelcomePage() {
                                     <span
                                         className="absolute z-20 -top-3 -left-7 bg-[#f5de7a] border border-yellow-500 text-black text-sm font-semibold px-[7px] pt-[2.5px] pb-[5px] rounded-lg shadow-md animate-bounce"
                                         style={{
-                                            animationDuration: "1.1s", // Faster bounce animation
+                                            animationDuration: "1.09s", // Faster bounce animation
                                         }}>
                                         New Updated!
                                     </span><img

@@ -4,6 +4,8 @@ import { useSession } from 'next-auth/react'
 import { useState, useEffect } from "react";
 import { IoIosWarning } from "react-icons/io";
 import { FaRegCheckCircle } from "react-icons/fa";
+import { IoReload } from "react-icons/io5";
+import { Tooltip } from "react-tooltip";
 import Container from "../../components/container";
 import NavBar from "../../Components/nav";
 import Footer from "../../Components/footer";
@@ -102,7 +104,7 @@ const Crude2 = () => {
 
 
 
-    const columnsToDisplay = ["name", "company_name", "status", "age", "plan", "phone", "email", "comments"];
+    const columnsToDisplay = ["name", "company_name", "status", "plan", "age", "phone", "email", "comments"];
 
     const RenderTableCrudV2 = ({ selectedRows, setSelectedRows, crudv2Data, loading }) => {
         const toggleRowSelection = (row, index) => {
@@ -153,7 +155,7 @@ const Crude2 = () => {
                             </th>
 
                             {/*//** Edit Table Head Here*/}
-                            {["Name", "Company Name", "Status", "Age", "Plan", "Phone", "Email", "Comments"].map(
+                            {["Name", "Company Name", "Status", "Plan", "Age", "Phone", "Email", "Comments"].map(
                                 (column, index) => (
                                     <th
                                         key={column}
@@ -181,7 +183,7 @@ const Crude2 = () => {
                                                 disabled
                                             />
                                         </td>
-                                        {["name", "company_name", "status", "age", "plan", "phone", "email", "comments"].map(
+                                        {["name", "company_name", "status", "plan", "age", "phone", "email", "comments"].map(
                                             (column) => (
                                                 <td
                                                     key={column}
@@ -214,7 +216,7 @@ const Crude2 = () => {
                                                 }}
                                             />
                                         </td>
-                                        {["name", "company_name", "status", "age", "plan", "phone", "email", "comments"].map(
+                                        {["name", "company_name", "status", "plan", "age", "phone", "email", "comments"].map(
                                             (column) => (
                                                 <td
                                                     key={column}
@@ -264,9 +266,9 @@ const Crude2 = () => {
                     </div>
                 )}
 
-                <TitleSection />
+                <div className="px-10 2xl:px-40 flex flex-col flex-grow  bg-white dark:bg-black animate-fade-in ">
 
-                <div className="px-10 flex flex-col flex-grow bg-white dark:bg-black animate-fade-in ">
+                    <TitleSection />
 
                     {/*//** ===== Search Options =====*/}
                     <div className="bg-gray-200 mx-8 mb-4 text-gray-600 rounded-md shadow-md overflow-hidden">
@@ -287,8 +289,8 @@ const Crude2 = () => {
                             className={`transition-all duration-[0.38s] ${isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'} flex justify-center overflow-hidden bg-white`}
                         >
                             <div className="pb-5 flex justify-center items-center text-center border bg-white dark:bg-gray-100 w-full">
-                                <div className="mt-3 flex flex-col space-y-8 w-full ">
-                                    <div className="grid grid-cols-2 gap-16 px-20">
+                                <div className="mt-3 flex flex-col space-y-8 w-[95%] 2xl::w-[85%] ">
+                                    <div className="grid grid-cols-2 gap-12 2xl:gap-36 px-20">
                                         <div className="flex flex-col">
                                             <label htmlFor="name" className="mb-1 text-left font-semibold text-gray-700">
                                                 Name
@@ -348,8 +350,24 @@ const Crude2 = () => {
                     {/*//** ===== Search Options =====*/}
 
                     {/* Button Section*/}
-                    <div className="flex px-8 mb-2 gap-2 items-center">
+                    <div className="flex px-8 mb-2 gap-2 items-center animate-fade-in-left-right">
 
+                        <button
+                            className="px-3 py-[9px] text-xl bg-slate-300 dark:bg-gray-700 hover:bg-slate-200 hover:dark:bg-slate-500 text-black dark:text-white rounded-sm"
+                            onClick={fetchData}
+                            data-tooltip-id="reload-tooltip"
+                        >
+                            <IoReload />
+                        </button>
+                        <Tooltip
+                            id="reload-tooltip"
+                            content="Reload Table Data from DB"
+                            place="bottom" // Moves tooltip to the bottom
+                            style={{
+                                padding: "6px 6px",
+                                zIndex: 9999, // Ensure tooltip is above everything
+                            }}
+                        />
                         <ButtonAdd fetchData={fetchData} />
 
                         <ExportToPDF data={crudv2Data} columnsToDisplay={columnsToDisplay} />
@@ -405,6 +423,7 @@ const Crude2 = () => {
                         </dialog>
                         {/*Button Delete and modal*/}
 
+                        
                     </div>
                     {/* Button Section*/}
 
