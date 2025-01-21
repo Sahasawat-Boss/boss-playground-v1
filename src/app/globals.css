@@ -114,7 +114,7 @@ body {
 }
 
 .animate-fade-in {
-    animation: fade-in 1.5s ease-in-out;
+    animation: fade-in 1.7s ease-in-out;
 }
 
 .animate-fade-in-up {
@@ -126,11 +126,11 @@ body {
 }
 
 .animate-fade-in-left-right {
-    animation: fade-in-left-right 1.5s ease-in-out;
+    animation: fade-in-left-right 1.55s ease-in-out;
 }
 
 .animate-fade-in-right-left {
-    animation: fade-in-right-left 1.5s ease-in-out;
+    animation: fade-in-right-left 1.55s ease-in-out;
 }
 
 .animate-floating {
