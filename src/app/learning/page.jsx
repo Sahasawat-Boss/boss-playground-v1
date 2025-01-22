@@ -1,96 +1,92 @@
 "use client";
 
-import { useSession } from 'next-auth/react'
+import { useSession } from "next-auth/react";
 import Container from "../Components/container";
 import NavBar from "../Components/nav";
 import Footer from "../Components/footer";
 import Link from "next/link";
-import BackButton from "../components/backButton"
+import BackButton from "../components/backButton";
 
-const learning = () => {
-
-
+const Learning = () => {
     const { data: session } = useSession();
 
     return (
-        <main className="bg-white dark:bg-black flex flex-col">
+        <main className="bg-gradient-to-b from-gray-50 via-white to-gray-100 dark:from-black dark:via-gray-900 dark:to-black flex flex-col min-h-screen">
             <Container>
                 <NavBar session={session} />
                 <BackButton />
                 {/* Top Section */}
-                <div className="flex flex-grow flex-col items-center pb-20 animate-fade-in">
-                    <h1 className="text-3xl text-center text-black dark:text-white py-3 font-semibold animate-floating">
-                        Learning
+                <div className="flex flex-grow flex-col items-center py-16 animate-fade-in">
+                    <h1 className="text-4xl text-center font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500 dark:from-blue-400 dark:to-purple-600 mb-6 animate-floating">
+                        Learning Playground
                     </h1>
-                    <p className="text-black dark:text-white text-center w-[500px] ">
-                        Learning Playground 1 is a creative space where I explore new coding techniques, concepts, and programming ideas.                    </p>
+                    <p className="text-center text-lg text-gray-700 dark:text-gray-300 w-[90%] sm:w-[500px] leading-relaxed">
+                        Learning Playground 1 is a creative space where I explore new coding techniques,
+                        concepts, and programming ideas.
+                    </p>
                     <img
-                        className="mt-8 drop-shadow-xl "
+                        className="mt-10 drop-shadow-xl rounded-xl transform hover:scale-105 transition duration-500"
                         src="https://media0.giphy.com/media/eNAsjO55tPbgaor7ma/giphy.gif?cid=6c09b9520xrtc3u0zk574kj6fokty3nmbx7xhaj966m9hskt&ep=v1_stickers_search&rid=giphy.gif&ct=s"
                         alt="React Gif"
-                        height={0}
-                        width={50}
+                        width={80}
+                        height={80}
                     />
-                    {/* Top Section */}
 
-                    <h1 className="text-3xl text-center text-black dark:text-white pt-3 pb-16 font-semibold animate-fade-in">
-                        Learning
-                    </h1>
-                    <div className="flex w-full justify-evenly gap-10">
-                        {/* Learning Left Section */}
-                        <div>
-                            <div className=" w-[250px] h-[250px]">
+                    {/* Cards Section */}
+                    <div className="mt-16 flex w-full justify-center flex-wrap gap-28 xl:gap-40">
+                        {/* Left Images Section */}
+                        <div className="flex flex-col gap-10">
+                            <div
+                                className="relative w-[290px] h-[250px] bg-cover bg-center bg-no-repeat border-white border-2 shadow-lg shadow-[#838383] animate-fade-in-left-right"
+                                style={{
+                                    backgroundImage: "url('/picture-pg1/DB Pic1.jpg')",
+                                }}>
                                 <div
-                                    className="relative w-[290px] h-[250px] bg-cover bg-center bg-no-repeat border-white border-2 shadow-lg shadow-[#838383] animate-fade-in-left-right"
+                                    className="absolute -bottom-8 -right-8 w-[280px] h-[250px] bg-cover bg-center bg-no-repeat border-white border-2 z-10 shadow-lg shadow-[#838383] animate-fade-in-left-right"
                                     style={{
                                         backgroundImage: "url('/picture-pg1/DB Pic1.jpg')",
                                     }}>
-                                    <div
-                                        className="absolute -bottom-8 -right-8 w-[280px] h-[250px] bg-cover bg-center bg-no-repeat border-white border-2 z-10 shadow-lg shadow-[#838383] animate-fade-in-left-right"
-                                        style={{
-                                            backgroundImage: "url('/picture-pg1/DB Pic1.jpg')",
-                                        }}>
-                                    </div>
                                 </div>
                             </div>
                         </div>
-                        {/* Learning Left Section */}
 
-                        {/* Learning Right Section */}
-                        <div className=" flex flex-col gap-4">
+                        {/* Right Cards Section */}
+                        <div className="flex flex-col gap-6">
                             {/* Card 1 */}
-                            <div className="mb-1">
-                                <Link href={"/pg1/apiLession"}>
-                                    <div className="text-center max-w-sm w-80 p-4 rounded-lg text-black dark:text-black bg-white shadow-md shadow-[#a3a3a3] dark:shadow-none cursor-pointer hover:shadow-blue-600 dark:hover:shadow-blue-600 hover:shadow-lg dark:hover:shadow-lg transition hover:scale-105 animate-fade-in-up">
-                                        <h2 className="text-xl font-bold mb-2">Restful API - Method: GET</h2>
-                                        <p>Demonstrate and Test the GET method</p>
-                                    </div>
-                                </Link>
-                            </div>
+                            <Link href={"/learning/lession1"}>
+                                <div className="text-center max-w-sm w-80 p-6 rounded-lg bg-white dark:bg-gray-800 shadow-md shadow-[#a3a3a3] dark:shadow-none cursor-pointer hover:shadow-blue-600 dark:hover:shadow-blue-600 hover:scale-105 transition-all animate-fade-in-up">
+                                    <h2 className="text-xl font-bold mb-2 text-black dark:text-white">
+                                        Restful API - Method: GET
+                                    </h2>
+                                    <p className="text-gray-600 dark:text-gray-300">
+                                        Demonstrate and Test the GET method
+                                    </p>
+                                </div>
+                            </Link>
 
                             {/* Card 2 */}
-                            <div className="mb-1">
-                                <Link href={"/pg1/apiLession2"}>
-                                    <div className="text-center max-w-sm w-80 p-4 rounded-lg text-black dark:text-black bg-white shadow-md shadow-[#a3a3a3] dark:shadow-none cursor-pointer hover:shadow-blue-600 dark:hover:shadow-blue-600 hover:shadow-lg dark:hover:shadow-lg transition hover:scale-105 animate-fade-in-up">
-                                        <h2 className="text-xl font-bold mb-2">GET and POST Data</h2>
-                                        <p>Test the GET and Post method</p>
-                                    </div>
-                                </Link>
-                            </div>
+                            <Link href={"/learning/apiLession2"}>
+                                <div className="text-center max-w-sm w-80 p-6 rounded-lg bg-white dark:bg-gray-800 shadow-md shadow-[#a3a3a3] dark:shadow-none cursor-pointer hover:shadow-blue-600 dark:hover:shadow-blue-600 hover:scale-105 transition-all animate-fade-in-up">
+                                    <h2 className="text-xl font-bold mb-2 text-black dark:text-white">
+                                        GET and POST Data
+                                    </h2>
+                                    <p className="text-gray-600 dark:text-gray-300">
+                                        Test the GET and POST methods
+                                    </p>
+                                </div>
+                            </Link>
 
                             {/* Card 3 */}
-                            <div className="mb-1">
-                                <Link href={"/pg1/page3"}>
-                                    <div className="text-center max-w-sm w-80 p-4 rounded-lg text-black dark:text-black bg-white shadow-md shadow-[#a3a3a3] dark:shadow-none cursor-pointer hover:shadow-blue-600 dark:hover:shadow-blue-600 hover:shadow-lg dark:hover:shadow-lg ransition hover:scale-105 animate-fade-in-up">
-                                        <h2 className="text-xl font-bold mb-2">In progress...</h2>
-                                        <p>In progress...</p>
-                                    </div>
-                                </Link>
-                            </div>
+                            <Link href={"/learning/page3"}>
+                                <div className="text-center max-w-sm w-80 p-6 rounded-lg bg-white dark:bg-gray-800 shadow-md shadow-[#a3a3a3] dark:shadow-none cursor-pointer hover:shadow-blue-600 dark:hover:shadow-blue-600 hover:scale-105 transition-all animate-fade-in-up">
+                                    <h2 className="text-xl font-bold mb-2 text-black dark:text-white">
+                                        In Progress...
+                                    </h2>
+                                    <p className="text-gray-600 dark:text-gray-300">In Progress...</p>
+                                </div>
+                            </Link>
                         </div>
-                        {/* Learning Right Section */}
                     </div>
-
                 </div>
                 <Footer />
             </Container>
@@ -98,4 +94,4 @@ const learning = () => {
     );
 };
 
-export default learning;
+export default Learning;

@@ -51,10 +51,10 @@ function Hero() {
         </h1>
 
         {/* Description */}
-        <p className="mt-4 px-4 sm:px-36 text-lg sm:text-xl text-gray-300">
+        <p className="mt-4 px-4 text-lg sm:text-xl text-gray-300">
           Welcome to Boss Playground, where creativity meets innovation.
         </p>
-        <p className="mt-4 px-6 sm:px-16 text-lg sm:text-xl text-gray-300">
+        <p className="mt-4 px-6 text-lg sm:text-xl text-gray-300">
           Sign in to explore your personalized dashboard, exclusive features, and level up your
           skills.
         </p>

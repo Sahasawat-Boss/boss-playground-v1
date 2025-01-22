@@ -95,7 +95,7 @@ function NavBar({ session }) {
     );
 
     return (
-        <div className="navbar bg-[#181818] text-white shadow-[0_2px_20px_rgba(250,0,0,0.4)] top-0 z-50">
+        <div className="navbar bg-[#181818] text-white shadow-[0_2px_20px_rgba(250,0,0,0.23)] top-0 z-50">
             {/* Left Section: Brand and Theme Toggle */}
             <div className="flex-1">
                 <Link

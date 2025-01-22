@@ -3,7 +3,7 @@ import Link from 'next/link';  // Import Link component
 
 function Footer() {
     return (
-        <footer className="footer footer-center bg-[#181818] text-white rounded p-10 shadow-[0_-2px_20px_rgba(250,0,0,0.4)] z-10">
+        <footer className="footer footer-center bg-[#181818] text-white rounded p-10 shadow-[0_-2px_20px_rgba(250,0,0,0.23)] z-10">
             <nav className="grid grid-flow-col gap-4">
                 <Link href="/" className="link link-hover">About us</Link>
                 <Link href="/" className="link link-hover">Contact</Link>

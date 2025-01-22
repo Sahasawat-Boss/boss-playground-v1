@@ -7,7 +7,7 @@ import NavBar from "../../Components/nav";
 import Footer from "../../Components/footer";
 import BackButton from "../../components/backButton";
 import ScrollUpButton from "@/app/components/scrollUp";
-import ArrowDown from "./component/arrowDown";
+import ArrowDown from "./components/arrowDown";
 
 const ApiLessionPage = () => {
 
