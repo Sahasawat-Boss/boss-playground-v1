@@ -6,6 +6,7 @@ import NavBar from "../Components/nav";
 import Footer from "../Components/footer";
 import BackButton from "../components/backButton";
 import AppNav from "./components/appNav";
+import AppNav2 from "./components/appNav2";
 
 const Pg1 = () => {
     const { data: session } = useSession();
@@ -37,9 +38,18 @@ const Pg1 = () => {
                         width={80}
                     />
 
+                    <h1 className="text-3xl text-center text-black dark:text-white pt-14 pb-4 font-semibold animate-fade-in">
+                        Applications
+                    </h1>
+
                     {/* App Navigation */}
-                    <div className="pt-12 pb-20">
+                    <div className="pt-12 pb-8">
                         <AppNav />
+                    </div>
+
+                    {/* App2 Navigation */}
+                    <div className="pt-12 pb-20">
+                        <AppNav2 />
                     </div>
                 </div>
 

@@ -1,16 +1,18 @@
-import React from 'react'
+import React from 'react';
 
-function parallax2() {
+function Parallax2() {
     return (
         /*-- Parallax Section 1 --*/
         <div
             className="parallax h-[420px]"
             style={{
-                backgroundImage:
-                    "url('picture-pg1/ai gen3.webp",
+                backgroundImage: "url('/picture-pg1/Ai gen3.webp')",
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundAttachment: 'fixed',
             }}
         ></div>
     );
 }
 
-export default parallax2
+export default Parallax2;

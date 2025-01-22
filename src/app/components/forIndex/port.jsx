@@ -60,7 +60,7 @@ function Port() {
                         <p className="text-lg text-center mb-14 text-gray-700 dark:text-gray-300 px-12 xl:px-40 leading-relaxed">
                             {section.description}
                         </p>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8">
                             {section.projects.map((project, index) => (
                                 <Portfolio1 key={index} image={project.image} title={project.title} />
                             ))}
