@@ -24,7 +24,7 @@ function CardInterest() {
                 {/* Frontend Developer Card */}
                 <div className="relative p-[2px] rounded-xl bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-200% animate-gradient-border hover:scale-110 transition-all duration-300">
                     <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md">
-                    <h3 className="text-2xl font-bold mb-4 text-black dark:text-white">Frontend Developer</h3>
+                    <h3 className="text-2xl font-bold mb-4 text-black dark:text-white">Developer</h3>
                         <p className="text-gray-600 dark:text-gray-400 mb-4 w-[450px]">
                             I enjoy coding from scratch and turning ideas into reality using modern web technologies.
                         </p>

@@ -22,7 +22,7 @@ function WelcomePage() {
 
                 <div className="flex flex-grow flex-col bg-gradient-to-b from-white via-gray-100 to-gray-50 dark:from-black dark:via-gray-900 dark:to-black">
                     {/* === Top Content === */}
-                    <div className="flex flex-wrap justify-center gap-32 xl:gap-56 pt-16 pb-4 px-6">
+                    <div className="flex flex-wrap justify-center gap-24 xl:gap-48 pt-16 pb-4 px-6">
                         {/* === Welcome User, Profile === */}
                         <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg shadow-gray-300 dark:shadow-none max-w-md w-80 animate-fade-in-left-right">
                             <h1 className="mb-6 dark:text-white text-2xl font-bold text-center">
