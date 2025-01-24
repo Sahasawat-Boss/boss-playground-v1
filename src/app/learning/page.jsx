@@ -76,7 +76,17 @@ const Learning = () => {
                                 </div>
                             </Link>
 
-                            {/* Card 3 */}
+                            {/* Card 3 db */}
+                            <Link href={"/learning/lessionDB"}>
+                                <div className="text-center max-w-sm w-80 p-6 rounded-lg bg-white dark:bg-gray-800 shadow-md shadow-[#a3a3a3] dark:shadow-none cursor-pointer hover:shadow-blue-600 dark:hover:shadow-blue-600 hover:scale-105 transition-all animate-fade-in-up">
+                                    <h2 className="text-xl font-bold mb-2 text-black dark:text-white">
+                                        Learning new DB
+                                    </h2>
+                                    <p className="text-gray-600 dark:text-gray-300">Learning new DB...</p>
+                                </div>
+
+                            </Link>
+                            {/* Card Inprogress */}
                             <Link href={"/learning/page3"}>
                                 <div className="text-center max-w-sm w-80 p-6 rounded-lg bg-white dark:bg-gray-800 shadow-md shadow-[#a3a3a3] dark:shadow-none cursor-pointer hover:shadow-blue-600 dark:hover:shadow-blue-600 hover:scale-105 transition-all animate-fade-in-up">
                                     <h2 className="text-xl font-bold mb-2 text-black dark:text-white">
