@@ -17,7 +17,7 @@ const Pg1 = () => {
                 <NavBar session={session} />
                 <BackButton />
                 {/* Top Section */}
-                <div className="flex flex-grow flex-col items-center py-16 animate-fade-in">
+                <div className="flex flex-grow flex-col items-center pt-8 pb-16  animate-fade-in">
                     {/* Heading */}
                     <h1 className="text-4xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500 dark:from-blue-400 dark:to-purple-600 mb-6 animate-floating">
                         PlayGround 1

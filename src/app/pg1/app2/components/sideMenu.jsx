@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { GiHamburgerMenu } from "react-icons/gi";
-import { MdContentPasteSearch } from "react-icons/md";
-import { LuClipboardList } from "react-icons/lu";
+import { MdContentPasteSearch, MdAddTask } from "react-icons/md";
 import { FaRegQuestionCircle } from "react-icons/fa";
+import { BsListTask } from "react-icons/bs";
+import { FaChartBar } from "react-icons/fa6";
 
 function SideMenu() {
     const [isCollapsed, setIsCollapsed] = useState(false);
@@ -13,47 +14,76 @@ function SideMenu() {
     };
 
     return (
-        <div className="relative bg-white dark:bg-black h-screen shadow-lg shadow-[#b9b9b9]">
+        <div className="relative bg-white dark:bg-black h-full shadow-lg shadow-[#b9b9b9]">
             {/* Hamburger Icon */}
             {isCollapsed && (
                 <button
                     onClick={toggleMenu}
-                    className="absolute top-4 left-3 z-50 bg-gray-100 text-gray-900 rounded-sm p-1 py-1 hover:bg-gray-300 shadow-md animate-fade-in-left-right"
+                    className="absolute top-4 left-3 z-50 bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 rounded-sm p-1 py-1 hover:bg-gray-300 dark:hover:bg-gray-500 shadow-md transition-all duration-[0.55s]  animate-fade-in-left-right"
                 >
-                    <GiHamburgerMenu className="text-xl opacity-50 font-bold" />
+                    <GiHamburgerMenu className="text-lg font-bold" />
                 </button>
             )}
 
             {/* Side Menu */}
             <div
-                className={`transition-all duration-[0.7s] ${isCollapsed ? 'w-0 overflow-hidden' : 'w-48 animate-fade-in'
+                className={`transition-all duration-[0.55s] ${isCollapsed ? 'w-0 overflow-hidden' : 'w-48'
                     } bg-gray-100 dark:bg-[#1a1a1a] h-full`}
             >
-                <div className="w-48 text-black dark:text-white flex flex-col gap-4 p-4 ">
-                    {!isCollapsed && (
-                        <div className="flex text-gray-700 dark:text-gray-200 font-bold justify-between">
-                            <h1 className="flex text-sm opacity-45 relative z-10">
-                                PIR
-                            </h1>
-                            {/* Inline Hamburger Icon */}
-                            <button onClick={toggleMenu} className="">
-                                <GiHamburgerMenu className="text-xl opacity-50 font-bold" />
-                            </button>
-                        </div>
-                    )}
-                    {!isCollapsed && (
-                        <>
-                            <Link href="#" className="ml-4 flex gap-2  hover:font-semibold hover:text-blue-500">
-                                <MdContentPasteSearch className='mt-1'/>PIR Form
-                            </Link>
-                            <Link href="#" className="ml-4 flex gap-2 hover:font-semibold hover:text-blue-500">
-                                <LuClipboardList className='mt-1'/>PI Management
-                            </Link>
-                            <Link href="#" className="ml-4 flex gap-2 hover:font-semibold hover:text-blue-500">
-                                <FaRegQuestionCircle className='mt-1'/>About
-                            </Link>
-                        </>
-                    )}
+                <div
+                    className={`transition-all duration-[0.55s] ${isCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100 w-48'
+                        } bg-gray-100 dark:bg-[#1a1a1a] h-full`}
+                >
+                    <div className="w-48 text-black dark:text-white flex flex-col gap-4 p-4 transition-opacity duration-[0.55s]">
+                        {!isCollapsed && (
+                            <div className="flex text-gray-700 dark:text-gray-200 font-bold justify-between">
+                                <Link
+                                    href="/pg1/app2"
+                                    className="flex text-sm opacity-45 relative z-10 hover:text-blue-600 dark:hover:text-blue-400 hover:translate-x-1"
+                                >
+                                    PIR
+                                </Link>
+                                {/* Inline Hamburger Icon */}
+                                <button onClick={toggleMenu} className="">
+                                    <GiHamburgerMenu className="text-xl opacity-50 font-bold hover:text-blue-600 dark:hover:text-blue-400" />
+                                </button>
+                            </div>
+                        )}
+                        {!isCollapsed && (
+                            <div className="flex flex-col gap-4 ml-5">
+                                <Link
+                                    href="/pg1/app2/piresquest"
+                                    className="flex gap-2 hover:translate-x-1 hover:text-blue-600 dark:hover:text-blue-400"
+                                >
+                                    <MdContentPasteSearch className="mt-1" />PI Request
+                                </Link>
+                                <Link
+                                    href="/pg1/app2/task"
+                                    className="flex gap-2 hover:translate-x-1 hover:text-blue-600 dark:hover:text-blue-400"
+                                >
+                                    <BsListTask className="mt-1" />Task
+                                </Link>
+                                <Link
+                                    href="#"
+                                    className="flex gap-2 hover:translate-x-1 hover:text-blue-600 dark:hover:text-blue-400"
+                                >
+                                    <MdAddTask className="mt-1" />Completed
+                                </Link>
+                                <Link
+                                    href="#"
+                                    className="flex gap-2 hover:translate-x-1 hover:text-blue-600 dark:hover:text-blue-400"
+                                >
+                                    <FaChartBar className="mt-1" />Report
+                                </Link>
+                                <Link
+                                    href="#"
+                                    className="flex gap-2 hover:translate-x-1 hover:text-blue-600 dark:hover:text-blue-400"
+                                >
+                                    <FaRegQuestionCircle className="mt-1" />About
+                                </Link>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>

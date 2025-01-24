@@ -21,12 +21,13 @@ function lessionDB() {
                 <div className="flex flex-col flex-grow bg-gray-50 dark:bg-black items-center justify-center py-10 px-4">
                     <div className="w-[450px] bg-white dark:from-black shadow-md rounded-lg p-12">
                         <h2 className="text-xl dark:text-black mb-8 text-center">
-                            Upload files to Cloudinary DataBase
+                            Upload files to Cloudinary Database
                         </h2>
                         <UploadForm />
                     </div>
                 </div>
                 <Footer />
+                <ScrollUpButton/>
             </Container>
         </main>
     );

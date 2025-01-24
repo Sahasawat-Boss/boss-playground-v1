@@ -16,7 +16,7 @@ const Learning = () => {
                 <NavBar session={session} />
                 <BackButton />
                 {/* Top Section */}
-                <div className="flex flex-grow flex-col items-center py-16 animate-fade-in">
+                <div className="flex flex-grow flex-col items-center pt-8 pb-16 animate-fade-in">
                     <h1 className="text-4xl text-center font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500 dark:from-blue-400 dark:to-purple-600 mb-6 animate-floating">
                         Learning Playground
                     </h1>
@@ -80,9 +80,9 @@ const Learning = () => {
                             <Link href={"/learning/lessionDB"}>
                                 <div className="text-center max-w-sm w-80 p-6 rounded-lg bg-white dark:bg-gray-800 shadow-md shadow-[#a3a3a3] dark:shadow-none cursor-pointer hover:shadow-blue-600 dark:hover:shadow-blue-600 hover:scale-105 transition-all animate-fade-in-up">
                                     <h2 className="text-xl font-bold mb-2 text-black dark:text-white">
-                                        Learning new DB
+                                        Cloudinary DataBase
                                     </h2>
-                                    <p className="text-gray-600 dark:text-gray-300">Learning new DB...</p>
+                                    <p className="text-gray-600 dark:text-gray-300">Test Upload to Cloudinary DB</p>
                                 </div>
 
                             </Link>

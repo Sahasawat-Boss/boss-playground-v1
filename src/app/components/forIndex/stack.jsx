@@ -43,12 +43,13 @@ function CardInterest() {
                         <div className='border-b-2 dark:border-b-2 border-gray-200 dark:border-gray-600 py-2'>
                             <h4 className="text-purple-700 dark:text-purple-400 font-bold mb-2">Dev Tools:</h4>
                             <p className="text-gray-600 dark:text-gray-400">
-                                VS Code, GitHub, TailwindCSS
+                                VS Code, TailwindCSS , GitHub, Git
                             </p>
                             <div className="flex gap-2">
                                 <img src="/picture/devLogo/vscode.png" alt="VS Code" className="w-10 h-10 rounded-lg" />
-                                <img src="/picture/devLogo/github.jpg" alt="GitHub" className="w-10 h-10 rounded-lg" />
                                 <img src="/picture/devLogo/twcss.jpg" alt="TailwindCSS" className="w-9 h-9 rounded-lg" />
+                                <img src="/picture/devLogo/github.jpg" alt="GitHub" className="w-10 h-10 rounded-lg" />
+                                <img src="/picture/devLogo/git.png" alt="Git" className="w-9 h-9 rounded-lg bg-white" />
                             </div>
                         </div>
 
@@ -59,7 +60,7 @@ function CardInterest() {
                             </p>
                             <div className="flex gap-2">
                                 <img src="/picture/devLogo/mdb.jpg" alt="MongoDB" className="w-10 h-10 rounded-lg" />
-                                <img src="/picture/devLogo/cloud.png" alt="Cloudinary" className="bg-white w-10 h-10 rounded-lg" />
+                                <img src="/picture/devLogo/cldb.jpg" alt="Cloudinary" className="w-10 h-10 rounded-lg" />
                             </div>
                         </div>
 

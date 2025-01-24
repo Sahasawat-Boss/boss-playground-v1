@@ -4,9 +4,9 @@ import { useSession } from "next-auth/react";
 import Container from "@/app/components/container";
 import NavBar from "@/app/components/nav";
 import Footer from "@/app/components/footer";
-import SideMenu from "./components/sideMenu";
+import SideMenu from "../components/sideMenu";
 
-function PIRwelcome() {
+function PIRTask() {
     const { data: session } = useSession();
 
     return (
@@ -19,11 +19,11 @@ function PIRwelcome() {
                         <SideMenu />
                     </div>
 
-                    <div className="flex w-full flex-col p-5 ">
+                    <div className="flex w-full flex-col p-5">
                         <div className="flex h-full shadow-lg shadow-[#d6d6d6] dark:shadow-[#464646] ">
                             <div className="flex px-10 pt-6">
-                                <h1 className="text-3xl text-black dark:text-white font-semibold  animate-fade-in-right-left">
-                                    Welcome to PIR
+                                <h1 className="text-3xl text-black dark:text-white font-semibold animate-fade-in-right-left">
+                                    PIR - Task
                                 </h1>
                             </div>
                         </div>
@@ -37,4 +37,4 @@ function PIRwelcome() {
     );
 };
 
-export default PIRwelcome
+export default PIRTask
