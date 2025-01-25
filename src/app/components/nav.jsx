@@ -132,8 +132,8 @@ function NavBar({ session }) {
                         href="/"
                         className={`${
                             pathname === "/"
-                                ? "mr-3 btn btn-ghost text-xl text-blue-400 transition-all duration-300 hover:text-blue-400"
-                                : "mr-3 btn btn-ghost text-xl text-white transition-all duration-300 hover:text-blue-400"
+                                ? "mr-3 ml-6 font-semibold text-xl text-blue-400 transition-all duration-300 hover:text-blue-400"
+                                : "mr-3 ml-6 font-semibold text-xl text-white transition-all duration-300 hover:text-blue-400"
                         }`}
                         data-tooltip-id="index-tooltip"
                     >

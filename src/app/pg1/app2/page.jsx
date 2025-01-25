@@ -21,10 +21,11 @@ function PIRwelcome() {
 
                     <div className="flex w-full flex-col p-5 ">
                         <div className="flex h-full shadow-lg shadow-[#d6d6d6] dark:shadow-[#464646] ">
-                            <div className="flex px-10 pt-6">
-                                <h1 className="text-3xl text-black dark:text-white font-semibold  animate-fade-in-right-left">
-                                    Welcome to PIR
+                            <div className="flex flex-col gap-y-3 px-10 pt-6 animate-fade-in-fast">
+                                <h1 className="text-3xl text-black dark:text-white font-semibold  ">
+                                    Welcome to PIS
                                 </h1>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, hic. Totam tempore error natus repellendus nemo aliquam, explicabo voluptatibus eos, ad ipsam itaque cum non! Eaque maxime sunt repellat. Dolorem!</p>
                             </div>
                         </div>
                     </div>

@@ -47,10 +47,10 @@ const RequestForm = () => {
     return (
         <form
             onSubmit={handleSubmit}
-            className="max-w-7xl xl:border-x-2 mx-auto bg-white dark:bg-transparent pt-2 pb-4 px-6 animate-fade-in"
+            className="max-w-7xl xl:border-x-2 mx-auto bg-white dark:bg-transparent pt-2 pb-4 px-6 animate-fade-in-fast"
         >
             <div className='flex item-center justify-between'>
-                <h1 className="text-3xl text-black dark:text-white font-semibold animate-fade-in-right-left">
+                <h1 className="text-3xl text-black dark:text-white font-semibold">
                     Process Inspection Request (PIR)
                 </h1>
                 <div className="mt-2 text-xl text-black dark:text-white hover:text-yellow-500 dark:hover:text-yellow-400 hover:scale-150 drop-shadow-lg animate-fade-in">
@@ -64,7 +64,7 @@ const RequestForm = () => {
             <div className="grid grid-cols-2 py-4 gap-x-10 xl:gap-x-28 gap-y-3">
                 <div>
                     <label className="block mb-1">
-                        Project:
+                        Project Name:
                         <select
                             type="text"
                             name="project"
@@ -72,10 +72,11 @@ const RequestForm = () => {
                             onChange={handleChange}
                             className="text-black w-full border border-gray-300 rounded px-3 py-2 mt-1"
                         >
-                            <option value="Project A">Project A</option>
-                            <option value="Project B">Project B</option>
-                            <option value="Project C">Project C</option>
-                            <option value="Project D">Project D</option>
+                            <option value="Main Branch (A)">Main Branch (A)</option>
+                            <option value="Main Branch (A2)">Main Branch (A2)</option>
+                            <option value="Sub Project B">Sub Project (B)</option>
+                            <option value="Sub Project C">Sub Project (C)</option>
+
                         </select>
 
                     </label>
@@ -202,7 +203,7 @@ const RequestForm = () => {
                             ))}
                             <button
                                 onClick={() => setFormData({ ...formData, evidence: '' })}
-                                className=" w-fit px-4 py-1.5 bg-red-500 text-white rounded hover:bg-red-400"
+                                className="mt-1 w-fit px-3 py-1 bg-red-500 text-white rounded hover:bg-red-400"
                             >
                                 Remove All
                             </button>

@@ -21,8 +21,8 @@ function PIRTask() {
 
                     <div className="flex w-full flex-col p-5">
                         <div className="flex h-full shadow-lg shadow-[#d6d6d6] dark:shadow-[#464646] ">
-                            <div className="flex px-10 pt-6">
-                                <h1 className="text-3xl text-black dark:text-white font-semibold animate-fade-in-right-left">
+                            <div className="flex px-10 pt-6 animate-fade-in-fast">
+                                <h1 className="text-3xl text-black dark:text-white font-semibold">
                                     PIR - Task
                                 </h1>
                             </div>
