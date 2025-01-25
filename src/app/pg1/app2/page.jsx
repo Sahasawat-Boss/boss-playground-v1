@@ -6,29 +6,49 @@ import NavBar from "@/app/components/nav";
 import Footer from "@/app/components/footer";
 import SideMenu from "./components/sideMenu";
 
-function PIRwelcome() {
+function PIR() {
     const { data: session } = useSession();
 
     return (
-        <main className="bg-white dark:bg-black transition-all duration-[0.5s] flex flex-col min-h-screen">
+        <main className="bg-white dark:bg-[#222224] transition-all duration-[0.5s] flex flex-col min-h-screen">
             <Container>
                 <NavBar session={session} />
-                <main className="flex h-[75vh]">
+                <main className="flex">
 
                     <div className=" bg-gray-600">
                         <SideMenu />
                     </div>
 
-                    <div className="flex w-full flex-col p-5 ">
-                        <div className="flex h-full shadow-lg shadow-[#d6d6d6] dark:shadow-[#464646] ">
-                            <div className="flex flex-col gap-y-3 px-10 pt-6 animate-fade-in-fast">
-                                <h1 className="text-3xl text-black dark:text-white font-semibold  ">
+                    <div className="flex w-full h-[80vh] flex-col p-5">
+                        <div className="h-[80vh] flex flex-col p-5 border-2 dark:border-neutral-700 shadow-lg shadow-[#d6d6d6] dark:shadow-[#464646]">
+                            <div className="h-full border bg-white dark:bg-transparent pt-2 pb-4 px-6 animate-fade-in-fast">
+
+                                <h1 className="mb-3 text-3xl text-black dark:text-white font-semibold">
                                     Welcome to PIS
                                 </h1>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, hic. Totam tempore error natus repellendus nemo aliquam, explicabo voluptatibus eos, ad ipsam itaque cum non! Eaque maxime sunt repellat. Dolorem!</p>
+                                <p className="indent-6">
+                                    The Process Inspection Request System (PIR) streamlines the creation, tracking, and management of process inspection requests. Users can submit detailed requests, monitor progress through the Task and Completed menus, and generate reports in the Report menu.
+                                </p>
+
+                                {/* Grid Section */}
+                                <div className="h-[30vh] border-red-600 border-2 mt-4 w-full grid grid-cols-2">
+                                    <div className="border-black border h-full flex items-center justify-center">
+                                        PI Request
+                                    </div>
+                                    <div className="border-black border h-full flex items-center justify-center">
+                                        Task
+                                    </div>
+                                    <div className="border-black border h-full flex items-center justify-center">
+                                        Completed
+                                    </div>
+                                    <div className="border-black border h-full flex items-center justify-center">
+                                        Report
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                 </main>
 
                 {/* Footer */}
@@ -36,6 +56,6 @@ function PIRwelcome() {
             </Container>
         </main>
     );
-};
+}
 
-export default PIRwelcome
+export default PIR;

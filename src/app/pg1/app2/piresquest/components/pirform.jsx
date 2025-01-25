@@ -1,19 +1,20 @@
 "use client"
 
 import React, { useState } from 'react';
-import { FaRegQuestionCircle } from "react-icons/fa";
+import InfoPIR from './info';
 
 const RequestForm = () => {
     const [formData, setFormData] = useState({
         project: '',
-        detectedDate: '2025-01-24',
+        detectedDate: new Date().toISOString().split('T')[0], // Default to current date
         detectedBy: '',
-        detectedProcess: '',
+        detectedProcess: '', // Default to a valid option
         severity: 'Low',
-        evidence: '',
+        evidenceFile: '',
+        previewUrl: '', // For displaying the image preview
         details: '',
         inspectorName: '',
-        dueDate: '2025-01-24',
+        dueDate: new Date().toISOString().split('T')[0], // Default to current date
     });
 
     const handleChange = (e) => {
@@ -22,25 +23,26 @@ const RequestForm = () => {
     };
 
     const handleFileChange = (e) => {
-        setFormData({ ...formData, evidence: e.target.files[0] || '' });
+        setFormData({ ...formData, evidenceFile: e.target.files[0] || '' });
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData);
+        console.log('Submitted Data:', formData); // Debugging to ensure dropdown value is included
     };
 
     const handleClear = () => {
         setFormData({
             project: '',
-            detectedDate: '2025-01-24',
+            detectedDate: new Date().toISOString().split('T')[0], // Default to current date
             detectedBy: '',
             detectedProcess: '',
             severity: 'Low',
-            evidence: '',
+            evidenceFile: '',
+            previewUrl: '',
             details: '',
             inspectorName: '',
-            dueDate: '2025-01-24',
+            dueDate: new Date().toISOString().split('T')[0], // Default to current date
         });
     };
 
@@ -53,9 +55,8 @@ const RequestForm = () => {
                 <h1 className="text-3xl text-black dark:text-white font-semibold">
                     Process Inspection Request (PIR)
                 </h1>
-                <div className="mt-2 text-xl text-black dark:text-white hover:text-yellow-500 dark:hover:text-yellow-400 hover:scale-150 drop-shadow-lg animate-fade-in">
-                    <FaRegQuestionCircle />
-                </div>
+                <InfoPIR/>
+
             </div>
 
             <hr className='border mt-2' />
@@ -66,29 +67,28 @@ const RequestForm = () => {
                     <label className="block mb-1">
                         Project Name:
                         <select
-                            type="text"
                             name="project"
-                            value={formData.project}
-                            onChange={handleChange}
+                            value={formData.project} // Controlled field
+                            onChange={handleChange} // Update state on change
                             className="text-black w-full border border-gray-300 rounded px-3 py-2 mt-1"
                         >
+                            <option value="" disabled>Select a project</option>
                             <option value="Main Branch (A)">Main Branch (A)</option>
                             <option value="Main Branch (A2)">Main Branch (A2)</option>
                             <option value="Sub Project B">Sub Project (B)</option>
                             <option value="Sub Project C">Sub Project (C)</option>
-
                         </select>
-
                     </label>
                 </div>
+
                 <div>
                     <label className="block mb-1">
                         Detected Date:
                         <input
                             type="date"
                             name="detectedDate"
-                            value={formData.detectedDate}
-                            onChange={handleChange}
+                            value={formData.detectedDate} // Controlled field
+                            onChange={handleChange} // Update state on change
                             className="text-black w-full border border-gray-300 rounded px-3 py-2 mt-1"
                         />
                     </label>
@@ -111,10 +111,11 @@ const RequestForm = () => {
                         Detected Process:
                         <select
                             name="detectedProcess"
-                            value={formData.detectedProcess}
-                            onChange={handleChange}
+                            value={formData.detectedProcess} // Controlled by state
+                            onChange={handleChange} // Updates state on change
                             className="text-black w-full border border-gray-300 rounded px-3 py-2 mt-1"
                         >
+                            <option value="" disabled>Select a process</option>
                             <option value="Main Process">Main Process</option>
                             <option value="Activity Process">Activity Process</option>
                             <option value="Sub Process A">Sub Process A</option>
@@ -123,6 +124,7 @@ const RequestForm = () => {
                         </select>
                     </label>
                 </div>
+
             </div>
             <div className='mb-4'>
                 <span className="block mb-2">Severity Level:</span>
@@ -163,30 +165,48 @@ const RequestForm = () => {
                 </div>
             </div>
 
+            {/* New Details Input Box Section */}
+            <div className="mb-2">
+                <label className="block mb-2">
+                    Details to support the Request:
+                    <textarea
+                        name="details"
+                        value={formData.details}
+                        onChange={handleChange}
+                        className="text-black w-full mt-2 h-20 border border-gray-300 rounded px-3 py-2"
+                        rows="4"
+                        placeholder="Provide additional details here..."
+                    />
+                </label>
+            </div>
+
+
             <label className="block mb-2">
-                Upload evidence or attachment:
+                Upload evidenceFile or attachment:
             </label>
 
             <div className="mb-4">
-                <div className="flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-gray-300 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
-                    {!formData.evidence ? (
+                <div className="flex flex-col items-center justify-center w-full h-fit border-2 border-dashed border-gray-300 rounded-md bg-gray-50 dark:bg-gray-100 dark:border-gray-500">
+                    {!formData.evidenceFile ? (
                         <>
-                            <p className=" text-gray-500 dark:text-gray-400 mb-2">Select Files Here</p>
-                            <p className="text-xs text-gray-500 dark:text-gray-400 mb-6">Files Supported: PDF, PNG, JPG, JPEG</p>
+                            <p className=" text-gray-500 mt-4 mb-2">Select Files</p>
+                            <p className="text-xs text-gray-500">
+                                Files Supported: pdf, png, jpg, jpeg, webp
+                            </p>
                             <label
                                 htmlFor="multiple_files"
-                                className="text-sm px-6 py-1.5 bg-blue-700 text-white rounded-md cursor-pointer hover:bg-blue-400 focus:outline-none"
+                                className="text-sm px-6 py-1 my-4 bg-blue-700 text-white rounded-md cursor-pointer hover:bg-blue-400 focus:outline-none opacity-70"
                             >
                                 Choose Files
                             </label>
                             <input
                                 id="multiple_files"
                                 type="file"
-                                name="evidence"
+                                name="evidenceFile"
                                 onChange={(e) => {
                                     handleFileChange(e);
                                     if (e.target.files && e.target.files.length > 0) {
-                                        setFormData({ ...formData, evidence: Array.from(e.target.files) });
+                                        setFormData({ ...formData, evidenceFile: Array.from(e.target.files) });
                                     }
                                 }}
                                 multiple
@@ -194,27 +214,34 @@ const RequestForm = () => {
                             />
                         </>
                     ) : (
-                        <ul className="flex flex-col items-center text-sm text-gray-500 dark:text-gray-400">
-                            {Array.from(formData.evidence).map((file, index) => (
-                                <li key={index} className="w-full items-start mb-1 text-sm text-black">
-                                    File {index + 1}: ({file.name}) 
-                                    <span className='text-xs text-gray-500'> | size: {(file.size / (1024 * 1024)).toFixed(2)} MB</span>
+                        <ul className="w-full h-full overflow-y-auto py-2 px-6 mt-2">
+                            {Array.from(formData.evidenceFile).map((file, index) => (
+                                <li key={index} className="flex items-center justify-left mb-3 bg-white border">
+                                    {file.type.startsWith("image/") && (
+                                        <img
+                                            src={URL.createObjectURL(file)}
+                                            alt={`Preview ${index + 1}`}
+                                            className="w-20 h-20 object-cover rounded-md border"
+                                        />
+                                    )}
+                                    <div className="ml-4">
+                                        <p className="text-sm text-black">File {index + 1}: {file.name}</p>
+                                        <p className="text-xs text-gray-500">
+                                            Size: {(file.size / (1024 * 1024)).toFixed(2)} MB
+                                        </p>
+                                    </div>
                                 </li>
                             ))}
                             <button
-                                onClick={() => setFormData({ ...formData, evidence: '' })}
-                                className="mt-1 w-fit px-3 py-1 bg-red-500 text-white rounded hover:bg-red-400"
+                                onClick={() => setFormData({ ...formData, evidenceFile: '' })}
+                                className=" w-fit mb-2 px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-400"
                             >
                                 Remove All
                             </button>
                         </ul>
-
                     )}
                 </div>
             </div>
-
-
-
 
             <hr className='border' />
 
@@ -239,8 +266,8 @@ const RequestForm = () => {
                         <input
                             type="date"
                             name="dueDate"
-                            value={formData.dueDate}
-                            onChange={handleChange}
+                            value={formData.dueDate} // Controlled field
+                            onChange={handleChange} // Update state on change
                             className="text-black w-full border border-gray-300 rounded px-3 py-2 mt-1"
                         />
                     </label>

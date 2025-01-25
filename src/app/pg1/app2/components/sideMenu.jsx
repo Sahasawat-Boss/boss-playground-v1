@@ -70,7 +70,7 @@ function SideMenu() {
                                     <BsListTask className="mt-1 opacity-75" />Task
                                 </Link>
                                 <Link
-                                    href="#"
+                                    href="/pg1/app2/completed"
                                     className="flex gap-2 hover:translate-x-1 hover:text-blue-600 dark:hover:text-blue-400"
                                 >
                                     <MdAddTask className="mt-1 opacity-75" />Completed

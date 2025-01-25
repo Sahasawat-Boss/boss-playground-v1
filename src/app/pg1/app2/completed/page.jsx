@@ -24,14 +24,14 @@ function PIR() {
                             <div className="h-full border bg-white dark:bg-transparent pt-2 pb-4 px-6 animate-fade-in-fast">
 
                                 <h1 className="mb-3 text-3xl text-black dark:text-white font-semibold">
-                                    PIR - Task
+                                    PIR - Completed
                                 </h1>
 
                                 <div className="mb-4 border-red-600 border-2 w-full h-16 flex justify-center items-center">
                                     Search Section
                                 </div>
                                 <div className="h-[55vh] border-red-600 border-2 w-full flex justify-center items-center">
-                                    Display GET Task Section
+                                    Display GET Completed Section
                                 </div>
 
                             </div>
