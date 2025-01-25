@@ -14,7 +14,7 @@ function SideMenu() {
     };
 
     return (
-        <div className="relative bg-white dark:bg-black h-full shadow-lg shadow-[#b9b9b9]">
+        <div className="relative bg-slate-400 dark:bg-black h-full shadow-lg shadow-[#b9b9b9]">
             {/* Hamburger Icon */}
             {isCollapsed && (
                 <button

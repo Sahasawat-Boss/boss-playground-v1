@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import InfoPIR from './info';
+import { IoCloudUploadOutline } from "react-icons/io5";
 
 const RequestForm = () => {
     const [formData, setFormData] = useState({
@@ -55,7 +56,7 @@ const RequestForm = () => {
                 <h1 className="text-3xl text-black dark:text-white font-semibold">
                     Process Inspection Request (PIR)
                 </h1>
-                <InfoPIR/>
+                <InfoPIR />
 
             </div>
 
@@ -185,20 +186,23 @@ const RequestForm = () => {
                 Upload evidenceFile or attachment:
             </label>
 
+            {/* Upload Section*/}
             <div className="mb-4">
-                <div className="flex flex-col items-center justify-center w-full h-fit border-2 border-dashed border-gray-300 rounded-md bg-gray-50 dark:bg-gray-100 dark:border-gray-500">
+                <label
+                    htmlFor="multiple_files" // Link the div to the file input
+                    className="flex flex-col items-center justify-center w-full h-fit border-2 border-dashed border-gray-300 hover:bg-gray-100 rounded-md dark:hover:bg-opacity-10 dark:border-gray-500 cursor-pointer"
+                >
                     {!formData.evidenceFile ? (
                         <>
-                            <p className=" text-gray-500 mt-4 mb-2">Select Files</p>
+                            <IoCloudUploadOutline className="text-5xl text-gray-400 mt-4 mb-1" />
+
+                            <p className="text-gray-500 mb-2">Select Files</p>
                             <p className="text-xs text-gray-500">
                                 Files Supported: pdf, png, jpg, jpeg, webp
                             </p>
-                            <label
-                                htmlFor="multiple_files"
-                                className="text-sm px-6 py-1 my-4 bg-blue-700 text-white rounded-md cursor-pointer hover:bg-blue-400 focus:outline-none opacity-70"
-                            >
+                            <div className="text-sm px-6 py-1 my-4 bg-blue-700 text-white rounded-md hover:bg-blue-400 focus:outline-none opacity-70">
                                 Choose Files
-                            </label>
+                            </div>
                             <input
                                 id="multiple_files"
                                 type="file"
@@ -225,7 +229,9 @@ const RequestForm = () => {
                                         />
                                     )}
                                     <div className="ml-4">
-                                        <p className="text-sm text-black">File {index + 1}: {file.name}</p>
+                                        <p className="text-sm text-black">
+                                            File {index + 1}: {file.name}
+                                        </p>
                                         <p className="text-xs text-gray-500">
                                             Size: {(file.size / (1024 * 1024)).toFixed(2)} MB
                                         </p>
@@ -234,14 +240,15 @@ const RequestForm = () => {
                             ))}
                             <button
                                 onClick={() => setFormData({ ...formData, evidenceFile: '' })}
-                                className=" w-fit mb-2 px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-400"
+                                className="w-fit mb-2 px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-400"
                             >
                                 Remove All
                             </button>
                         </ul>
                     )}
-                </div>
+                </label>
             </div>
+            {/* Upload Section*/}
 
             <hr className='border' />
 

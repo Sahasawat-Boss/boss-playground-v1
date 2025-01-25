@@ -31,17 +31,17 @@ function PIR() {
                                 </p>
 
                                 {/* Grid Section */}
-                                <div className="h-[30vh] border-red-600 border-2 mt-4 w-full grid grid-cols-2">
-                                    <div className="border-black border h-full flex items-center justify-center">
+                                <div className="h-[30vh] border-red-600 border-2 mt-4 w-full grid grid-cols-2 gap-4 p-4">
+                                    <div className="bg-red-200 border-black border h-full flex items-center justify-center">
                                         PI Request
                                     </div>
-                                    <div className="border-black border h-full flex items-center justify-center">
+                                    <div className="bg-red-200 border-black border h-full flex items-center justify-center">
                                         Task
                                     </div>
-                                    <div className="border-black border h-full flex items-center justify-center">
+                                    <div className="bg-red-200 border-black border h-full flex items-center justify-center">
                                         Completed
                                     </div>
-                                    <div className="border-black border h-full flex items-center justify-center">
+                                    <div className="bg-red-200 border-black border h-full flex items-center justify-center">
                                         Report
                                     </div>
                                 </div>
