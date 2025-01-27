@@ -1,3 +1,6 @@
+// this one from Youtube
+// a property that need to send to MongoDb for display image
+
 import mongoose from "mongoose";
 
 const imageSchema = new mongoose.Schema(
@@ -11,7 +14,3 @@ const imageSchema = new mongoose.Schema(
 
 export const Image
     = mongoose.models.Image || mongoose.model("Image", imageSchema);
-
-// Check if the model is already create use mongoose.models.Image
-//if not create > create mongoose.model("Image", imageSchema)
-

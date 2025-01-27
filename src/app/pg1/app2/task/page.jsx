@@ -24,7 +24,7 @@ function PIR() {
                         <div className="h-[80vh] flex flex-col p-5 border-2 dark:border-neutral-700 shadow-lg shadow-[#d6d6d6] dark:shadow-[#464646] ">
                             <div className="h-full border bg-white dark:bg-transparent pt-2 pb-4 px-6 animate-fade-in-fast">
 
-                                <h1 className="mb-3 text-3xl text-black dark:text-white font-semibold">
+                                <h1 className="mb-3 text-[24px] text-black dark:text-white font-semibold">
                                     Task
                                 </h1>
 

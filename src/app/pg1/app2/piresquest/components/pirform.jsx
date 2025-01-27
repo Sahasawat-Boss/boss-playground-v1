@@ -1,22 +1,25 @@
-"use client"
+"use client";
 
-import React, { useState } from 'react';
-import InfoPIR from './info';
+import React, { useState } from "react";
+import InfoPIR from "./info";
 import { IoCloudUploadOutline } from "react-icons/io5";
+import { GiDivingDagger } from "react-icons/gi";
 
 const RequestForm = () => {
     const [formData, setFormData] = useState({
-        project: '',
-        detectedDate: new Date().toISOString().split('T')[0], // Default to current date
-        detectedBy: '',
-        detectedProcess: '', // Default to a valid option
-        severity: 'Low',
-        evidenceFile: '',
-        previewUrl: '', // For displaying the image preview
-        details: '',
-        inspectorName: '',
-        dueDate: new Date().toISOString().split('T')[0], // Default to current date
+        project: "",
+        detectedDate: new Date().toISOString().split("T")[0],
+        detectedBy: "",
+        detectedProcess: "",
+        severity: "Low",
+        public_url: "", // Replace evidenceFile with public_url
+        details: "",
+        inspectorName: "",
+        dueDate: new Date().toISOString().split("T")[0],
     });
+
+    const [file, setFile] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -24,27 +27,112 @@ const RequestForm = () => {
     };
 
     const handleFileChange = (e) => {
-        setFormData({ ...formData, evidenceFile: e.target.files[0] || '' });
+        setFile(e.target.files[0]);
     };
 
-    const handleSubmit = (e) => {
+    const toBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = (error) => reject(error);
+        });
+    };
+
+    const handleUpload = async () => {
+        if (!file) {
+            console.log("No file selected for upload.");
+            return null;
+        }
+
+        try {
+            const base64File = await toBase64(file);
+
+            const response = await fetch("/api/uploadCl", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ file: base64File }),
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                console.log("File uploaded successfully:", result);
+                return result.data.url; // Use the public URL from Cloudinary
+            } else {
+                console.error("Failed to upload file:", result.message);
+                return null;
+            }
+        } catch (error) {
+            console.error("Error during file upload:", error);
+            return null;
+        }
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Submitted Data:', formData); // Debugging to ensure dropdown value is included
+        setLoading(true);
+
+        try {
+            // Upload the file to Cloudinary and get the public URL
+            const public_url = await handleUpload();
+
+            if (!public_url) {
+                alert("File upload failed. Please try again.");
+                return;
+            }
+
+            // Update formData with the public_url
+            const dataToSend = {
+                ...formData,
+                public_url, // Include the public URL in the form data
+                detectedDate: new Date(formData.detectedDate).toISOString(),
+                dueDate: new Date(formData.dueDate).toISOString(),
+            };
+            
+            // Log the data being sent to MongoDB
+            console.log("Data being sent to MongoDB:", dataToSend);
+
+            // Send POST request to save data in MongoDB
+            const response = await fetch("/api/pisPost", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(dataToSend),
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                alert("Form submitted and data saved in MongoDB successfully!");
+                handleClear(); // Clear the form after successful submission
+            } else {
+                alert("Failed to save data to MongoDB: " + result.message);
+            }
+        } catch (error) {
+            console.error("Error during form submission:", error);
+            alert("An error occurred while submitting the form.");
+        } finally {
+            setLoading(false);
+        }
     };
 
     const handleClear = () => {
         setFormData({
-            project: '',
-            detectedDate: new Date().toISOString().split('T')[0], // Default to current date
-            detectedBy: '',
-            detectedProcess: '',
-            severity: 'Low',
-            evidenceFile: '',
-            previewUrl: '',
-            details: '',
-            inspectorName: '',
-            dueDate: new Date().toISOString().split('T')[0], // Default to current date
+            project: "",
+            detectedDate: new Date().toISOString().split("T")[0],
+            detectedBy: "",
+            detectedProcess: "",
+            severity: "Low",
+            public_url: "", // Clear the public_url
+            details: "",
+            inspectorName: "",
+            dueDate: new Date().toISOString().split("T")[0],
         });
+        setFile(null);
     };
 
     return (
@@ -53,7 +141,7 @@ const RequestForm = () => {
             className="max-w-7xl xl:border-x-2 mx-auto bg-white dark:bg-transparent pt-2 pb-4 px-6 animate-fade-in-fast"
         >
             <div className='flex item-center justify-between'>
-                <h1 className="text-3xl text-black dark:text-white font-semibold">
+                <h1 className="text-[24px] text-black dark:text-white font-semibold">
                     Process Inspection Request (PIR)
                 </h1>
                 <InfoPIR />
@@ -61,7 +149,7 @@ const RequestForm = () => {
             </div>
 
             <hr className='border mt-2' />
-            <h2 className="text-lg font-bold mt-4">Requestor</h2>
+            <h2 className="text-lg font-bold mt-4">Requestor Information</h2>
 
             <div className="grid grid-cols-2 py-4 gap-x-10 xl:gap-x-28 gap-y-3">
                 <div>
@@ -125,8 +213,8 @@ const RequestForm = () => {
                         </select>
                     </label>
                 </div>
-
             </div>
+
             <div className='mb-4'>
                 <span className="block mb-2">Severity Level:</span>
                 <div className="flex items-center space-x-4">
@@ -186,73 +274,63 @@ const RequestForm = () => {
                 Upload evidenceFile or attachment:
             </label>
 
-            {/* Upload Section*/}
+            {/* Upload Section */}
             <div className="mb-4">
                 <label
-                    htmlFor="multiple_files" // Link the div to the file input
-                    className="flex flex-col items-center justify-center w-full h-fit border-2 border-dashed border-gray-300 hover:bg-gray-100 rounded-md dark:hover:bg-opacity-10 dark:border-gray-500 cursor-pointer"
+                    htmlFor="file_upload"
+                    className="flex flex-col items-center justify-center w-full h-fit p-4 border-2 border-dashed border-gray-300 hover:bg-gray-100 rounded-md dark:hover:bg-opacity-10 dark:bg-gray-100 dark:border-gray-500 cursor-pointer"
                 >
-                    {!formData.evidenceFile ? (
+                    {!file ? (
                         <>
-                            <IoCloudUploadOutline className="text-5xl text-gray-400 mt-4 mb-1" />
-
-                            <p className="text-gray-500 mb-2">Select Files</p>
-                            <p className="text-xs text-gray-500">
+                            <IoCloudUploadOutline className="text-4xl text-gray-400 mb-2" />
+                            <p className="text-white text-xs mb-2 bg-blue-500 pt-0.5 pb-1 px-3 rounded-md">Select Files</p>
+                            <p className="text-xs text-gray-500 mb-2">
                                 Files Supported: pdf, png, jpg, jpeg, webp
                             </p>
-                            <div className="text-sm px-6 py-1 my-4 bg-blue-700 text-white rounded-md hover:bg-blue-400 focus:outline-none opacity-70">
-                                Choose Files
-                            </div>
                             <input
-                                id="multiple_files"
+                                id="file_upload"
                                 type="file"
-                                name="evidenceFile"
-                                onChange={(e) => {
-                                    handleFileChange(e);
-                                    if (e.target.files && e.target.files.length > 0) {
-                                        setFormData({ ...formData, evidenceFile: Array.from(e.target.files) });
-                                    }
-                                }}
-                                multiple
+                                onChange={handleFileChange}
                                 className="hidden"
                             />
                         </>
                     ) : (
-                        <ul className="w-full h-full overflow-y-auto py-2 px-6 mt-2">
-                            {Array.from(formData.evidenceFile).map((file, index) => (
-                                <li key={index} className="flex items-center justify-left mb-3 bg-white border">
-                                    {file.type.startsWith("image/") && (
-                                        <img
-                                            src={URL.createObjectURL(file)}
-                                            alt={`Preview ${index + 1}`}
-                                            className="w-20 h-20 object-cover rounded-md border"
-                                        />
-                                    )}
-                                    <div className="ml-4">
-                                        <p className="text-sm text-black">
-                                            File {index + 1}: {file.name}
-                                        </p>
-                                        <p className="text-xs text-gray-500">
-                                            Size: {(file.size / (1024 * 1024)).toFixed(2)} MB
-                                        </p>
-                                    </div>
-                                </li>
-                            ))}
+                        <div className="flex item-center justify-center gap-4">
+                            {/* Display image preview */}
+                            {file.type.startsWith("image/") && (
+                                <div>
+                                    <img
+                                        src={URL.createObjectURL(file)}
+                                        alt="Preview"
+                                        className="w-24 h-24 object-cover rounded-md mb-2 border"
+                                    />
+                                </div>
+                            )}
+                            <div>
+                                <p className="text-black">File Name: {file.name}</p>
+                                <p className="text-xs text-gray-500">Size: {(file.size / (1024 * 1024)).toFixed(2)} MB</p>
+                            </div>
+                            {/* Delete Button */}
                             <button
-                                onClick={() => setFormData({ ...formData, evidenceFile: '' })}
-                                className="w-fit mb-2 px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-400"
+                                onClick={() => {
+                                    setFile(null);
+                                    setFormData({ ...formData, evidenceFile: "" });
+                                }}
+                                className="mt-2 px-1 w-fit h-fit text-white text-sm bg-red-500 rounded-md hover:bg-red-400 focus:outline-none"
                             >
-                                Remove All
+                                Delete
                             </button>
-                        </ul>
+                        </div>
                     )}
                 </label>
             </div>
-            {/* Upload Section*/}
+            {/* Upload Section */}
+
+            {/* File Upload Section */}
 
             <hr className='border' />
 
-            <h2 className="text-lg font-bold mt-3 mb-4">Inspector (Optional)</h2>
+            <h2 className="text-lg font-bold mt-3 mb-4">Inspector Information (Optional)</h2>
             <div className="grid grid-cols-2 gap-x-10 xl:gap-x-28">
                 <div>
                     <label className="block mb-1">
