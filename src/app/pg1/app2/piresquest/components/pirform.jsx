@@ -309,7 +309,7 @@ const RequestForm = () => {
 
                 {/* Display image previews */}
                 {files.length > 0 && (
-                    <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
                         {files.map((file, index) => (
                             <div key={index} className="relative flex rounded border border-gray-200">
                                 {file.type.startsWith("image/") && (
