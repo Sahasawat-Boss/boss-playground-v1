@@ -15,7 +15,7 @@ function SideMenu() {
         setIsCollapsed(!isCollapsed);
     };
 
-    const isActiveLink = (path) => pathname === path ? 'text-blue-600 dark:text-blue-400 font-semibold' : '';
+    const isActiveLink = (path) => pathname === path ? 'text-blue-700 dark:text-blue-500' : '';
 
     return (
         <div className="relative bg-slate-400 dark:bg-black h-full shadow-lg shadow-[#b9b9b9]">

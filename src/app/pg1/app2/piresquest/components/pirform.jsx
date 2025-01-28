@@ -160,7 +160,7 @@ const RequestForm = () => {
             </div>
 
             <hr className='border mt-2' />
-            <h2 className="text-lg font-bold mt-4">Requestor Information</h2>
+            <h2 className="text-lg font-semibold mt-4">Requestor Information</h2>
 
             <div className="grid grid-cols-2 py-4 gap-x-10 xl:gap-x-28 gap-y-3">
                 <div>
@@ -341,7 +341,7 @@ const RequestForm = () => {
 
             <hr className='border' />
 
-            <h2 className="text-lg font-bold mt-3 mb-4">Inspector Information (Optional)</h2>
+            <h2 className="text-lg font-semibold mt-3 mb-4">Inspector Information (Optional)</h2>
             <div className="grid grid-cols-2 gap-x-10 xl:gap-x-28">
                 <div>
                     <label className="block mb-1">
