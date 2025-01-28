@@ -16,6 +16,9 @@ const RequestForm = () => {
         details: "",
         inspectorName: "",
         dueDate: new Date().toISOString().split("T")[0],
+        createdAt: null, // Timestamp when the form is submitted
+        updatedAt: null, // Timestamp for the latest update
+        status: "Active", // New property
     });
 
     const [files, setFiles] = useState([]);
@@ -23,16 +26,20 @@ const RequestForm = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+        setFormData({
+            ...formData,
+            [name]: value,
+            updatedAt: new Date().toISOString(), // Update timestamp on every change
+        });
     };
 
     const handleFileChange = (event) => {
         const selectedFiles = Array.from(event.target.files);
         setFiles((prevFiles) => [...prevFiles, ...selectedFiles]);
-    };
-
-    const removeFile = (index) => {
-        setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
+        setFormData({
+            ...formData,
+            updatedAt: new Date().toISOString(), // Update timestamp when files change
+        });
     };
 
     const toBase64 = (file) => {
@@ -52,7 +59,7 @@ const RequestForm = () => {
 
         try {
             const uploadPromises = files.map(async (file) => {
-                const base64File = await toBase64(file);
+                const base64File = await toBase64(file); // Convert the file to base64
 
                 const response = await fetch("/api/uploadCl", {
                     method: "POST",
@@ -63,18 +70,22 @@ const RequestForm = () => {
                 });
 
                 const result = await response.json();
+
                 if (result.success) {
                     console.log("File uploaded successfully:", result);
-                    return result.data.url; // Use the public URL from Cloudinary
+                    return {
+                        public_id: result.data.public_id, // Retrieve Cloudinary public_id
+                        public_url: result.data.url,     // Retrieve Cloudinary URL
+                    };
                 } else {
                     console.error("Failed to upload file:", result.message);
                     return null;
                 }
             });
 
-            // Wait for all files to be uploaded and return their URLs
-            const urls = await Promise.all(uploadPromises);
-            return urls.filter((url) => url !== null); // Remove null values
+            // Wait for all files to be uploaded and return their data
+            const uploadedFiles = await Promise.all(uploadPromises);
+            return uploadedFiles.filter((file) => file !== null); // Remove null values
         } catch (error) {
             console.error("Error during file upload:", error);
             return [];
@@ -86,26 +97,33 @@ const RequestForm = () => {
         setLoading(true);
 
         try {
-            // Upload all files to Cloudinary and get their public URLs
-            const public_urls = await handleUpload();
+            // Upload all files to Cloudinary and get their details (public_id and public_url)
+            const uploadedFiles = await handleUpload();
 
-            if (public_urls.length === 0) {
+            if (uploadedFiles.length === 0) {
                 alert("File upload failed. Please try again.");
                 return;
             }
 
-            // Update formData with the public URLs
+            // Extract public_urls for backward compatibility
+            const public_urls = uploadedFiles.map((file) => file.public_url);
+
+            // Prepare data to send
             const dataToSend = {
                 ...formData,
-                public_urls, // Include the public URLs in the form data
+                public_urls,                // Array of URLs
+                uploadedFiles,              // Array of { public_id, public_url }
                 detectedDate: new Date(formData.detectedDate).toISOString(),
                 dueDate: new Date(formData.dueDate).toISOString(),
+                createdAt: formData.createdAt || new Date().toISOString(),
+                updatedAt: new Date().toISOString(),
+                status: "Active",           // Explicitly ensure `status` is included
             };
 
-            // Log the data being sent to MongoDB
+            // Log the data being sent
             console.log("Data being sent to MongoDB:", dataToSend);
 
-            // Send POST request to save data in MongoDB
+            // Send POST request to save data
             const response = await fetch("/api/pisPost", {
                 method: "POST",
                 headers: {
@@ -117,10 +135,10 @@ const RequestForm = () => {
             const result = await response.json();
 
             if (result.success) {
-                alert("Form submitted and data saved in MongoDB successfully!");
-                handleClear(); // Clear the form after successful submission
+                alert("Form submitted and data saved successfully!");
+                handleClear();
             } else {
-                alert("Failed to save data to MongoDB: " + result.message);
+                alert("Failed to save data: " + result.message);
             }
         } catch (error) {
             console.error("Error during form submission:", error);
@@ -137,14 +155,15 @@ const RequestForm = () => {
             detectedBy: "",
             detectedProcess: "",
             severity: "Low",
-            public_urls: [], // Clear the public URLs
+            public_urls: [],
             details: "",
             inspectorName: "",
             dueDate: new Date().toISOString().split("T")[0],
+            createdAt: null,
+            updatedAt: null,
         });
         setFiles([]);
     };
-
 
     return (
         <form
@@ -155,7 +174,7 @@ const RequestForm = () => {
                 <h1 className="text-[24px] text-black dark:text-white font-semibold">
                     Process Inspection Request (PIR)
                 </h1>
-                <InfoPIR />
+                <InfoPIR/>
 
             </div>
 
@@ -173,10 +192,10 @@ const RequestForm = () => {
                             className="text-black w-full border border-gray-300 rounded px-3 py-2 mt-1"
                         >
                             <option value="" disabled>Select a project</option>
-                            <option value="Main Branch (A)">Main Branch (A)</option>
-                            <option value="Main Branch (A2)">Main Branch (A2)</option>
-                            <option value="Sub Project B">Sub Project (B)</option>
-                            <option value="Sub Project C">Sub Project (C)</option>
+                            <option value="Main Branch (A)">Main Branch A (A)</option>
+                            <option value="Main Branch (A2)">Main Branch B (B)</option>
+                            <option value="Sub Project B">Sub Project A (A1.1)</option>
+                            <option value="Sub Project C">Sub Project B (B1.1)</option>
                         </select>
                     </label>
                 </div>
@@ -216,11 +235,10 @@ const RequestForm = () => {
                             className="text-black w-full border border-gray-300 rounded px-3 py-2 mt-1"
                         >
                             <option value="" disabled>Select a process</option>
-                            <option value="Main Process">Main Process</option>
-                            <option value="Activity Process">Activity Process</option>
-                            <option value="Sub Process A">Sub Process A</option>
-                            <option value="Sub Process B">Sub Process B</option>
-                            <option value="Sub Process C">Sub Process C</option>
+                            <option value="Main Process">Main Process </option>
+                            <option value="Sub Process A">Sub Process 1 </option>
+                            <option value="Sub Process B">Sub Process 2</option>
+                            <option value="Activity Process">Specific Process</option>
                         </select>
                     </label>
                 </div>
@@ -282,7 +300,7 @@ const RequestForm = () => {
 
 
             <label className="block mb-2">
-                Upload evidenceFile or attachment:
+                Upload evidence file or attachment:
             </label>
 
             {/* File Upload Section */}
@@ -296,8 +314,8 @@ const RequestForm = () => {
                         Select Files
                     </p>
                     <p className="text-xs text-gray-500 mb-2">
-                            Files Supported: pdf, png, jpg, jpeg, webp
-                        </p>
+                        Files Supported: pdf, png, jpg, jpeg, webp
+                    </p>
                     <input
                         id="file_upload"
                         type="file"
@@ -320,7 +338,7 @@ const RequestForm = () => {
                                     />
                                 )}
                                 <div className="mt-2 text-sm text-gray-700 dark:text-gray-300 px-2 ">
-                                    <p>File:{index+1} {file.name}</p>
+                                    <p>File:{index + 1} {file.name}</p>
                                     <p className="text-xs text-gray-500 mt-0.5">
                                         Size: {(file.size / (1024 * 1024)).toFixed(2)} MB
                                     </p>
@@ -336,7 +354,7 @@ const RequestForm = () => {
                         ))}
                     </div>
                 )}
-            </div>           
+            </div>
             {/* File Upload Section */}
 
             <hr className='border' />

@@ -5,8 +5,11 @@ import mongoose from "mongoose";
 
 const imageSchema = new mongoose.Schema(
     {
-        image_url: String,
-        public_id: String,
+        image_url: String,//for display image from cloundinary
+        url: String,//for display image from cloundinary
+        public_ulr: String,//for display image from cloundinary
+        //---//
+        public_id: String, //for edit delete image in cloundinary
 
     },
     { timestamps: true }

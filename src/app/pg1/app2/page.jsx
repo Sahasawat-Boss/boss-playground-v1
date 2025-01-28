@@ -19,9 +19,9 @@ function PIR() {
                         <SideMenu />
                     </div>
 
-                    <div className="flex w-full h-[80vh] flex-col p-5">
-                        <div className="h-[80vh] flex flex-col p-5 border-2 dark:border-neutral-700 shadow-lg shadow-[#d6d6d6] dark:shadow-[#464646]">
-                            <div className="h-full border bg-white dark:bg-transparent pt-2 pb-4 px-6 animate-fade-in-fast">
+                    <div className="flex w-full flex-col p-5">
+                        <div className="min-h-[90vh] flex flex-col p-5 border-2 dark:border-neutral-700 shadow-lg shadow-[#d6d6d6] dark:shadow-[#464646]">
+                            <div className="h-full bg-white dark:bg-transparent pt-2 pb-4 px-6 animate-fade-in-fast">
 
                                 <h1 className="mb-3 text-[24px] text-black dark:text-white font-semibold">
                                     Welcome to PIS
@@ -31,7 +31,7 @@ function PIR() {
                                 </p>
 
                                 {/* Grid Section */}
-                                <div className="h-[30vh] border-red-600 border-2 mt-4 w-full grid grid-cols-2 gap-4 p-4">
+                                <div className="h-[30vh] border-red-600 border-2 mt-8 w-full grid grid-cols-2 gap-4 p-4 animate-fade-in-down-fast">
                                     <div className="bg-red-200 border-black border h-full flex items-center justify-center">
                                         PI Request
                                     </div>

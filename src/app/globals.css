@@ -80,7 +80,7 @@ body {
 @keyframes fade-in-left-right {
     from {
         opacity: 0;
-        transform: translatex(-30px);
+        transform: translatex(-20px);
     }
 
     to {
@@ -92,7 +92,7 @@ body {
 @keyframes fade-in-right-left {
     from {
         opacity: 0;
-        transform: translateX(30px);
+        transform: translateX(20px);
     }
 
     to {
@@ -117,18 +117,21 @@ body {
     animation: fade-in 1.7s ease-in-out;
 }
 .animate-fade-in-fast {
-    animation: fade-in 0.6s ease-in-out;
+    animation: fade-in 0.8s ease-in-out;
 }
 
 .animate-fade-in-up {
     animation: fade-in-up 1.5s ease-in-out;
 }
 .animate-fade-in-up-fast {
-    animation: fade-in-up 0.6s ease-in-out;
+    animation: fade-in-up 0.8s ease-in-out;
 }
 
 .animate-fade-in-down {
     animation: fade-in-down 1.5s ease-in-out;
+}
+.animate-fade-in-down-fast {
+    animation: fade-in-down 0.8s ease-in-out;
 }
 
 .animate-fade-in-left-right {

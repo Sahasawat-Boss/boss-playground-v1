@@ -17,7 +17,7 @@ function InfoPIR() {
         <div>
             {/* Icon with click event */}
             <div
-                className="mt-2 text-xl text-black dark:text-white hover:text-yellow-500 dark:hover:text-yellow-400 hover:scale-150 drop-shadow-lg animate-fade-in cursor-pointer"
+                className="mt-2 text-xl text-black dark:text-white hover:text-yellow-500 dark:hover:text-yellow-400 hover:scale-150 drop-shadow-lg animate-fade-in-right-left cursor-pointer"
                 onClick={handleToggleModal}
             >
                 <FaRegQuestionCircle />
