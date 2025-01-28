@@ -42,16 +42,16 @@ function InfoPIR() {
                                     <strong>Severity Assessment:</strong> Allows you to indicate the severity level of the issue using radio buttons (Low, Medium, or High).
                                 </li>
                                 <li>
-                                    <strong>Supporting Evidence:</strong> Provides space for additional details in a textarea and supports file uploads for attachments such as images or documents.
+                                    <strong>Supporting Evidence:</strong> Provides space for additional details in a textarea and supports file uploads for images attachments.
                                 </li>
                                 <li>
                                     <strong>Inspector Details (Optional):</strong> Lets you specify the inspector's name and set a due date for the inspection process.
                                 </li>
                             </ul>
-                            <p className="mt-4">
+                            <p className="mt-3">
                                 At the bottom, you’ll find two action buttons:
                             </p>
-                            <ul className="list-disc pl-5 mt-2">
+                            <ul className="list-disc pl-5 mt-1">
                                 <li>
                                     <strong>Clear:</strong> Resets all fields in the form to their default state.
                                 </li>
@@ -64,12 +64,12 @@ function InfoPIR() {
                         {/* Button Section */}
                         <div className="flex justify-between mt-6 my-2">
                             <div className="flex items-center">
-                                <button
+                                <div
                                     onClick={handleLove}
-                                    className="h-fit pl-4 pr-2 py-2 text-lg bg-green-500 text-white rounded-sm hover:bg-green-400"
+                                    className="h-fit pl-4 pr-2 py-2 text-lg bg-green-500 text-white rounded-sm hover:bg-green-400 hover:cursor-pointer"
                                 >
                                     Love this Info 💖
-                                </button>
+                                </div>
                                 <p className="text-gray-700 text-sm ml-3">
                                     {love} {love >= 2 ? "loves" : "love"}
                                 </p>

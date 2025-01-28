@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import InfoPIR from "./info";
 import { IoCloudUploadOutline } from "react-icons/io5";
-import { GiDivingDagger } from "react-icons/gi";
+import { FaTrash } from "react-icons/fa";
 
 const RequestForm = () => {
     const [formData, setFormData] = useState({
@@ -12,13 +12,13 @@ const RequestForm = () => {
         detectedBy: "",
         detectedProcess: "",
         severity: "Low",
-        public_url: "", // Replace evidenceFile with public_url
+        public_urls: [], // Store multiple URLs
         details: "",
         inspectorName: "",
         dueDate: new Date().toISOString().split("T")[0],
     });
 
-    const [file, setFile] = useState(null);
+    const [files, setFiles] = useState([]);
     const [loading, setLoading] = useState(false);
 
     const handleChange = (e) => {
@@ -26,8 +26,13 @@ const RequestForm = () => {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleFileChange = (e) => {
-        setFile(e.target.files[0]);
+    const handleFileChange = (event) => {
+        const selectedFiles = Array.from(event.target.files);
+        setFiles((prevFiles) => [...prevFiles, ...selectedFiles]);
+    };
+
+    const removeFile = (index) => {
+        setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
     };
 
     const toBase64 = (file) => {
@@ -40,34 +45,39 @@ const RequestForm = () => {
     };
 
     const handleUpload = async () => {
-        if (!file) {
-            console.log("No file selected for upload.");
-            return null;
+        if (files.length === 0) {
+            console.log("No files selected for upload.");
+            return [];
         }
 
         try {
-            const base64File = await toBase64(file);
+            const uploadPromises = files.map(async (file) => {
+                const base64File = await toBase64(file);
 
-            const response = await fetch("/api/uploadCl", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ file: base64File }),
+                const response = await fetch("/api/uploadCl", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ file: base64File }),
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    console.log("File uploaded successfully:", result);
+                    return result.data.url; // Use the public URL from Cloudinary
+                } else {
+                    console.error("Failed to upload file:", result.message);
+                    return null;
+                }
             });
 
-            const result = await response.json();
-
-            if (result.success) {
-                console.log("File uploaded successfully:", result);
-                return result.data.url; // Use the public URL from Cloudinary
-            } else {
-                console.error("Failed to upload file:", result.message);
-                return null;
-            }
+            // Wait for all files to be uploaded and return their URLs
+            const urls = await Promise.all(uploadPromises);
+            return urls.filter((url) => url !== null); // Remove null values
         } catch (error) {
             console.error("Error during file upload:", error);
-            return null;
+            return [];
         }
     };
 
@@ -76,22 +86,22 @@ const RequestForm = () => {
         setLoading(true);
 
         try {
-            // Upload the file to Cloudinary and get the public URL
-            const public_url = await handleUpload();
+            // Upload all files to Cloudinary and get their public URLs
+            const public_urls = await handleUpload();
 
-            if (!public_url) {
+            if (public_urls.length === 0) {
                 alert("File upload failed. Please try again.");
                 return;
             }
 
-            // Update formData with the public_url
+            // Update formData with the public URLs
             const dataToSend = {
                 ...formData,
-                public_url, // Include the public URL in the form data
+                public_urls, // Include the public URLs in the form data
                 detectedDate: new Date(formData.detectedDate).toISOString(),
                 dueDate: new Date(formData.dueDate).toISOString(),
             };
-            
+
             // Log the data being sent to MongoDB
             console.log("Data being sent to MongoDB:", dataToSend);
 
@@ -127,13 +137,14 @@ const RequestForm = () => {
             detectedBy: "",
             detectedProcess: "",
             severity: "Low",
-            public_url: "", // Clear the public_url
+            public_urls: [], // Clear the public URLs
             details: "",
             inspectorName: "",
             dueDate: new Date().toISOString().split("T")[0],
         });
-        setFile(null);
+        setFiles([]);
     };
+
 
     return (
         <form
@@ -274,58 +285,58 @@ const RequestForm = () => {
                 Upload evidenceFile or attachment:
             </label>
 
-            {/* Upload Section */}
+            {/* File Upload Section */}
             <div className="mb-4">
                 <label
                     htmlFor="file_upload"
-                    className="flex flex-col items-center justify-center w-full h-fit p-4 border-2 border-dashed border-gray-300 hover:bg-gray-100 rounded-md dark:hover:bg-opacity-10 dark:bg-gray-100 dark:border-gray-500 cursor-pointer"
+                    className="flex flex-col items-center justify-center w-full h-fit p-4 border-2 border-dashed border-gray-300 hover:bg-gray-100 rounded-md dark:bg-gray-100 dark:hover:bg-gray-200 dark:border-gray-500 cursor-pointer"
                 >
-                    {!file ? (
-                        <>
-                            <IoCloudUploadOutline className="text-4xl text-gray-400 mb-2" />
-                            <p className="text-white text-xs mb-2 bg-blue-500 pt-0.5 pb-1 px-3 rounded-md">Select Files</p>
-                            <p className="text-xs text-gray-500 mb-2">
-                                Files Supported: pdf, png, jpg, jpeg, webp
-                            </p>
-                            <input
-                                id="file_upload"
-                                type="file"
-                                onChange={handleFileChange}
-                                className="hidden"
-                            />
-                        </>
-                    ) : (
-                        <div className="flex item-center justify-center gap-4">
-                            {/* Display image preview */}
-                            {file.type.startsWith("image/") && (
-                                <div>
+                    <IoCloudUploadOutline className="text-4xl text-gray-400 mb-2" />
+                    <p className="text-white text-xs mb-2 bg-blue-500 pt-0.5 pb-1 px-3 rounded-md">
+                        Select Files
+                    </p>
+                    <p className="text-xs text-gray-500 mb-2">
+                            Files Supported: pdf, png, jpg, jpeg, webp
+                        </p>
+                    <input
+                        id="file_upload"
+                        type="file"
+                        multiple
+                        onChange={handleFileChange}
+                        className="hidden"
+                    />
+                </label>
+
+                {/* Display image previews */}
+                {files.length > 0 && (
+                    <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                        {files.map((file, index) => (
+                            <div key={index} className="relative flex rounded border border-gray-200">
+                                {file.type.startsWith("image/") && (
                                     <img
                                         src={URL.createObjectURL(file)}
-                                        alt="Preview"
-                                        className="w-24 h-24 object-cover rounded-md mb-2 border"
+                                        alt={`Preview ${index}`}
+                                        className="w-24 h-24 object-cover rounded-md border"
                                     />
+                                )}
+                                <div className="mt-2 text-sm text-gray-700 dark:text-gray-300 px-2 ">
+                                    <p>File:{index+1} {file.name}</p>
+                                    <p className="text-xs text-gray-500 mt-0.5">
+                                        Size: {(file.size / (1024 * 1024)).toFixed(2)} MB
+                                    </p>
                                 </div>
-                            )}
-                            <div>
-                                <p className="text-black">File Name: {file.name}</p>
-                                <p className="text-xs text-gray-500">Size: {(file.size / (1024 * 1024)).toFixed(2)} MB</p>
+                                {/* Delete Button */}
+                                <button
+                                    onClick={() => removeFile(index)}
+                                    className="absolute bottom-1 right-1 bg-transparent opacity-80 text-red-500 dark:text-red-500 hover:bg-red-200  dark:hover:bg-red-300 dark:border border border-red-400 dark:border-red-700  text-xs rounded-md p-1.5"
+                                >
+                                    <FaTrash />
+                                </button>
                             </div>
-                            {/* Delete Button */}
-                            <button
-                                onClick={() => {
-                                    setFile(null);
-                                    setFormData({ ...formData, evidenceFile: "" });
-                                }}
-                                className="mt-2 px-1 w-fit h-fit text-white text-sm bg-red-500 rounded-md hover:bg-red-400 focus:outline-none"
-                            >
-                                Delete
-                            </button>
-                        </div>
-                    )}
-                </label>
-            </div>
-            {/* Upload Section */}
-
+                        ))}
+                    </div>
+                )}
+            </div>           
             {/* File Upload Section */}
 
             <hr className='border' />
