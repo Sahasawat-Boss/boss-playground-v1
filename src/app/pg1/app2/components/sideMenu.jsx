@@ -92,7 +92,7 @@ function SideMenu() {
                                 >
                                     <BsListTask className="mt-1 opacity-75" />
                                     Task
-                                    <span className="absolute right-2.5 px-2 pb-0.5 font-semibold text-[0.9rem] rounded-full bg-[#5c8be2] text-white dark:bg-blue-500 shadow-md">
+                                    <span className="absolute right-2.5 px-2 pb-0.5 font-semibold text-[0.9rem] rounded-full  bg-[#5080d8] text-white dark:bg-blue-500 shadow-md">
                                         {taskCount}
                                     </span>
                                 </Link>

@@ -25,7 +25,7 @@ const TaskCard = ({ task, handleImageClick }) => (
 
             <p className=" absolute -top-4 -left-4 text-sm text-gray-600 dark:text-gray-300 mt-2 ">
                 <span
-                    className={`px-1.5 py-0.5 font-semibold rounded-full shadow-md ${task.severity === "Low"
+                    className={`px-1.5 py-0.5 font-semibold shadow-md ${task.severity === "Low"
                         ? "ml-1 border border-yellow-600 text-yellow-600 dark:text-yellow-800 bg-yellow-50 dark:bg-yellow-100"
                         : task.severity === "Medium"
                             ? "ml-1 border border-orange-600 text-orange-600 dark:text-orange-800 bg-orange-50 dark:bg-orange-100"
@@ -62,15 +62,15 @@ const TaskCard = ({ task, handleImageClick }) => (
                 Status:{" "}
                 <span
                     className={
-                        task.status === "Active"
-                            ? "text-green-500 font-bold"
-                            : "text-gray-600 dark:text-gray-400"
+                        task.status === "In Progress"
+                            ? "text-blue-400 font-bold"
+                            : "text-red-600 dark:text-red-400"
                     }
                 >
                     {task.status || "N/A"}
                 </span>
             </p>
-            <p className="text-sm mt-2 mb-4 font-semibold">
+            <p className="text-sm mt-2 mb-3 font-semibold">
                 Due Date:{" "}
                 {task.dueDate
                     ? new Date(task.dueDate).toLocaleDateString()
@@ -79,22 +79,22 @@ const TaskCard = ({ task, handleImageClick }) => (
         </div>
 
         {/* Task Attachments */}
-        <div className="">
-            <p className="text-sm text-gray-600 dark:text-gray-300">
+        <div>
+            <p className="mb-1 text-sm text-gray-400 dark:text-gray-300">
                 Attachments:
             </p>
-            <div className="bg-gray-100 dark:bg-gray-300  grid grid-cols-2 overflow-auto h-fit gap-1">
+            <div className="w-fit bg-gray-100 dark:bg-gray-300 grid grid-cols-auto sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5  gap-1">
                 {task.public_urls && task.public_urls.length > 0 ? (
                     task.public_urls.map((url, index) => (
                         <div
                             key={index}
-                            className="flex flex-col items-start cursor-pointer"
+                            className="flex items-center justify-center cursor-pointer"
                             onClick={() => handleImageClick(url)}
                         >
                             <img
                                 src={url}
                                 alt={`Attachment ${index + 1}`}
-                                className="w-28 h-28 object-cover border-gray-300 dark:border-gray-600"
+                                className="w-36 h-36 object-cover border-gray-300 dark:border-gray-600"
                             />
                         </div>
                     ))

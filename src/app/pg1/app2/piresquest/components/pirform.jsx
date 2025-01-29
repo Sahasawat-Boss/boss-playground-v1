@@ -18,11 +18,10 @@ const RequestForm = () => {
         dueDate: new Date().toISOString().split("T")[0],
         createdAt: null,
         updatedAt: null,
-        status: "Active",
+        status: "In Progress",
     });
 
     const [files, setFiles] = useState([]);
-    const [loading, setLoading] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false); // State for submit loading
     const [successMessage, setSuccessMessage] = useState(false);
     const [fadeOut, setFadeOut] = useState(false);
@@ -133,7 +132,7 @@ const RequestForm = () => {
                 dueDate: new Date(formData.dueDate).toISOString(),
                 createdAt: formData.createdAt || new Date().toISOString(),
                 updatedAt: new Date().toISOString(),
-                status: "Active",
+                status: "In Progress",
             };
 
             const response = await fetch("/api/pisPost", {

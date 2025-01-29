@@ -46,9 +46,9 @@ const ExportPDFTask = ({ tasks }) => {
     return (
         <button
             onClick={handleExport}
-            className="flex w-fit text-sm items-center gap-2 px-2 py-1  rounded-sm border border-blue-700 bg-blue-600 text-white  shadow-md hover:bg-blue-400 transition-all"
+            className="flex w-fit text-sm items-center gap-2 px-2 py-1 rounded-sm border border-blue-700 bg-blue-600 text-white shadow-md hover:bg-blue-400 transition-all"
         >
-            <FaFilePdf className="text-xl" />
+            <FaFilePdf className="text-lg" />
             Export PDF
         </button>
     );
