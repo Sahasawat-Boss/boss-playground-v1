@@ -23,6 +23,7 @@ const RequestForm = () => {
 
     const [files, setFiles] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false); // State for submit loading
     const [successMessage, setSuccessMessage] = useState(false);
     const [fadeOut, setFadeOut] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false); // State for modal
@@ -54,6 +55,14 @@ const RequestForm = () => {
         });
     };
 
+    const removeFile = (index) => {
+        setFiles((prevFiles) => {
+            const updatedFiles = prevFiles.filter((_, i) => i !== index);
+            return updatedFiles;
+        });
+    };
+
+
     const handleUpload = async () => {
         if (files.length === 0) {
             console.log("No files selected for upload.");
@@ -61,7 +70,8 @@ const RequestForm = () => {
         }
 
         try {
-            const uploadPromises = files.map(async (file) => {
+            const updatedFiles = [...files]; // Clone latest state
+            const uploadPromises = updatedFiles.map(async (file) => {
                 const base64File = await toBase64(file);
 
                 const response = await fetch("/api/uploadCl", {
@@ -72,10 +82,16 @@ const RequestForm = () => {
                     body: JSON.stringify({ file: base64File }),
                 });
 
+                console.log("Upload Response:", response);
+
+                if (!response.ok) {
+                    throw new Error(`Failed to upload file: ${response.statusText}`);
+                }
+
                 const result = await response.json();
+                console.log("Parsed JSON:", result);
 
                 if (result.success) {
-                    console.log("File uploaded successfully:", result);
                     return {
                         public_id: result.data.public_id,
                         public_url: result.data.url,
@@ -94,15 +110,16 @@ const RequestForm = () => {
         }
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setLoading(true);
+
+    const handleSubmit = async () => {
+        setIsSubmitting(true);
 
         try {
             const uploadedFiles = await handleUpload();
 
             if (uploadedFiles.length === 0) {
                 alert("File upload failed. Please try again.");
+                setIsSubmitting(false);
                 return;
             }
 
@@ -119,8 +136,6 @@ const RequestForm = () => {
                 status: "Active",
             };
 
-            console.log("Data being sent to MongoDB:", dataToSend);
-
             const response = await fetch("/api/pisPost", {
                 method: "POST",
                 headers: {
@@ -132,14 +147,13 @@ const RequestForm = () => {
             const result = await response.json();
 
             if (result.success) {
-                // Show success message
                 setSuccessMessage(true);
-                setTimeout(() => setFadeOut(true), 4000); // Fade out after 4 seconds
+                setTimeout(() => setFadeOut(true), 4000);
                 setTimeout(() => {
                     setSuccessMessage(false);
                     setFadeOut(false);
                     window.location.reload();
-                }, 2500); // Remove after 2.5 seconds
+                }, 2500);
 
                 handleClear();
             } else {
@@ -149,8 +163,8 @@ const RequestForm = () => {
             console.error("Error during form submission:", error);
             alert("An error occurred while submitting the form.");
         } finally {
-            setLoading(false);
-            setIsModalOpen(false); // Close modal after submission
+            setIsSubmitting(false);
+            setIsModalOpen(false);
         }
     };
 
@@ -170,6 +184,7 @@ const RequestForm = () => {
         });
         setFiles([]);
     };
+
     return (
         <form
             onSubmit={handleSubmit}
@@ -188,8 +203,9 @@ const RequestForm = () => {
                 <h1 className="text-[24px] text-black dark:text-white font-semibold">
                     Process Inspection Request (PIR)
                 </h1>
-                <InfoPIR />
 
+                <div className="opacity-60"><InfoPIR /></div>
+            
             </div>
 
             <hr className='border mt-2' />
@@ -359,11 +375,15 @@ const RequestForm = () => {
                                 </div>
                                 {/* Delete Button */}
                                 <button
-                                    onClick={() => removeFile(index)}
+                                    onClick={(e) => {
+                                        e.preventDefault(); // Prevent accidental form submission
+                                        removeFile(index);
+                                    }}
                                     className="absolute bottom-1 right-1 bg-transparent opacity-80 text-red-500 dark:text-red-500 hover:bg-red-200  dark:hover:bg-red-300 dark:border border border-red-400 dark:border-red-700  text-xs rounded-md p-1.5"
                                 >
                                     <FaTrash />
                                 </button>
+
                             </div>
                         ))}
                     </div>
@@ -419,7 +439,7 @@ const RequestForm = () => {
 
             {/* Modal */}
             {isModalOpen && (
-                <div className="fixed inset-0 bg-black bg-opacity-65 dark:bg-opacity-55 flex justify-center items-center z-50">
+                <div className="fixed inset-0 bg-black bg-opacity-70 dark:bg-opacity-65 flex justify-center items-center z-50">
                     <div className="bg-white text-black rounded-md shadow-xl p-10 px-[65px] text-center">
                         <h3 className="text-lg">Are you sure you want to submit this form?</h3>
                         <hr className="border-t-2 border-gray-300 mt-2 mb-12" />
@@ -432,10 +452,22 @@ const RequestForm = () => {
                             </button>
                             <button
                                 onClick={handleSubmit}
-                                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-400"
+                                className={`px-6 py-2 bg-blue-500 text-white rounded flex items-center justify-center hover:bg-blue-400 ${isSubmitting ? "opacity-50 cursor-not-allowed" : ""}`}
+                                disabled={isSubmitting}
                             >
-                                Confirm
+                                {isSubmitting ? (
+                                    <>
+                                        <svg className="animate-spin h-5 w-5 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                                        </svg>
+                                        Submitting...
+                                    </>
+                                ) : (
+                                    "Confirm"
+                                )}
                             </button>
+
                         </div>
                     </div>
                 </div>

@@ -1,10 +1,13 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Typed from 'typed.js';
+import { useRouter } from 'next/navigation';
 
 function Hero() {
   const typedRef = useRef(null); // Ref for the element
   const typedInstance = useRef(null); // Ref for the Typed.js instance
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     if (typedRef.current) {
@@ -26,6 +29,15 @@ function Hero() {
       }
     };
   }, []);
+
+  const handleButtonClick = () => {
+    setIsLoading(true);
+
+    // Simulating a delay (e.g., API call or redirect delay)
+    setTimeout(() => {
+      router.push('/signIn');
+    }, 1500); // Adjust delay if needed
+  };
 
   return (
     <div
@@ -59,18 +71,27 @@ function Hero() {
           skills.
         </p>
 
-        {/* Call-to-action Button */}
-        <Link
-          href="/signIn"
-          className="relative mt-16 px-12 py-3 text-lg font-semibold rounded-full bg-white text-black shadow-lg shadow-blue-400/80 hover:shadow-pink-500/50 transition-all duration-300 hover:scale-105"
+        {/* Call-to-action Button with Loading */}
+        <button
+          onClick={handleButtonClick}
+          disabled={isLoading}
+          className={`relative mt-16 px-12 py-3 text-lg font-semibold rounded-full bg-white text-black shadow-lg shadow-blue-400/80 hover:shadow-pink-500/50 transition-all duration-300 hover:scale-105 ${isLoading ? 'opacity-50 cursor-not-allowed' : ''
+            }`}
         >
-          <span className="relative z-10 text-xl">Get Started Now</span>
+          {isLoading ? (
+            <div className="flex items-center space-x-2">
+              <div className="w-5 h-5 border-2 border-blue-500 border-t-transparent animate-spin rounded-full"></div>
+              <span className="relative z-10 text-lg">Loading...</span>
+            </div>
+          ) : (
+            <span className="relative z-10 text-xl">Get Started Now</span>
+          )}
           <span
             className="absolute inset-0 rounded-full bg-sky-100 blur-md opacity-30 transition-all duration-300"
           ></span>
-        </Link>
+        </button>
       </div>
-    </div>
+    </div >
   );
 }
 

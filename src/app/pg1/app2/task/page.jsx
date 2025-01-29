@@ -14,18 +14,18 @@ import ExportPDFTask from "./components/ExportPDFTask";
 
 const TaskCard = ({ task, handleImageClick }) => (
     <div
-        className="relative grid grid-cols-3 gap-4 justify-between bg-white dark:bg-gray-700 shadow-lg py-3 px-5 md:px-10 rounded-md m-2 w-full border dark:border-gray-600 animate-fade-in-down-fast"
+        className="relative flex flex-col justify-between bg-white dark:bg-gray-700 shadow-lg p-5 md:px-12 xl:px-32 rounded-md m-2 w-full border dark:border-gray-600 animate-fade-in-down-fast"
     >
         {/* Task Details */}
-        <div className="col-span-3 md:col-span-2 p-2">
+        <div className="px-2">
             <h2 className="text-lg font-bold text-gray-800 dark:text-white">
                 Project: {task.project || "N/A"}
             </h2>
             <hr className="border-gray-300 dark:border-gray-600 my-1" />
 
-            <p className=" absolute -top-4 -left-4 text-sm text-gray-600 dark:text-gray-300 mt-2">
+            <p className=" absolute -top-4 -left-4 text-sm text-gray-600 dark:text-gray-300 mt-2 ">
                 <span
-                    className={`px-2.5 py-1 font-semibold rounded ${task.severity === "Low"
+                    className={`px-1.5 py-0.5 font-semibold rounded-full shadow-md ${task.severity === "Low"
                         ? "ml-1 border border-yellow-600 text-yellow-600 dark:text-yellow-800 bg-yellow-50 dark:bg-yellow-100"
                         : task.severity === "Medium"
                             ? "ml-1 border border-orange-600 text-orange-600 dark:text-orange-800 bg-orange-50 dark:bg-orange-100"
@@ -76,21 +76,14 @@ const TaskCard = ({ task, handleImageClick }) => (
                     ? new Date(task.dueDate).toLocaleDateString()
                     : "N/A"}
             </p>
-            <hr className="border-gray-300 dark:border-gray-600" />
-            <p className="text-sm text-gray-400 dark:text-gray-300">
-                (Created Date:{" "}
-                {task.createdAt
-                    ? new Date(task.createdAt).toLocaleDateString()
-                    : "N/A"})
-            </p>
         </div>
 
         {/* Task Attachments */}
-        <div className="col-span-3 flex flex-col py-3">
+        <div className="">
             <p className="text-sm text-gray-600 dark:text-gray-300">
                 Attachments:
             </p>
-            <div className="bg-gray-100 grid grid-cols-2 overflow-auto h-[290px]  gap-1">
+            <div className="bg-gray-100 dark:bg-gray-300  grid grid-cols-2 overflow-auto h-fit gap-1">
                 {task.public_urls && task.public_urls.length > 0 ? (
                     task.public_urls.map((url, index) => (
                         <div
@@ -109,6 +102,13 @@ const TaskCard = ({ task, handleImageClick }) => (
                     <p className="text-sm text-gray-500">No files uploaded</p>
                 )}
             </div>
+            <hr className="border-gray-300 dark:border-gray-600" />
+            <p className="mt-2 text-sm text-gray-400 dark:text-gray-300">
+                (Created Date:{" "}
+                {task.createdAt
+                    ? new Date(task.createdAt).toLocaleDateString()
+                    : "N/A"})
+            </p>
         </div>
     </div>
 );
@@ -165,7 +165,8 @@ function PIR() {
                                     Task
                                 </h1>
 
-                                <InfoTask className="" />
+                                <div className="opacity-60"><InfoTask /></div>
+
                             </div>
 
                             {/* Search Options */}

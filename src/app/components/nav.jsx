@@ -74,11 +74,11 @@ function NavBar({ session }) {
                 {/* Dropdown Menu */}
                 {isDropdownOpen && (
                     <div
-                        className="absolute mt-3 right-2 w-40 bg-gray-200 dark:bg-gray-800 shadow-md z-[9999]"
+                        className="absolute mt-3 right-2 w-40 bg-gray-50 dark:bg-gray-800 shadow-md z-[9999]"
                         style={{ zIndex: 9999 }}
                     >
                         <button
-                            className="border-b border block w-full px-3 py-3 text-left text-black dark:text-white hover:text-blue-400 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-700"
+                            className="border-b border-gray-300 dark:border-gray-500 block w-full px-3 py-3 text-left text-black dark:text-white hover:text-blue-400 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-700"
                         >
                             Profile Settings
                         </button>
