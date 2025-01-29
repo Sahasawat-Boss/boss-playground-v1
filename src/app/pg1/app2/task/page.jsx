@@ -17,7 +17,7 @@ const TaskCard = ({ task, handleImageClick }) => (
         className="relative grid grid-cols-3 gap-4 justify-between bg-white dark:bg-gray-700 shadow-lg py-3 px-5 md:px-10 rounded-md m-2 w-full border dark:border-gray-600 animate-fade-in-down-fast"
     >
         {/* Task Details */}
-        <div className="col-span-2 p-2">
+        <div className="col-span-3 md:col-span-2 p-2">
             <h2 className="text-lg font-bold text-gray-800 dark:text-white">
                 Project: {task.project || "N/A"}
             </h2>
@@ -86,11 +86,11 @@ const TaskCard = ({ task, handleImageClick }) => (
         </div>
 
         {/* Task Attachments */}
-        <div className="flex flex-col py-3">
+        <div className="col-span-3 flex flex-col py-3">
             <p className="text-sm text-gray-600 dark:text-gray-300">
                 Attachments:
             </p>
-            <div className="bg-gray-100 grid grid-cols-2 overflow-auto h-[290px] gap-2">
+            <div className="bg-gray-100 grid grid-cols-2 overflow-auto h-[290px]  gap-1">
                 {task.public_urls && task.public_urls.length > 0 ? (
                     task.public_urls.map((url, index) => (
                         <div
@@ -101,7 +101,7 @@ const TaskCard = ({ task, handleImageClick }) => (
                             <img
                                 src={url}
                                 alt={`Attachment ${index + 1}`}
-                                className="w-28 h-28 object-cover rounded-md border border-gray-300 dark:border-gray-600"
+                                className="w-28 h-28 object-cover border-gray-300 dark:border-gray-600"
                             />
                         </div>
                     ))

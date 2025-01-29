@@ -16,7 +16,7 @@ function SideMenu() {
         setIsCollapsed(!isCollapsed);
     };
 
-    const isActiveLink = (path) => pathname === path ? 'text-blue-700 dark:text-blue-200 bg-[#e4edfd] dark:bg-blue-800' : '';
+    const isActiveLink = (path) => pathname === path ? 'text-blue-700 dark:text-blue-200 bg-[#dce7fc] dark:bg-blue-900' : '';
 
     // Fetch task count
     useEffect(() => {
@@ -92,7 +92,7 @@ function SideMenu() {
                                 >
                                     <BsListTask className="mt-1 opacity-75" />
                                     Task
-                                    <span className="absolute right-2.5 px-2 pb-0.5 font-semibold text-[0.9rem] rounded-full bg-[#6b98eb] text-white dark:bg-blue-500 shadow-md">
+                                    <span className="absolute right-2.5 px-2 pb-0.5 font-semibold text-[0.9rem] rounded-full bg-[#5c8be2] text-white dark:bg-blue-500 shadow-md">
                                         {taskCount}
                                     </span>
                                 </Link>
