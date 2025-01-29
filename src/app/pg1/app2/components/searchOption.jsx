@@ -15,7 +15,7 @@ const SearchOptionTask = () => {
     };
 
     return (
-        <div className="bg-gray-200 mb-6 text-gray-600 rounded-sm shadow-md shadow-[#ececec] dark:shadow-none overflow-hidden">
+        <div className="bg-gray-200 text-gray-600 rounded-sm shadow-md shadow-[#ececec] dark:shadow-none overflow-hidden">
             {/* Search Options Top Section */}
             <button
                 onClick={toggleCollapse}

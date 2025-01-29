@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import InfoPIR from "./info";
 import { IoCloudUploadOutline } from "react-icons/io5";
-import { FaTrash } from "react-icons/fa";
+import { FaTrash, FaRegCheckCircle } from "react-icons/fa";
 
 const RequestForm = () => {
     const [formData, setFormData] = useState({
@@ -12,24 +12,27 @@ const RequestForm = () => {
         detectedBy: "",
         detectedProcess: "",
         severity: "Low",
-        public_urls: [], // Store multiple URLs
+        public_urls: [],
         details: "",
         inspectorName: "",
         dueDate: new Date().toISOString().split("T")[0],
-        createdAt: null, // Timestamp when the form is submitted
-        updatedAt: null, // Timestamp for the latest update
-        status: "Active", // New property
+        createdAt: null,
+        updatedAt: null,
+        status: "Active",
     });
 
     const [files, setFiles] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [successMessage, setSuccessMessage] = useState(false);
+    const [fadeOut, setFadeOut] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false); // State for modal
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({
             ...formData,
             [name]: value,
-            updatedAt: new Date().toISOString(), // Update timestamp on every change
+            updatedAt: new Date().toISOString(),
         });
     };
 
@@ -38,7 +41,7 @@ const RequestForm = () => {
         setFiles((prevFiles) => [...prevFiles, ...selectedFiles]);
         setFormData({
             ...formData,
-            updatedAt: new Date().toISOString(), // Update timestamp when files change
+            updatedAt: new Date().toISOString(),
         });
     };
 
@@ -59,7 +62,7 @@ const RequestForm = () => {
 
         try {
             const uploadPromises = files.map(async (file) => {
-                const base64File = await toBase64(file); // Convert the file to base64
+                const base64File = await toBase64(file);
 
                 const response = await fetch("/api/uploadCl", {
                     method: "POST",
@@ -74,8 +77,8 @@ const RequestForm = () => {
                 if (result.success) {
                     console.log("File uploaded successfully:", result);
                     return {
-                        public_id: result.data.public_id, // Retrieve Cloudinary public_id
-                        public_url: result.data.url,     // Retrieve Cloudinary URL
+                        public_id: result.data.public_id,
+                        public_url: result.data.url,
                     };
                 } else {
                     console.error("Failed to upload file:", result.message);
@@ -83,9 +86,8 @@ const RequestForm = () => {
                 }
             });
 
-            // Wait for all files to be uploaded and return their data
             const uploadedFiles = await Promise.all(uploadPromises);
-            return uploadedFiles.filter((file) => file !== null); // Remove null values
+            return uploadedFiles.filter((file) => file !== null);
         } catch (error) {
             console.error("Error during file upload:", error);
             return [];
@@ -97,7 +99,6 @@ const RequestForm = () => {
         setLoading(true);
 
         try {
-            // Upload all files to Cloudinary and get their details (public_id and public_url)
             const uploadedFiles = await handleUpload();
 
             if (uploadedFiles.length === 0) {
@@ -105,25 +106,21 @@ const RequestForm = () => {
                 return;
             }
 
-            // Extract public_urls for backward compatibility
             const public_urls = uploadedFiles.map((file) => file.public_url);
 
-            // Prepare data to send
             const dataToSend = {
                 ...formData,
-                public_urls,                // Array of URLs
-                uploadedFiles,              // Array of { public_id, public_url }
+                public_urls,
+                uploadedFiles,
                 detectedDate: new Date(formData.detectedDate).toISOString(),
                 dueDate: new Date(formData.dueDate).toISOString(),
                 createdAt: formData.createdAt || new Date().toISOString(),
                 updatedAt: new Date().toISOString(),
-                status: "Active",           // Explicitly ensure `status` is included
+                status: "Active",
             };
 
-            // Log the data being sent
             console.log("Data being sent to MongoDB:", dataToSend);
 
-            // Send POST request to save data
             const response = await fetch("/api/pisPost", {
                 method: "POST",
                 headers: {
@@ -135,7 +132,15 @@ const RequestForm = () => {
             const result = await response.json();
 
             if (result.success) {
-                alert("Form submitted and data saved successfully!");
+                // Show success message
+                setSuccessMessage(true);
+                setTimeout(() => setFadeOut(true), 4000); // Fade out after 4 seconds
+                setTimeout(() => {
+                    setSuccessMessage(false);
+                    setFadeOut(false);
+                    window.location.reload();
+                }, 2500); // Remove after 2.5 seconds
+
                 handleClear();
             } else {
                 alert("Failed to save data: " + result.message);
@@ -145,6 +150,7 @@ const RequestForm = () => {
             alert("An error occurred while submitting the form.");
         } finally {
             setLoading(false);
+            setIsModalOpen(false); // Close modal after submission
         }
     };
 
@@ -164,17 +170,25 @@ const RequestForm = () => {
         });
         setFiles([]);
     };
-
     return (
         <form
             onSubmit={handleSubmit}
             className="max-w-7xl xl:border-x-2 mx-auto bg-white dark:bg-transparent pt-2 pb-4 px-6 animate-fade-in-fast"
         >
+            {/* Success Message */}
+            {successMessage && (
+                <div
+                    className={`fixed left-1/2 top-[70px] z-[99999] flex w-fit -translate-x-1/2 transform items-center justify-center text-center rounded-md border px-8 py-3 border-green-600 bg-white text-green-600 shadow-md shadow-[#aaaaaa] ${fadeOut ? "opacity-0 transition-opacity duration-300" : "opacity-100"
+                        }`}>
+                    <span className="font-semibold text-xl mr-2"><FaRegCheckCircle /></span>
+                    <span className="font-semibold ">Form Submitted and Saved Data Successfully!</span>
+                </div>
+            )}
             <div className='flex item-center justify-between'>
                 <h1 className="text-[24px] text-black dark:text-white font-semibold">
                     Process Inspection Request (PIR)
                 </h1>
-                <InfoPIR/>
+                <InfoPIR />
 
             </div>
 
@@ -395,12 +409,37 @@ const RequestForm = () => {
                     Clear
                 </button>
                 <button
-                    type="submit"
+                    type="button"
+                    onClick={() => setIsModalOpen(true)} // Open modal on click
                     className="border-blue-800 bg-blue-700 dark:bg-blue-700 hover:bg-blue-500 dark:hover:bg-blue-600 text-white px-6 py-2 rounded shadow-md"
                 >
                     Confirm
                 </button>
             </div>
+
+            {/* Modal */}
+            {isModalOpen && (
+                <div className="fixed inset-0 bg-black bg-opacity-65 dark:bg-opacity-55 flex justify-center items-center z-50">
+                    <div className="bg-white text-black rounded-md shadow-xl p-10 px-[65px] text-center">
+                        <h3 className="text-lg">Are you sure you want to submit this form?</h3>
+                        <hr className="border-t-2 border-gray-300 mt-2 mb-12" />
+                        <div className="flex justify-center space-x-4">
+                            <button
+                                onClick={() => setIsModalOpen(false)}
+                                className="px-4 py-2 text-white bg-gray-400 rounded hover:bg-gray-300"
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                onClick={handleSubmit}
+                                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-400"
+                            >
+                                Confirm
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </form>
     );
 };
