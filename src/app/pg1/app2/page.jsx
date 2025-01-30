@@ -5,6 +5,7 @@ import Container from "@/app/components/container";
 import NavBar from "@/app/components/nav";
 import Footer from "@/app/components/footer";
 import SideMenu from "./components/sideMenu";
+import NotificationBadge from "./components/NotificationBadge ";
 
 function PIR() {
     const { data: session } = useSession();
@@ -12,7 +13,10 @@ function PIR() {
     return (
         <main className="bg-white dark:bg-[#222224] transition-all duration-[0.5s] flex flex-col min-h-screen">
             <Container>
+                
                 <NavBar session={session} />
+                <NotificationBadge />
+                
                 <main className="flex">
 
                     <div className=" bg-gray-600">

@@ -12,9 +12,11 @@ import ToolTipserv from "./components/toolTipserv";
 import ExportExcelTask from "./components/exportExcelTask";
 import ExportPDFTask from "./components/ExportPDFTask";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
+import TaskModal from "./components/taskModal";
 
 const TaskCard = ({ task, handleImageClick }) => {
     const [isCollapsed, setIsCollapsed] = useState(false); // ⬅️ Track collapse state
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     return (
         <div className="relative flex flex-col justify-between bg-white dark:bg-gray-700 shadow-lg p-5 md:px-10 xl:px-16 rounded-md m-2 w-full border dark:border-gray-600 animate-fade-in-down-fast">
@@ -25,27 +27,30 @@ const TaskCard = ({ task, handleImageClick }) => {
                         Project: {task.project || "N/A"}
                     </h2>
                     <div
-                        className="  border-gray-400 opacity-25 cursor-pointer hover:opacity-100 text-3xl"
+                        className="border-gray-400 opacity-25 cursor-pointer hover:opacity-100 text-3xl"
                         onClick={() => setIsCollapsed(!isCollapsed)} // ⬅️ Toggle visibility
                     >
                         {isCollapsed ? <IoMdArrowDropdown /> : <IoMdArrowDropup />}
                     </div>
+
+                    {/* Severity Badge */}
                     <p className="absolute -top-4 -left-4 text-sm text-gray-600 dark:text-gray-300 mt-2">
                         <span
                             className={`px-1.5 py-0.5 font-semibold shadow-md ${task.severity === "Low"
-                                ? "ml-1 border border-yellow-600 text-yellow-600 bg-yellow-50"
+                                ? "border border-yellow-600 text-yellow-600 bg-yellow-50"
                                 : task.severity === "Medium"
-                                    ? "ml-1 border border-orange-600 text-orange-600 bg-orange-50"
-                                    : "ml-1 border border-red-600 text-red-600 bg-red-50"
+                                    ? "border border-orange-600 text-orange-600 bg-orange-50"
+                                    : "border border-red-600 text-red-600 bg-red-50"
                                 }`}
                         >
                             {task.severity || "N/A"}
                         </span>
                     </p>
 
-                    {/* tooltip serverity level*/}
-                    <div className="absolute -top-4 -left-3"><ToolTipserv /></div>
-
+                    {/* Tooltip for Severity */}
+                    <div className="absolute -top-4 -left-3">
+                        <ToolTipserv />
+                    </div>
                 </div>
                 <hr className="border-gray-300 dark:border-gray-600 my-1" />
 
@@ -54,15 +59,22 @@ const TaskCard = ({ task, handleImageClick }) => {
                     className={`overflow-hidden transition-all duration-300 ease-in-out ${isCollapsed ? "max-h-0 opacity-0" : "max-h-[500px] opacity-100"
                         }`}
                 >
-
+                    {/* Open Modal Button */}
                     <button
-                        className="my-3 flex w-fit text-sm items-center px-3 py-1 pt-1.5 rounded-sm  bg-blue-600 text-white shadow-md hover:bg-blue-400"
+                        className="my-3 flex w-fit text-sm items-center px-2.5 py-1 pt-1.5 rounded-sm bg-blue-600 text-white shadow-md hover:bg-blue-400"
+                        onClick={() => setIsModalOpen(true)}
                     >
-                        View
+                        Inspect
                     </button>
 
+                    {/* Task Modal */}
+                    <TaskModal task={task} isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+
                     <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
-                        Detected Date: {task.detectedDate ? new Date(task.detectedDate).toLocaleDateString() : "N/A"}
+                        Detected Date:{" "}
+                        {task.detectedDate
+                            ? new Date(task.detectedDate).toLocaleDateString()
+                            : "N/A"}
                     </p>
                     <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
                         Detected By: {task.detectedBy || "N/A"}
@@ -73,43 +85,73 @@ const TaskCard = ({ task, handleImageClick }) => {
                     <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
                         Inspector Name: {task.inspectorName || "N/A"}
                     </p>
-                    <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">Details:</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
+                        Details:
+                    </p>
                     <p className="border p-2 text-sm text-gray-600 dark:text-gray-300 rounded-md">
                         {task.details || "No details provided"}
                     </p>
 
                     <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
                         Status:{" "}
-                        <span className={task.status === "In Progress" ? "text-blue-400 font-bold" : "text-red-600 dark:text-red-400"}>
+                        <span
+                            className={
+                                task.status === "In Progress"
+                                    ? "text-blue-400 font-bold"
+                                    : "text-green-500 dark:text-green-500 font-bold"
+                            }
+                        >
                             {task.status || "N/A"}
                         </span>
                     </p>
-                    <p className="text-sm mt-2 mb-3 font-semibold">
-                        Due Date: {task.dueDate ? new Date(task.dueDate).toLocaleDateString() : "N/A"}
+                    <p className="text-sm mt-2 mb-3 text-black  dark:text-gray-100 font-semibold">
+                        Due Date:{" "}
+                        {task.dueDate
+                            ? new Date(task.dueDate).toLocaleDateString()
+                            : "N/A"}
                     </p>
 
                     {/* Task Attachments */}
-                    <p className="mb-1 text-sm text-gray-400 dark:text-gray-300">Attachments:</p>
-                    <div className="w-fit bg-gray-100 dark:bg-gray-300 grid grid-cols-auto sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-1">
+                    <p className="mb-1 text-sm text-gray-400 dark:text-gray-300">
+                        Attachments:
+                    </p>
+                    <div className="w-full bg-gray-100 dark:bg-gray-800 flex overflow-x-auto p-2">
                         {task.public_urls && task.public_urls.length > 0 ? (
                             task.public_urls.map((url, index) => (
-                                <div key={index} className="flex items-center justify-center cursor-pointer" onClick={() => handleImageClick(url)}>
-                                    <img src={url} alt={`Attachment ${index + 1}`} className="w-36 h-36 object-cover border-gray-300 dark:border-gray-600" />
+                                <div
+                                    key={index}
+                                    className="relative flex items-center justify-center cursor-pointer  transition-transform duration-300 hover:scale-110"
+                                    onClick={() => handleImageClick(url)}
+                                >
+                                    <img
+                                        src={url}
+                                        alt={`Attachment ${index + 1}`}
+                                        className="w-full h-32 object-cover border border-gray-300 dark:border-gray-600"
+                                    />
                                 </div>
                             ))
                         ) : (
-                            <p className="text-sm text-gray-500">No files uploaded</p>
+                            <p className="text-sm text-gray-500 col-span-full">
+                                No files uploaded
+                            </p>
                         )}
                     </div>
+
                     <hr className="border-gray-300 dark:border-gray-600" />
+
+                    {/* Always Show Created Date */}
                     <p className="mt-2 text-sm text-gray-400 dark:text-gray-300">
-                        (Created Date: {task.createdAt ? new Date(task.createdAt).toLocaleDateString() : "N/A"})
+                        Created Date:{" "}
+                        {task.createdAt
+                            ? new Date(task.createdAt).toLocaleDateString()
+                            : "N/A"}
                     </p>
                 </div>
             </div>
         </div>
     );
 };
+
 
 
 function PIR() {
@@ -157,7 +199,7 @@ function PIR() {
                     </div>
 
                     {/* Main Content - Removed Scrollbar */}
-                    <div className="flex w-full flex-col p-5 animate-fade-in-fast flex-grow">
+                    <div className="flex w-full flex-col p-5 animate-fade-in-fast">
                         <div className="min-h-[92vh] flex flex-col p-8 border-2 dark:border-neutral-700 shadow-lg shadow-[#d6d6d6] dark:shadow-[#464646]">
                             <div className="mb-3 flex justify-between items-center">
                                 <h1 className="text-2xl text-black dark:text-white font-semibold">
@@ -179,9 +221,9 @@ function PIR() {
                             {/* Button Section */}
 
                             {/* Task Display Section - No Scroll, Show All Items */}
-                            <div className="w-full bg-gray-100 dark:bg-gray-800 flex flex-wrap justify-center items-start p-4 gap-4">
+                            <div className="w-full h-fit bg-gray-100 dark:bg-gray-800 flex flex-wrap justify-center items-start p-4 gap-4">
                                 {loading ? (
-                                    <p className="text-gray-700 dark:text-gray-300">Loading...</p>
+                                    <p className="text-gray-700 dark:text-gray-300"></p>
                                 ) : error ? (
                                     <p className="text-red-600 dark:text-red-400">{error}</p>
                                 ) : tasks.length === 0 ? (
@@ -211,7 +253,7 @@ function PIR() {
                         <img
                             src={modalImage}
                             alt="Preview"
-                            className="max-w-[80%] max-h-full rounded-md"
+                            className="rounded-md"
                         />
                     </div>
                 )}

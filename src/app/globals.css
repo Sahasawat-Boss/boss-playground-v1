@@ -137,9 +137,15 @@ body {
 .animate-fade-in-left-right {
     animation: fade-in-left-right 1.55s ease-in-out;
 }
+.animate-fade-in-left-right-fast {
+    animation: fade-in-left-right 0.65s ease-in-out;
+}
 
 .animate-fade-in-right-left {
     animation: fade-in-right-left 1.55s ease-in-out;
+}
+.animate-fade-in-right-left-fast {
+    animation: fade-in-right-left 0.65s ease-in-out;
 }
 
 .animate-floating {

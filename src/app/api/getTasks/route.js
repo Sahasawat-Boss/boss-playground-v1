@@ -1,17 +1,25 @@
 import { MongoClient } from "mongodb";
 
 const uri = process.env.MONGODB_URI;
+if (!uri) {
+    throw new Error("MongoDB URI is not set in environment variables");
+}
+
 let client;
 let clientPromise;
 
 if (!global._mongoClientPromise) {
     client = new MongoClient(uri, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        serverSelectionTimeoutMS: 5000, // Timeout after 5 seconds
+        serverSelectionTimeoutMS: 10000, // Increase timeout
     });
-    global._mongoClientPromise = client.connect();
+
+    global._mongoClientPromise = client.connect()
+        .catch(error => {
+            console.error("MongoDB Connection Error:", error);
+            throw error;
+        });
 }
+
 clientPromise = global._mongoClientPromise;
 
 export async function GET(request) {
