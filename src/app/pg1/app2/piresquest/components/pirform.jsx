@@ -203,7 +203,7 @@ const RequestForm = () => {
                     Process Inspection Request (PIR)
                 </h1>
 
-                <div className="opacity-60"><InfoPIR /></div>
+                <div><InfoPIR /></div>
             
             </div>
 

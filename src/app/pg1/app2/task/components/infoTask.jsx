@@ -26,17 +26,17 @@ function InfoTask() {
             {/* Modal */}
             {isModalOpen && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60">
-                    <div className="bg-white rounded-lg shadow-lg p-6 w-[550px]">
+                    <div className="bg-white rounded-lg shadow-lg py-6 px-10 w-[600px]">
                         <h2 className="text-xl font-bold mb-4 text-black">
-                            Task - Process Inspection Request
+                            Task
                         </h2>
                         <div className="text-sm text-gray-700 leading-relaxed">
                             <p>
-                                The <strong>Task </strong> Menu is a central hub for viewing and managing Process Inspection Requests (PIRs). It provides a structured way for users to track, review, and resolve reported issues within business processes. Each task includes key details such as project name, severity level, detected date, assigned inspector, due date, and status, along with supporting images or documents for context.</p>
+                                This menu is a central hub for viewing and managing Process Inspection Requests (PIRs). It provides a structured way for users to track, review, and resolve reported issues within business processes. Each task includes key details such as project name, severity level, detected date, assigned inspector, due date, and status, along with supporting images or documents for context.</p>
                         </div>
 
                         {/* Button Section */}
-                        <div className="flex justify-between mt-6 my-2">
+                        <div className="flex justify-between mt-4">
                             <div className="flex items-center">
                                 <div
                                     onClick={handleLove}

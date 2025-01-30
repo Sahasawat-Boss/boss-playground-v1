@@ -25,8 +25,8 @@ function InfoPIR() {
 
             {/* Modal */}
             {isModalOpen && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60">
-                    <div className="bg-white rounded-lg shadow-lg p-6 w-[550px]">
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-65">
+                    <div className="bg-white rounded-lg shadow-lg px-10 py-6 w-[600px]">
                         <h2 className="text-xl font-bold mb-4 text-black">
                             Process Inspection Request Information
                         </h2>
@@ -62,7 +62,7 @@ function InfoPIR() {
                         </div>
 
                         {/* Button Section */}
-                        <div className="flex justify-between mt-6 my-2">
+                        <div className="flex justify-between mt-6">
                             <div className="flex items-center">
                                 <div
                                     onClick={handleLove}

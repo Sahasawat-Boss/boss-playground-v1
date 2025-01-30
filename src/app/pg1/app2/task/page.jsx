@@ -163,7 +163,7 @@ function PIR() {
                                 <h1 className="text-2xl text-black dark:text-white font-semibold">
                                     Task
                                 </h1>
-                                <div className="opacity-60"><InfoTask /></div>
+                                <div><InfoTask /></div>
                             </div>
 
                             {/* Search Options */}
