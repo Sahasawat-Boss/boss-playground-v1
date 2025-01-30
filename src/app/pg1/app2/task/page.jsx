@@ -19,7 +19,7 @@ const TaskCard = ({ task, handleImageClick }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     return (
-        <div className="relative flex flex-col justify-between bg-white dark:bg-gray-700 shadow-lg p-5 md:px-10 xl:px-16 rounded-md m-2 w-full border dark:border-gray-600 animate-fade-in-down-fast">
+        <div className=" relative flex flex-col justify-between bg-white dark:bg-gray-700 shadow-lg p-5 md:px-10 xl:px-16 rounded-md m-2 w-full border dark:border-gray-600 animate-fade-in-down-fast">
             {/* Task Details */}
             <div>
                 <div className="flex justify-between items-center">
@@ -92,7 +92,13 @@ const TaskCard = ({ task, handleImageClick }) => {
                         {task.details || "No details provided"}
                     </p>
 
-                    <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
+                    <p className="text-sm mt-2 mb-1 text-black  dark:text-gray-100 font-semibold">
+                        Due Date:{" "}
+                        {task.dueDate
+                            ? new Date(task.dueDate).toLocaleDateString()
+                            : "N/A"}
+                    </p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300 mt-2 mb-3">
                         Status:{" "}
                         <span
                             className={
@@ -104,18 +110,12 @@ const TaskCard = ({ task, handleImageClick }) => {
                             {task.status || "N/A"}
                         </span>
                     </p>
-                    <p className="text-sm mt-2 mb-3 text-black  dark:text-gray-100 font-semibold">
-                        Due Date:{" "}
-                        {task.dueDate
-                            ? new Date(task.dueDate).toLocaleDateString()
-                            : "N/A"}
-                    </p>
 
                     {/* Task Attachments */}
                     <p className="mb-1 text-sm text-gray-400 dark:text-gray-300">
                         Attachments:
                     </p>
-                    <div className="w-full bg-gray-100 dark:bg-gray-800 flex overflow-x-auto p-2">
+                    <div className="w-full bg-gray-100 dark:bg-gray-800 flex flex-col md:flex-row overflow-x-auto p-2">
                         {task.public_urls && task.public_urls.length > 0 ? (
                             task.public_urls.map((url, index) => (
                                 <div
@@ -220,26 +220,33 @@ function PIR() {
                             </div>
                             {/* Button Section */}
 
-                            {/* Task Display Section - No Scroll, Show All Items */}
-                            <div className="w-full h-fit bg-gray-100 dark:bg-gray-800 flex flex-wrap justify-center items-start p-4 gap-4">
+                            {/* Task Display Section - Show Only "In Progress" Tasks */}
+                            <div className="w-full h-fit min-h-[700px] bg-gray-100 dark:bg-gray-800 flex flex-wrap justify-center items-start p-4 gap-4">
                                 {loading ? (
-                                    <p className="text-gray-700 dark:text-gray-300"></p>
+                                    <p className="text-gray-700 dark:text-gray-300">Loading tasks...</p>
                                 ) : error ? (
                                     <p className="text-red-600 dark:text-red-400">{error}</p>
-                                ) : tasks.length === 0 ? (
-                                    <p className="text-gray-700 dark:text-gray-300">
-                                        No tasks available.
-                                    </p>
                                 ) : (
-                                    tasks.map((task) => (
-                                        <TaskCard
-                                            key={task._id}
-                                            task={task}
-                                            handleImageClick={handleImageClick}
-                                        />
-                                    ))
+                                    (() => {
+                                        const inProgressTasks = tasks.filter((task) => task.status === "In Progress");
+
+                                        return inProgressTasks.length > 0 ? (
+                                            inProgressTasks.map((task) => (
+                                                <TaskCard
+                                                    key={task._id}
+                                                    task={task}
+                                                    handleImageClick={handleImageClick}
+                                                />
+                                            ))
+                                        ) : (
+                                            <p className="text-gray-700 dark:text-gray-300 font-semibold text-lg">
+                                                Currently no tasks in progress.
+                                            </p>
+                                        );
+                                    })()
                                 )}
                             </div>
+
                         </div>
                     </div>
                 </div>

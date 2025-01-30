@@ -29,7 +29,7 @@ export async function POST(req) {
     }
 }
 
-// ✅ New: Update Task Status & Add Comment
+// ✅ New: Update Task Status, Add Comment, and Finished Date
 export async function PUT(req) {
     try {
         await client.connect();
@@ -45,14 +45,34 @@ export async function PUT(req) {
             );
         }
 
-        // Update task status & add comment
+        const finishedDate = new Date().toISOString(); // Capture the current timestamp
+
+        // Update task status, add comment, and set finishedDate
         const result = await collection.updateOne(
             { _id: new ObjectId(id) }, // Find by ID
-            { $set: { status: "Completed", comment: comment || "No comments provided" } }
+            {
+                $set: {
+                    status: "Completed",
+                    comment: comment || "No comments provided",
+                    finishedDate: finishedDate, // Save finished date
+                    updatedAt: new Date().toISOString(), // Set updated timestamp
+                }
+            }
         );
 
+        if (result.matchedCount === 0) {
+            return new Response(
+                JSON.stringify({ success: false, message: "Task not found" }),
+                { status: 404, headers: { "Content-Type": "application/json" } }
+            );
+        }
+
         return new Response(
-            JSON.stringify({ success: true, message: "Task updated successfully", data: result }),
+            JSON.stringify({
+                success: true,
+                message: "Task updated successfully",
+                data: { id, comment, finishedDate },
+            }),
             { status: 200, headers: { "Content-Type": "application/json" } }
         );
     } catch (error) {

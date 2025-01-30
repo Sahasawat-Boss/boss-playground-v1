@@ -10,6 +10,7 @@ import { FaChartBar } from "react-icons/fa6";
 function SideMenu() {
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [taskCount, setTaskCount] = useState(0); // State to hold task count
+    const [completeCount, setCompleteCount] = useState(0); // Count "Completed" tasks
     const pathname = usePathname();
 
     const toggleMenu = () => {
@@ -18,7 +19,7 @@ function SideMenu() {
 
     const isActiveLink = (path) => pathname === path ? 'text-blue-700 dark:text-blue-200 bg-[#dce7fc] dark:bg-blue-900' : '';
 
-    // Fetch task count
+    // Fetch task count (Only "In Progress" & "Completed" tasks)
     useEffect(() => {
         const fetchTasks = async () => {
             try {
@@ -27,7 +28,13 @@ function SideMenu() {
                     throw new Error('Failed to fetch tasks');
                 }
                 const data = await response.json();
-                setTaskCount(data.length); // Update task count
+
+                // Count tasks based on their status
+                const inProgressCount = data.filter(task => task.status === "In Progress").length;
+                const completedCount = data.filter(task => task.status === "Completed").length;
+
+                setTaskCount(inProgressCount);
+                setCompleteCount(completedCount);
             } catch (error) {
                 console.error('Error fetching tasks:', error);
             }
@@ -99,9 +106,13 @@ function SideMenu() {
 
                                 <Link
                                     href="/pg1/app2/completed"
-                                    className={`flex gap-2 pl-4 py-1.5  hover:text-blue-600 dark:hover:text-blue-400 ${isActiveLink('/pg1/app2/completed')}`}
+                                    className={`relative flex gap-2 pl-4 py-1.5 hover:text-blue-600 dark:hover:text-blue-400 ${isActiveLink('/pg1/app2/completed')}`}
                                 >
-                                    <MdAddTask className="mt-1 opacity-75" />Completed
+                                    <MdAddTask className="mt-1 opacity-75" />
+                                    Completed
+                                    <span className="absolute right-2.5 px-2 font-bold text-[0.9rem] text-green-600">
+                                        {completeCount}
+                                    </span>
                                 </Link>
                                 <Link
                                     href="/pg1/app2/Report"
