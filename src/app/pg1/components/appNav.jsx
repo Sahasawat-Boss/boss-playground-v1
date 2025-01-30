@@ -1,15 +1,31 @@
-import React, { useState } from 'react';
+"use client";
+
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation'; // Next.js Router
 import { MdAppRegistration } from "react-icons/md";
 import { AiOutlineLoading3Quarters } from "react-icons/ai"; // Spinner icon
 
 function AppNav() {
     const [loading, setLoading] = useState(false);
+    const router = useRouter();
 
     const handleClick = () => {
         setLoading(true);
-        setTimeout(() => setLoading(false), 2000); // Simulate loading (2 seconds)
     };
+
+    // Listen for route changes & stop loading when done
+    useEffect(() => {
+        const handleRouteChange = () => setLoading(false);
+
+        router.events?.on('routeChangeComplete', handleRouteChange);
+        router.events?.on('routeChangeError', handleRouteChange);
+
+        return () => {
+            router.events?.off('routeChangeComplete', handleRouteChange);
+            router.events?.off('routeChangeError', handleRouteChange);
+        };
+    }, [router]);
 
     return (
         <div>
@@ -17,7 +33,7 @@ function AppNav() {
                 {/* App Link */}
                 <div className='animate-fade-in-up' onClick={handleClick}>
                     {loading ? (
-                        // Show spinner while loading
+                        // Show spinner until page changes
                         <div className="flex justify-center items-center w-40 h-16 bg-white border-2 border-blue-600 rounded-lg shadow-md">
                             <AiOutlineLoading3Quarters className="animate-spin text-blue-600 text-3xl" />
                         </div>
@@ -45,7 +61,7 @@ function AppNav() {
                 <div>
                     <div className="w-[26rem] animate-fade-in-right-left">
                         <div>
-                            <span className='underline font-semibold text-xl mr-1'>CRUD V.2</span> 
+                            <span className='underline font-semibold text-xl mr-1'>CRUD V.2</span>
                             Enables efficient GET, POST, and DELETE operations on the CRUDv2 data collection in MongoDB. It also allows data filtering and supports exporting results to an Excel file for easy sharing and analysis.
                         </div>
                     </div>

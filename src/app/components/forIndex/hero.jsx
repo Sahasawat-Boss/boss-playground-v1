@@ -1,11 +1,12 @@
+"use client";
+
 import React, { useEffect, useRef, useState } from 'react';
-import Link from 'next/link';
 import Typed from 'typed.js';
 import { useRouter } from 'next/navigation';
 
 function Hero() {
-  const typedRef = useRef(null); // Ref for the element
-  const typedInstance = useRef(null); // Ref for the Typed.js instance
+  const typedRef = useRef(null);
+  const typedInstance = useRef(null);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
@@ -18,11 +19,9 @@ function Hero() {
         loop: true,
       };
 
-      // Initialize Typed.js
       typedInstance.current = new Typed(typedRef.current, options);
     }
 
-    // Cleanup Typed.js on component unmount
     return () => {
       if (typedInstance.current) {
         typedInstance.current.destroy();
@@ -32,12 +31,21 @@ function Hero() {
 
   const handleButtonClick = () => {
     setIsLoading(true);
-
-    // Simulating a delay (e.g., API call or redirect delay)
-    setTimeout(() => {
-      router.push('/signIn');
-    }, 1500); // Adjust delay if needed
+    router.push('/signIn');
   };
+
+  // Listen for route changes & stop loading when complete
+  useEffect(() => {
+    const handleRouteChange = () => setIsLoading(false);
+
+    router.events?.on('routeChangeComplete', handleRouteChange);
+    router.events?.on('routeChangeError', handleRouteChange);
+
+    return () => {
+      router.events?.off('routeChangeComplete', handleRouteChange);
+      router.events?.off('routeChangeError', handleRouteChange);
+    };
+  }, [router]);
 
   return (
     <div
@@ -53,7 +61,7 @@ function Hero() {
       <div className="absolute inset-0 bg-black opacity-85"></div>
 
       {/* Hero Content */}
-      <div className="relative flex flex-col justify-center items-center text-center z-10 text-white">
+      <div className="relative flex flex-col justify-center items-center text-center z-10 text-white animate-fade-in">
         {/* Typing Effect */}
         <h1 className="text-4xl sm:text-5xl font-extrabold mb-10">
           <span
@@ -63,12 +71,11 @@ function Hero() {
         </h1>
 
         {/* Description */}
-        <p className="mt-4 px-4 text-lg sm:text-xl text-gray-300">
+        <p className="mt-4 px-4 text-lg sm:text-xl text-gray-300 animate-fade-in-up">
           Welcome to Boss Playground, where creativity meets innovation.
         </p>
-        <p className="mt-4 px-6 text-lg sm:text-xl text-gray-300">
-          Sign in to explore your personalized dashboard, exclusive features, and level up your
-          skills.
+        <p className="mt-4 px-6 text-lg sm:text-xl text-gray-300 animate-fade-in-up">
+          Sign in to explore your personalized dashboard, exclusive features, and level up your skills.
         </p>
 
         {/* Call-to-action Button with Loading */}
@@ -86,12 +93,10 @@ function Hero() {
           ) : (
             <span className="relative z-10 text-xl">Get Started Now</span>
           )}
-          <span
-            className="absolute inset-0 rounded-full bg-sky-100 blur-md opacity-30 transition-all duration-300"
-          ></span>
+          <span className="absolute inset-0 rounded-full bg-sky-100 blur-md opacity-30 transition-all duration-300"></span>
         </button>
       </div>
-    </div >
+    </div>
   );
 }
 

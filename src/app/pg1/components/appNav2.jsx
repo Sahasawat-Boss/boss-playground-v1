@@ -1,15 +1,31 @@
-import React, { useState } from 'react';
+"use client";
+
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation'; // Import Next.js router
 import { MdContentPasteSearch } from "react-icons/md";
 import { AiOutlineLoading3Quarters } from "react-icons/ai"; // Import spinner icon
 
 function AppNav2() {
     const [loading, setLoading] = useState(false);
+    const router = useRouter();
 
     const handleClick = () => {
         setLoading(true);
-        setTimeout(() => setLoading(false), 2000); // Simulated loading time
     };
+
+    // Track page changes and stop loading when complete
+    useEffect(() => {
+        const handleRouteChange = () => setLoading(false);
+
+        router.events?.on('routeChangeComplete', handleRouteChange);
+        router.events?.on('routeChangeError', handleRouteChange);
+
+        return () => {
+            router.events?.off('routeChangeComplete', handleRouteChange);
+            router.events?.off('routeChangeError', handleRouteChange);
+        };
+    }, [router]);
 
     return (
         <div>
@@ -17,7 +33,7 @@ function AppNav2() {
                 {/* App Link */}
                 <div className='animate-fade-in-up' onClick={handleClick}>
                     {loading ? (
-                        // Show Spinner when loading
+                        // Show spinner until page changes
                         <div className="flex justify-center items-center w-40 h-16 bg-white border-2 border-blue-600 rounded-lg shadow-md">
                             <AiOutlineLoading3Quarters className="animate-spin text-blue-600 text-3xl" />
                         </div>
@@ -45,7 +61,7 @@ function AppNav2() {
                 <div>
                     <div className="w-[26rem] animate-fade-in-right-left">
                         <div>
-                            <span className='underline font-semibold text-xl mr-1'>Process Inspection System (PIS)</span> 
+                            <span className='underline font-semibold text-xl mr-1'>Process Inspection System (PIS)</span>
                             allows users to submit, manage, and archive requests to inspect processes that may not be functioning properly. It ensures issues are addressed systematically, supporting operational efficiency and continuous improvement.
                         </div>
                     </div>
