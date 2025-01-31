@@ -8,6 +8,8 @@ import Footer from "@/app/components/footer";
 import SideMenu from "../components/sideMenu";
 import SearchOptionTask from "../components/searchOption";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
+import ToolTipServ from "./components/toolTipserv";
+import InfoComp from "./components/infoComp";
 
 const TaskCard = ({ task, handleImageClick }) => {
     const [isCollapsed, setIsCollapsed] = useState(false); // ⬅️ Track collapse state
@@ -40,6 +42,10 @@ const TaskCard = ({ task, handleImageClick }) => {
                             {task.severity || "N/A"}
                         </span>
                     </p>
+                    {/* Tooltip for Severity */}
+                    <div className="absolute -top-4 -left-4">
+                        <ToolTipServ />
+                    </div>
                 </div>
                 <hr className="border-gray-300 dark:border-gray-600 my-1" />
 
@@ -196,8 +202,9 @@ function PIR() {
                         <div className="min-h-[92vh] flex flex-col p-8 border-2 dark:border-neutral-700 shadow-lg shadow-[#d6d6d6] dark:shadow-[#464646]">
                             <div className="mb-3 flex justify-between items-center">
                                 <h1 className="text-2xl text-black dark:text-white font-semibold">
-                                    Completeted
+                                    Completed
                                 </h1>
+                                <div><InfoComp /></div>
                             </div>
 
                             {/* Search Options */}
@@ -207,9 +214,9 @@ function PIR() {
                             {/* Button Section */}
 
                             {/* Task Display Section - Show Only Completed Tasks */}
-                            <div className="w-full h-fit min-h-[700px] bg-gray-100 dark:bg-gray-800 flex flex-wrap justify-center items-start p-4 gap-4">
+                            <div className="w-full h-fit bg-gray-100 dark:bg-gray-800 flex flex-wrap justify-center items-start p-4 gap-4">
                                 {loading ? (
-                                    <p className="text-gray-700 dark:text-gray-300">Loading tasks...</p>
+                                    <p className="text-gray-700 dark:text-gray-300">Loading...</p>
                                 ) : error ? (
                                     <p className="text-red-600 dark:text-red-400">{error}</p>
                                 ) : (

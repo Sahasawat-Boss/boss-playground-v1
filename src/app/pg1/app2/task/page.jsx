@@ -203,7 +203,7 @@ function PIR() {
                         <div className="min-h-[92vh] flex flex-col p-8 border-2 dark:border-neutral-700 shadow-lg shadow-[#d6d6d6] dark:shadow-[#464646]">
                             <div className="mb-3 flex justify-between items-center">
                                 <h1 className="text-2xl text-black dark:text-white font-semibold">
-                                    Task
+                                    Tasks
                                 </h1>
                                 <div><InfoTask /></div>
                             </div>
@@ -221,9 +221,9 @@ function PIR() {
                             {/* Button Section */}
 
                             {/* Task Display Section - Show Only "In Progress" Tasks */}
-                            <div className="w-full h-fit min-h-[700px] bg-gray-100 dark:bg-gray-800 flex flex-wrap justify-center items-start p-4 gap-4">
+                            <div className="w-full h-fit bg-gray-100 dark:bg-gray-800 flex flex-wrap justify-center items-start p-4 gap-4">
                                 {loading ? (
-                                    <p className="text-gray-700 dark:text-gray-300">Loading tasks...</p>
+                                    <p className="text-gray-700 dark:text-gray-300">Loading...</p>
                                 ) : error ? (
                                     <p className="text-red-600 dark:text-red-400">{error}</p>
                                 ) : (

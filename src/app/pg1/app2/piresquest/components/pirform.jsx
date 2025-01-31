@@ -147,12 +147,12 @@ const RequestForm = () => {
 
             if (result.success) {
                 setSuccessMessage(true);
-                setTimeout(() => setFadeOut(true), 4000);
+                setTimeout(() => setFadeOut(true), 1000); // ⏳ Step 2: Wait 1 seconds before fading out
                 setTimeout(() => {
                     setSuccessMessage(false);
                     setFadeOut(false);
                     window.location.reload();
-                }, 2500);
+                }, 1800); // ⏳ Step 5: Wait an additional 1.8 seconds before reloading
 
                 handleClear();
             } else {

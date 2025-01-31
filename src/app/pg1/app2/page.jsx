@@ -1,6 +1,8 @@
 "use client";
 
 import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
+import Link from "next/link";
 import Container from "@/app/components/container";
 import NavBar from "@/app/components/nav";
 import Footer from "@/app/components/footer";
@@ -9,17 +11,43 @@ import NotificationBadge from "./components/NotificationBadge ";
 
 function PIR() {
     const { data: session } = useSession();
+    const [taskCount, setTaskCount] = useState(0); // Holds count of tasks "In Progress"
+    const [completeCount, setCompleteCount] = useState(0); // Holds count of "Completed" tasks
+
+    useEffect(() => {
+        const fetchTasks = async () => {
+            try {
+                const response = await fetch("/api/getTasks"); // API to fetch tasks
+                if (!response.ok) {
+                    throw new Error("Failed to fetch tasks");
+                }
+                const data = await response.json();
+
+                // Count "In Progress" & "Completed" tasks
+                const inProgressCount = data.filter(task => task.status === "In Progress").length;
+                const completedCount = data.filter(task => task.status === "Completed").length;
+
+                setTaskCount(inProgressCount);
+                setCompleteCount(completedCount);
+            } catch (error) {
+                console.error("Error fetching tasks:", error);
+            }
+        };
+
+        fetchTasks();
+    }, []); // Runs once on mount
 
     return (
         <main className="bg-white dark:bg-[#222224] transition-all duration-[0.5s] flex flex-col min-h-screen">
             <Container>
-                
+
                 <NavBar session={session} />
                 <NotificationBadge />
-                
+
                 <main className="flex">
 
-                    <div className=" bg-gray-600">
+                    {/* Sidebar */}
+                    <div className="bg-gray-600">
                         <SideMenu />
                     </div>
 
@@ -27,27 +55,52 @@ function PIR() {
                         <div className="min-h-[90vh] flex flex-col p-5 border-2 dark:border-neutral-700 shadow-lg shadow-[#d6d6d6] dark:shadow-[#464646]">
                             <div className="h-full bg-white dark:bg-transparent pt-2 pb-4 px-6 animate-fade-in-fast">
 
+                                {/* Welcome Section */}
                                 <h1 className="mb-3 text-[24px] text-black dark:text-white font-semibold">
-                                    Welcome to PIS
+                                    Dashboard
                                 </h1>
                                 <p className="indent-6">
                                     The Process Inspection Request System (PIR) streamlines the creation, tracking, and management of process inspection requests. Users can submit detailed requests, monitor progress through the Task and Completed menus, and generate reports in the Report menu.
                                 </p>
 
+                                <hr className="border-gray-400 dark:border-gray-600 mt-2 mb-5" />
+
                                 {/* Grid Section */}
-                                <div className="h-[30vh] border-red-600 border-2 mt-8 w-full grid grid-cols-2 gap-4 p-4 animate-fade-in-down-fast">
-                                    <div className="bg-red-200 border-black border h-full flex items-center justify-center">
-                                        PI Request
-                                    </div>
-                                    <div className="bg-red-200 border-black border h-full flex items-center justify-center">
-                                        Task
-                                    </div>
-                                    <div className="bg-red-200 border-black border h-full flex items-center justify-center">
-                                        Completed
-                                    </div>
-                                    <div className="bg-red-200 border-black border h-full flex items-center justify-center">
-                                        Report
-                                    </div>
+                                <div className="mt-8 w-full flex justify-center gap-8 animate-fade-in-down-fast">
+
+                                    {/* Task Box */}
+                                    <Link href="/pg1/app2/task">
+                                        <div className="relative w-60 border border-gray-400 dark:border-gray-600 bg-blue-50 dark:bg-blue-900 hover:bg-blue-100 dark:hover:bg-blue-800 h-full flex flex-col items-center justify-center p-6 rounded-lg shadow-md cursor-pointer transition-transform duration-300 hover:scale-105">
+                                            {/* Title Positioned at the Top */}
+                                            <h2 className="absolute top-3 text-lg font-semibold text-blue-700 dark:text-blue-300">
+                                                Tasks
+                                            </h2>
+
+                                            {/* Task Count */}
+                                            <span className="text-4xl font-bold text-blue-800 dark:text-blue-300 mt-6">{taskCount}</span>
+
+                                            {/* Subtitle */}
+                                            <p className="text-sm text-gray-500 dark:text-gray-300 mt-2">Click to view tasks</p>
+                                        </div>
+                                    </Link>
+
+                                    {/* Completed Box */}
+                                    <Link href="/pg1/app2/completed">
+                                        <div className="relative w-60 border border-gray-400 dark:border-gray-600 bg-green-50 dark:bg-green-900 hover:bg-green-100 dark:hover:bg-green-800 h-full flex flex-col items-center justify-center p-6 rounded-lg shadow-md cursor-pointer transition-transform duration-300 hover:scale-105">
+                                            {/* Title Positioned at the Top */}
+                                            <h2 className="absolute top-3 text-lg font-semibold text-green-700 dark:text-green-300">
+                                                Completed
+                                            </h2>
+
+                                            {/* Completed Count */}
+                                            <span className="text-4xl font-bold text-green-800 dark:text-green-300 mt-6">{completeCount}</span>
+
+                                            {/* Subtitle */}
+                                            <p className="text-sm text-gray-500 dark:text-gray-300 mt-2">Click to view completed tasks</p>
+                                        </div>
+                                    </Link>
+
+
                                 </div>
                             </div>
                         </div>
