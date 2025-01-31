@@ -147,7 +147,7 @@ const RequestForm = () => {
 
             if (result.success) {
                 setSuccessMessage(true);
-                setTimeout(() => setFadeOut(true), 1000); // ⏳ Step 2: Wait 1 seconds before fading out
+                setTimeout(() => setFadeOut(true), 400); // ⏳ Step 2: Wait 0.4 seconds before fading out
                 setTimeout(() => {
                     setSuccessMessage(false);
                     setFadeOut(false);
@@ -451,7 +451,7 @@ const RequestForm = () => {
                             </button>
                             <button
                                 onClick={handleSubmit}
-                                className={`px-6 py-2 bg-blue-500 text-white rounded flex items-center justify-center hover:bg-blue-400 ${isSubmitting ? "opacity-50 cursor-not-allowed" : ""}`}
+                                className={`px-6 py-2 bg-blue-500 text-white rounded flex items-center justify-center hover:bg-blue-400 ${isSubmitting ? "opacity-60 cursor-not-allowed" : ""}`}
                                 disabled={isSubmitting}
                             >
                                 {isSubmitting ? (

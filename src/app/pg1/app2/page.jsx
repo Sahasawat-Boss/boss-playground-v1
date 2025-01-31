@@ -77,7 +77,7 @@ function PIR() {
                                             </h2>
 
                                             {/* Task Count */}
-                                            <span className="text-4xl font-bold text-blue-800 dark:text-blue-300 mt-6">{taskCount}</span>
+                                            <span className="text-4xl font-bold text-blue-700 dark:text-blue-300 mt-6 animate-bounce">{taskCount}</span>
 
                                             {/* Subtitle */}
                                             <p className="text-sm text-gray-500 dark:text-gray-300 mt-2">Click to view tasks</p>
@@ -93,7 +93,7 @@ function PIR() {
                                             </h2>
 
                                             {/* Completed Count */}
-                                            <span className="text-4xl font-bold text-green-800 dark:text-green-300 mt-6">{completeCount}</span>
+                                            <span className="text-4xl font-bold text-green-700 dark:text-green-300 mt-6">{completeCount}</span>
 
                                             {/* Subtitle */}
                                             <p className="text-sm text-gray-500 dark:text-gray-300 mt-2">Click to view completed tasks</p>

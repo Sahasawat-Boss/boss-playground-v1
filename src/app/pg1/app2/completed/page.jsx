@@ -10,8 +10,9 @@ import SearchOptionTask from "../components/searchOption";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 import ToolTipServ from "./components/toolTipserv";
 import InfoComp from "./components/infoComp";
+import TaskModal from "./components/taskModal"; // ✅ Import TaskModal
 
-const TaskCard = ({ task, handleImageClick }) => {
+const TaskCard = ({ task, handleImageClick, handleViewTask }) => {
     const [isCollapsed, setIsCollapsed] = useState(false); // ⬅️ Track collapse state
 
     return (
@@ -51,14 +52,15 @@ const TaskCard = ({ task, handleImageClick }) => {
 
                 {/* Smooth Collapsible Section */}
                 <div
-                    className={`overflow-hidden transition-all duration-300 ease-in-out ${isCollapsed ? "max-h-0 opacity-0" : "max-h-[500px] opacity-100"
+                    className={`transition-all duration-300 ease-in-out ${isCollapsed ? "max-h-0 opacity-0" : "max-h-[800px] opacity-100"
                         }`}
                 >
-                    {/* Open Modal Button */}
+                    {/* ✅ Open modal when clicking "View" */}
                     <button
-                        className="my-3 flex w-fit text-sm items-center px-2.5 py-1 pt-1.5 rounded-sm bg-blue-600 text-white shadow-md hover:bg-blue-400"
+                        className="my-3 flex w-fit text-sm px-2.5 py-1 bg-blue-600 text-white rounded-sm shadow-md hover:bg-blue-400"
+                        onClick={() => handleViewTask(task)}
                     >
-                        Inspect
+                        View
                     </button>
 
                     {/* Task Modal */}
@@ -87,13 +89,6 @@ const TaskCard = ({ task, handleImageClick }) => {
                         Due Date:{" "}
                         {task.dueDate
                             ? new Date(task.dueDate).toLocaleDateString()
-                            : "N/A"}
-                    </p>
-
-                    <p className="text-sm mt-2 mb-3 text-green-700 dark:text-[#408d40] font-semibold">
-                        Finished Date:{" "}
-                        {task.finishedDate
-                            ? new Date(task.finishedDate).toLocaleDateString()
                             : "N/A"}
                     </p>
 
@@ -136,11 +131,22 @@ const TaskCard = ({ task, handleImageClick }) => {
                         )}
                     </div>
 
-                    <hr className="border-gray-300 dark:border-gray-600" />
+                    <p className="text-sm mt-2 text-green-700 dark:text-[#408d40] font-semibold">
+                        Finished Date:{" "}
+                        {task.finishedDate
+                            ? new Date(task.finishedDate).toLocaleDateString()
+                            : "N/A"}
+                    </p>
 
-                    {/* Always Show Created Date */}
-                    <p className="mt-2 text-sm text-gray-400 dark:text-gray-300">
-                        Created Date:{" "}
+                    <p className="text-sm text-gray-600 dark:text-gray-300 mt-2 mb-1">
+                        Details:
+                    </p>
+                    <p className="border p-2 text-sm text-gray-600 dark:text-gray-300 rounded-md">
+                        {task.comment || "N/A"}
+                    </p>
+
+                    <p className="mt-3 text-sm text-gray-400 dark:text-gray-300 justify-end">
+                        Task Created Date:{" "}
                         {task.createdAt
                             ? new Date(task.createdAt).toLocaleDateString()
                             : "N/A"}
@@ -160,6 +166,11 @@ function PIR() {
     const [error, setError] = useState(null);
     const [modalImage, setModalImage] = useState(null);
 
+    // ✅ State for Task Modal
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedTask, setSelectedTask] = useState(null);
+
+
     useEffect(() => {
         const fetchTasks = async () => {
             try {
@@ -168,8 +179,6 @@ function PIR() {
                     throw new Error(`Failed to fetch tasks: ${response.status}`);
                 }
                 const data = await response.json();
-
-                // Sort tasks by creation date (newest first)
                 const sortedTasks = data.sort(
                     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
                 );
@@ -187,6 +196,12 @@ function PIR() {
 
     const handleImageClick = (url) => setModalImage(url);
     const closeModal = () => setModalImage(null);
+
+    // ✅ Function to open modal with task details
+    const handleViewTask = (task) => {
+        setSelectedTask(task);
+        setIsModalOpen(true);
+    };
 
     return (
         <main className="bg-white dark:bg-[#222224] transition-all duration-500 flex flex-col min-h-screen">
@@ -229,6 +244,7 @@ function PIR() {
                                                     key={task._id}
                                                     task={task}
                                                     handleImageClick={handleImageClick}
+                                                    handleViewTask={handleViewTask}  // ✅ Pass this function
                                                 />
                                             ))
                                         ) : (
@@ -257,6 +273,11 @@ function PIR() {
                             className="rounded-md"
                         />
                     </div>
+                )}
+
+                {/* ✅ Task Modal */}
+                {isModalOpen && selectedTask && (
+                    <TaskModal task={selectedTask} isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
                 )}
 
                 <Footer />

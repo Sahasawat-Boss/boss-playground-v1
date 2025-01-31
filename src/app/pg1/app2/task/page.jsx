@@ -56,7 +56,7 @@ const TaskCard = ({ task, handleImageClick }) => {
 
                 {/* Smooth Collapsible Section */}
                 <div
-                    className={`overflow-hidden transition-all duration-300 ease-in-out ${isCollapsed ? "max-h-0 opacity-0" : "max-h-[500px] opacity-100"
+                    className={`overflow-hidden transition-all duration-300 ease-in-out ${isCollapsed ? "max-h-0 opacity-0" : "max-h-[800px] opacity-100"
                         }`}
                 >
                     {/* Open Modal Button */}
@@ -141,7 +141,7 @@ const TaskCard = ({ task, handleImageClick }) => {
 
                     {/* Always Show Created Date */}
                     <p className="mt-2 text-sm text-gray-400 dark:text-gray-300">
-                        Created Date:{" "}
+                        Task Created Date:{" "}
                         {task.createdAt
                             ? new Date(task.createdAt).toLocaleDateString()
                             : "N/A"}

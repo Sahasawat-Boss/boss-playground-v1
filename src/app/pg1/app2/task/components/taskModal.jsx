@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 import { IoClose } from "react-icons/io5";
 import { FaRegCheckCircle } from "react-icons/fa";
 import jsPDF from "jspdf";
@@ -283,7 +284,7 @@ const TaskModal = ({ task, isOpen, onClose, onUpdateTask }) => {
                             Export PDF
                         </button>
                         <button
-                            className={`px-4 py-1.5 shadow-md transition-all duration-200 ${isSubmitting ? "bg-gray-500 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-500 text-white"}`}
+                            className={`px-4 py-1.5 shadow-md transition-all duration-200 ${isSubmitting ? "bg-blue-600 hover:bg-blue-500 text-white opacity-60 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-500 text-white"}`}
                             onClick={handleComplete}
                             disabled={isSubmitting} // ✅ Prevent multiple submissions
                         >
