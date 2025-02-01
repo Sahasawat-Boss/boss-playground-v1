@@ -29,10 +29,13 @@ export default function FirstPage() {
         <NavBar session={session} />
         <Hero />
         <AboutMe />
+        
         <Parallax1 />
-        <Port />
-        <Parallax2 />
         <CardInterest />
+
+        <Parallax2 />
+        <Port />
+
         <Footer />
         <ScrollUpButton />
       </Container>
