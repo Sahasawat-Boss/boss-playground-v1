@@ -204,7 +204,7 @@ const RequestForm = () => {
                 </h1>
 
                 <div><InfoPIR /></div>
-            
+
             </div>
 
             <hr className='border mt-2' />
@@ -233,14 +233,23 @@ const RequestForm = () => {
                     <label className="block mb-1">
                         Detected Date:
                         <input
-                            type="date"
+                            type="text"
                             name="detectedDate"
-                            value={formData.detectedDate} // Controlled field
-                            onChange={handleChange} // Update state on change
+                            value={formData.detectedDate ? new Date(formData.detectedDate).toLocaleDateString("en-GB", {
+                                day: "2-digit",
+                                month: "2-digit",
+                                year: "2-digit"
+                            }) : ""}
+                            onChange={(e) => {
+                                const formattedDate = e.target.value.split("-").reverse().join("-"); // Convert DD-MM-YY back to YYYY-MM-DD
+                                setFormData({ ...formData, detectedDate: formattedDate });
+                            }}
                             className="text-black w-full border border-gray-300 rounded px-3 py-2 mt-1"
+                            placeholder="DD-MM-YY"
                         />
                     </label>
                 </div>
+
                 <div>
                     <label className="block">
                         Detected By:
@@ -411,11 +420,19 @@ const RequestForm = () => {
                     <label className="block mb-1">
                         Due Date:
                         <input
-                            type="date"
+                            type="text"
                             name="dueDate"
-                            value={formData.dueDate} // Controlled field
-                            onChange={handleChange} // Update state on change
+                            value={formData.dueDate ? new Date(formData.dueDate).toLocaleDateString("en-GB", {
+                                day: "2-digit",
+                                month: "2-digit",
+                                year: "2-digit"
+                            }) : ""}
+                            onChange={(e) => {
+                                const formattedDate = e.target.value.split("-").reverse().join("-"); // Convert DD-MM-YY back to YYYY-MM-DD
+                                setFormData({ ...formData, dueDate: formattedDate });
+                            }}
                             className="text-black w-full border border-gray-300 rounded px-3 py-2 mt-1"
+                            placeholder="DD-MM-YY"
                         />
                     </label>
                 </div>

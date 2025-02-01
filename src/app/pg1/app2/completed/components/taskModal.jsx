@@ -25,7 +25,6 @@ const TaskModal = ({ task, isOpen, onClose }) => {
         }, 100); // Transition duration (matches animation timing)
     };
 
-
     const exportToPDF = () => {
         if (!task) return;
 
@@ -45,10 +44,11 @@ const TaskModal = ({ task, isOpen, onClose }) => {
 
         addText("Severity", task.severity);
         addText("Status", task.status);
-        addText("Detected Date", task.detectedDate ? new Date(task.detectedDate).toLocaleDateString() : "N/A");
+        addText("Detected Date", task.detectedDate ? new Date(task.detectedDate).toLocaleDateString("en-GB") : "N/A");
         addText("Detected By", task.detectedBy);
         addText("Inspector Name", task.inspectorName);
-        addText("Created Date", task.createdAt ? new Date(task.createdAt).toLocaleDateString() : "N/A");
+        addText("Created Date", task.createdAt ? new Date(task.createdAt).toLocaleDateString("en-GB") : "N/A");
+        addText("Finished Date", task.finishedDate ? new Date(task.finishedDate).toLocaleDateString("en-GB") : "N/A"); // ✅ Added Finished Date
 
         pdf.text("=====================================", 10, yPosition);
         yPosition += 10;
@@ -61,6 +61,18 @@ const TaskModal = ({ task, isOpen, onClose }) => {
         const splitDetails = pdf.splitTextToSize(task.details || "No details provided", 180);
         pdf.text(splitDetails, 10, yPosition);
         yPosition += splitDetails.length * 6;
+
+        pdf.text("=====================================", 10, yPosition);
+        yPosition += 10;
+
+        pdf.setFontSize(14);
+        pdf.text("Inspection Details (Comment):", 10, yPosition);
+        yPosition += 8;
+
+        pdf.setFontSize(12);
+        const splitComment = pdf.splitTextToSize(task.comment || "No comment provided", 180);
+        pdf.text(splitComment, 10, yPosition);
+        yPosition += splitComment.length * 6;
 
         pdf.text("=====================================", 10, yPosition);
         yPosition += 10;
@@ -79,8 +91,9 @@ const TaskModal = ({ task, isOpen, onClose }) => {
             pdf.text("No attachments available", 10, yPosition);
         }
 
-        pdf.save(`Task_${task.project || "No_Project"}_TextOnly.pdf`);
+        pdf.save(`Completed_Task_${task.project || "No_Project"}_Report.pdf`);
     };
+
 
     return (
         <div
@@ -174,9 +187,27 @@ const TaskModal = ({ task, isOpen, onClose }) => {
                             </div>
                         ))
                     ) : (
-                        <p className="text-sm text-gray-500">No attachments available</p>
+                        <p className="text-gray-500">No attachments available</p>
                     )}
                 </div>
+                {/* Finished Date */}
+                <p className="mt-2 text-green-600 dark:text-[#408d40] font-semibold">
+                    Finished Date:{" "}
+                    {task.finishedDate
+                        ? new Date(task.finishedDate).toLocaleDateString("en-GB", {
+                            day: "2-digit",
+                            month: "2-digit",
+                            year: "2-digit"
+                        })
+                        : "N/A"}
+                </p>
+
+                {/* Task Details */}
+                <div className="mt-4 py-2 px-5 border border-gray-300 dark:border-gray-700 rounded-md bg-gray-50 dark:bg-gray-900">
+                    <p className="text-gray-black dark:text-gray-200 font-semibold">Inspectation Details:</p>
+                    <p className="text-gray-600 dark:text-gray-400 my-1.5">{task.comment || "No details provided"}</p>
+                </div>
+
 
                 {/* Footer Buttons */}
                 <div className="flex justify-center mt-6 space-x-4">

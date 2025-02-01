@@ -22,9 +22,10 @@ const HorizontalTimeline = () => {
 
     return (
         <div className="relative w-full overflow-x-clip py-8 pb-4 px-4 bg-gradient-to-b from-gray-50 to-gray-200 dark:from-gray-900 dark:to-gray-800">
-            {/* Timeline Line */}
-            <div className="absolute top-44 left-0 w-full h-1 bg-blue-500 dark:bg-blue-400 transition-all duration-500 ease-in-out"></div>
-
+            
+            {/* Timeline Animation*/}
+            <div className="absolute top-44 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500 dark:from-blue-400 dark:via-purple-400 dark:to-blue-400 bg-[200%] animate-moving-gradient"></div>
+            
             {/* Timeline Items */}
             <div className="flex justify-center items-center space-x-8 lg:space-x-16 px-8">
                 {timelineData.map((event, index) => (

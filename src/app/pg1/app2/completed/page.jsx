@@ -11,6 +11,9 @@ import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 import ToolTipServ from "./components/toolTipserv";
 import InfoComp from "./components/infoComp";
 import TaskModal from "./components/taskModal"; // ✅ Import TaskModal
+import ScrollUpButton from "@/app/components/scrollUp";
+import ExportExcelTask from "./components/exportExcelTask";
+import ExportPDFTask from "./components/ExportPDFTask";
 
 const TaskCard = ({ task, handleImageClick, handleViewTask }) => {
     const [isCollapsed, setIsCollapsed] = useState(false); // ⬅️ Track collapse state
@@ -227,6 +230,13 @@ function PIR() {
                             {/* Search Options */}
 
                             {/* Button Section */}
+                            <div className="my-3 flex gap-2 h-fit animate-fade-in-right-left">
+                                {/* Ensure tasks are not undefined */}
+                                {tasks && tasks.length > 0 && <ExportExcelTask tasks={tasks} />}
+
+                                {tasks.length > 0 && <ExportPDFTask tasks={tasks} />}
+                            </div>
+                            {/* Button Section */}
 
                             {/* Task Display Section - Show Only Completed Tasks */}
                             <div className="w-full h-fit bg-gray-100 dark:bg-gray-800 flex flex-wrap justify-center items-start p-4 gap-4">
@@ -281,6 +291,7 @@ function PIR() {
                 )}
 
                 <Footer />
+                <ScrollUpButton />
             </Container>
         </main>
     );

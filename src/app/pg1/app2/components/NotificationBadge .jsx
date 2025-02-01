@@ -19,7 +19,7 @@ const NotificationBadge = () => {
     };
 
     return (
-        <div className="fixed bottom-7 right-8 z-50 animate-fade-in-fast">
+        <div className="fixed top-24 right-8 z-50 animate-fade-in-fast">
             {/* Floating Action Button with Notification Badge */}
             <button
                 className="relative w-10 h-10 bg-blue-600 text-white text-2xl rounded-full flex items-center justify-center shadow-lg 

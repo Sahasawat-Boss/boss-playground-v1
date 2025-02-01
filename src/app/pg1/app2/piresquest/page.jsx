@@ -6,6 +6,8 @@ import NavBar from "@/app/components/nav";
 import Footer from "@/app/components/footer";
 import SideMenu from "../components/sideMenu";
 import PIRForm from "./components/pirform";
+import ScrollUpButton from "@/app/components/scrollUp";
+
 
 function PIR() {
     const { data: session } = useSession();
@@ -31,6 +33,7 @@ function PIR() {
 
                 {/* Footer */}
                 <Footer />
+                <ScrollUpButton/>
             </Container>
         </main>
     );

@@ -115,14 +115,14 @@ function SideMenu() {
                                     </span>
                                 </Link>
                                 <Link
-                                    href="/pg1/app2/Report"
-                                    className={`flex gap-2 pl-4 py-1.5  hover:text-blue-600 dark:hover:text-blue-400 ${isActiveLink('/pg1/app2/Report')}`}
+                                    href="/pg1/app2/report"
+                                    className={`flex gap-2 pl-4 py-1.5  hover:text-blue-600 dark:hover:text-blue-400 ${isActiveLink('/pg1/app2/report')}`}
                                 >
                                     <FaChartBar className="mt-1 opacity-75" />Report
                                 </Link>
                                 <Link
                                     href="/pg1/app2/About"
-                                    className={`flex gap-2 pl-4 py-1.5  hover:text-blue-600 dark:hover:text-blue-400 ${isActiveLink('/pg1/app2/About')}`}
+                                    className={`flex gap-2 pl-4 py-1.5  hover:text-blue-600 dark:hover:text-blue-400 ${isActiveLink('/pg1/app2/about')}`}
                                 >
                                     <FaRegQuestionCircle className="mt-1 opacity-75" />About
                                 </Link>
