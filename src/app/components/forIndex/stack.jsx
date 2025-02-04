@@ -9,10 +9,10 @@ function CardInterest() {
 
             <Timeline/>
 
-            <div className="mt-10 flex flex-col gap-10 flex-wrap justify-center items-center">
+            <div className="mt-10 flex flex-col gap-10 flex-wrap justify-center items-center ">
 
                 {/* Frontend Developer Card */}
-                <div className="relative w-[500px] p-[4px] rounded-xl bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-200% animate-gradient-border hover:scale-105 hover:z-10 transition-all duration-300">
+                <div className="relative w-[500px] p-[4px] rounded-xl bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-200% animate-gradient-border hover:scale-105 hover:z-10 transition-all duration-300 animation-appearUp">
                     <div className="bg-white dark:bg-gray-800 rounded-xl py-4 px-12 shadow-md">
                         <h3 className="text-2xl font-bold mb-4 text-black dark:text-white">Developer</h3>
                         <p className="text-gray-600 dark:text-gray-400 mb-4">
@@ -71,7 +71,7 @@ function CardInterest() {
                 </div>
 
                 {/* IT Business Analyst Card */}
-                <div className="relative w-[500px] p-[4px] rounded-xl bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-200% animate-gradient-border hover:scale-105 hover:z-10 transition-all duration-300">
+                <div className="relative w-[500px] p-[4px] rounded-xl bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-200% animate-gradient-border hover:scale-105 hover:z-10 transition-all duration-300 animation-appearUp">
                     <div className="bg-white dark:bg-gray-800 rounded-xl py-4 px-12 shadow-md">
                         <h3 className="text-2xl font-bold mb-4 text-black dark:text-white">IT Business Analyst</h3>
                         <p className="text-gray-600 dark:text-gray-400 mb-4">

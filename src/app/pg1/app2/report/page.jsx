@@ -8,6 +8,7 @@ import Footer from "@/app/components/footer";
 import SideMenu from "../components/sideMenu";
 import ScrollUpButton from "@/app/components/scrollUp";
 import ExportExcelReport from "./components/exportExcelReport";
+import ReportInfoPanel from "./components/ReportInfoPanel ";
 
 
 function ReportPage() {
@@ -82,21 +83,33 @@ function ReportPage() {
                                             <th className="border border-gray-300 dark:border-gray-700 px-4 py-2 whitespace-nowrap min-w-[110px]">Detected By</th>
                                             <th className="border border-gray-300 dark:border-gray-700 px-4 py-2 whitespace-nowrap min-w-[110px]">Detected Process</th>
                                             <th className="border border-gray-300 dark:border-gray-700 px-4 py-2 whitespace-nowrap min-w-[110px]">Inspector</th>
-                                            <th className="border border-gray-300 dark:border-gray-700 px-4 py-2 whitespace-nowrap min-w-[110px]">Status</th>
+
                                             <th className="border border-gray-300 dark:border-gray-700 px-4 py-2 whitespace-nowrap min-w-[110px]">Create Date</th>
                                             <th className="border border-gray-300 dark:border-gray-700 px-4 py-2 whitespace-nowrap min-w-[110px]">Detected Date</th>
                                             <th className="border border-gray-300 dark:border-gray-700 px-4 py-2 whitespace-nowrap min-w-[110px]">Due Date</th>
+
+                                            <th className="border border-gray-300 dark:border-gray-700 px-4 py-2 whitespace-nowrap min-w-[110px]">Status</th>
                                             <th className="border border-gray-300 dark:border-gray-700 px-4 py-2 whitespace-nowrap min-w-[110px]">Pending (day)</th>
                                             <th className="border border-gray-300 dark:border-gray-700 px-4 py-2 whitespace-nowrap min-w-[110px]">Finished Date</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {loading ? (
-                                            <tr>
-                                                <td colSpan="12" className="text-gray-700 dark:text-gray-300 text-lg text-center py-4">
-                                                    Loading...
-                                                </td>
-                                            </tr>
+                                            // Show 5 Placeholder Rows While Loading
+                                            [...Array(5)].map((_, index) => (
+                                                <tr key={index} className="animate-pulse">
+                                                    {Array(12)
+                                                        .fill("")
+                                                        .map((_, i) => (
+                                                            <td
+                                                                key={i}
+                                                                className="border border-gray-300 dark:border-gray-700 px-4 py-2 min-w-[85px]"
+                                                            >
+                                                                <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-xl"></div>
+                                                            </td>
+                                                        ))}
+                                                </tr>
+                                            ))
                                         ) : error ? (
                                             <tr>
                                                 <td colSpan="12" className="text-red-600 dark:text-red-400 py-4 text-center">
@@ -153,14 +166,7 @@ function ReportPage() {
                                                         <td className="border border-gray-300 dark:border-gray-700 px-4 py-2 truncate min-w-[120px]">
                                                             {task.inspectorName || "N/A"}
                                                         </td>
-                                                        <td className="border border-gray-300 dark:border-gray-700 px-4 py-2 min-w-[120px]">
-                                                            <span className={`${task.status === "In Progress"
-                                                                ? "text-blue-500"
-                                                                : "text-green-500 dark:text-green-500"
-                                                                } font-semibold`}>
-                                                                {task.status || "N/A"}
-                                                            </span>
-                                                        </td>
+
                                                         <td className="border border-gray-300 dark:border-gray-700 px-4 py-2 truncate min-w-[120px]">
                                                             {formatDate(task.createdAt)}
                                                         </td>
@@ -170,6 +176,14 @@ function ReportPage() {
                                                         </td>
                                                         <td className="border border-gray-300 dark:border-gray-700 px-4 py-2 truncate min-w-[120px]">
                                                             {formatDate(task.dueDate)}
+                                                        </td>
+                                                        <td className="border border-gray-300 dark:border-gray-700 px-4 py-2 min-w-[120px]">
+                                                            <span className={`${task.status === "In Progress"
+                                                                ? "text-blue-500"
+                                                                : "text-green-500 dark:text-green-500"
+                                                                } font-semibold`}>
+                                                                {task.status || "N/A"}
+                                                            </span>
                                                         </td>
 
                                                         {/* Pending Days Column - Shows "No Pending" if Completed */}
@@ -182,7 +196,7 @@ function ReportPage() {
                                                         </td>
 
                                                         <td className="border border-gray-300 dark:border-gray-700 px-4 py-2 truncate min-w-[120px]">
-                                                            {task.finishedDate ? formatDate(task.finishedDate) : "In Progress"}
+                                                            {task.finishedDate ? formatDate(task.finishedDate) : "-"}
                                                         </td>
                                                     </tr>
                                                 );
@@ -195,11 +209,16 @@ function ReportPage() {
                                             </tr>
                                         )}
                                     </tbody>
-
                                 </table>
                             </div>
+
+                            <div className="mt-6">
+                                <ReportInfoPanel />
+                            </div>
                         </div>
+
                     </div>
+                    {/* Main Content */}
                 </div>
 
                 <Footer />
