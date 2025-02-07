@@ -66,43 +66,46 @@ function PIR() {
 
                                 <hr className="border-gray-400 dark:border-gray-600 mt-2 mb-5" />
 
-                                {/* Grid Section */}
-                                <div className="mt-8 w-full flex justify-center gap-8 animate-fade-in-down-fast">
+                                {/* Box Section */}
+                                <div className="mt-8 w-full flex flex-col items-center gap-8 animate-fade-in-down-fast">
 
-                                    {/* Task Box */}
-                                    <Link href="/pg1/app2/task">
-                                        <div className="relative w-60 border border-gray-400 dark:border-gray-600 bg-blue-50 dark:bg-blue-900 hover:bg-blue-100 dark:hover:bg-blue-800 h-full flex flex-col items-center justify-center p-6 rounded-lg shadow-md cursor-pointer transition-transform duration-300 hover:scale-105">
-                                            {/* Title Positioned at the Top */}
-                                            <h2 className="absolute top-3 text-lg font-semibold text-blue-700 dark:text-blue-300">
-                                                Tasks
+                                    <div className="flex gap-8">
+                                        {/* Task Box */}
+                                        <Link href="/pg1/app2/task">
+                                            <div className="relative w-64 border border-gray-400 dark:border-gray-600 bg-blue-50 dark:bg-blue-900 hover:bg-blue-100 dark:hover:bg-blue-800 h-full flex flex-col items-center justify-center p-6 rounded-lg shadow-md cursor-pointer transition-transform duration-300 hover:scale-105">
+                                                <h2 className="absolute top-3 text-lg font-semibold text-blue-700 dark:text-blue-300">
+                                                    Tasks
+                                                </h2>
+                                                <span className="text-4xl font-bold text-blue-700 dark:text-blue-300 mt-6 animate-bounce">{taskCount}</span>
+                                                <p className="text-sm text-gray-500 dark:text-gray-300 mt-2">Click to view tasks</p>
+                                            </div>
+                                        </Link>
+
+                                        {/* Completed Box */}
+                                        <Link href="/pg1/app2/completed">
+                                            <div className="relative w-64 border border-gray-400 dark:border-gray-600 bg-green-50 dark:bg-green-900 hover:bg-green-100 dark:hover:bg-green-800 h-full flex flex-col items-center justify-center p-6 rounded-lg shadow-md cursor-pointer transition-transform duration-300 hover:scale-105">
+                                                <h2 className="absolute top-3 text-lg font-semibold text-green-700 dark:text-green-300">
+                                                    Completed
+                                                </h2>
+                                                <span className="text-4xl font-bold text-green-700 dark:text-green-300 mt-6">{completeCount}</span>
+                                                <p className="text-sm text-gray-500 dark:text-gray-300 mt-2">Click to view completed tasks</p>
+                                            </div>
+                                        </Link>
+                                    </div>
+
+                                    {/* Report Box */}
+                                    <Link href="/pg1/app2/report">
+                                        <div className="relative w-[520px] border border-gray-400 dark:border-gray-600 bg-yellow-50 dark:bg-yellow-700 hover:bg-yellow-100 dark:hover:bg-yellow-800 h-full flex flex-col items-center justify-center p-6 rounded-lg shadow-md cursor-pointer transition-transform duration-300 hover:scale-105">
+                                            <h2 className="absolute top-3 text-lg font-semibold text-yellow-600 dark:text-yellow-300">
+                                                Reports
                                             </h2>
-
-                                            {/* Task Count */}
-                                            <span className="text-4xl font-bold text-blue-700 dark:text-blue-300 mt-6 animate-bounce">{taskCount}</span>
-
-                                            {/* Subtitle */}
-                                            <p className="text-sm text-gray-500 dark:text-gray-300 mt-2">Click to view tasks</p>
+                                            <span className="text-4xl font-bold text-yellow-700 dark:text-yellow-300 mt-6">📊</span>
+                                            <p className="text-sm text-gray-500 dark:text-gray-300 mt-2">Click to view reports</p>
                                         </div>
                                     </Link>
-
-                                    {/* Completed Box */}
-                                    <Link href="/pg1/app2/completed">
-                                        <div className="relative w-60 border border-gray-400 dark:border-gray-600 bg-green-50 dark:bg-green-900 hover:bg-green-100 dark:hover:bg-green-800 h-full flex flex-col items-center justify-center p-6 rounded-lg shadow-md cursor-pointer transition-transform duration-300 hover:scale-105">
-                                            {/* Title Positioned at the Top */}
-                                            <h2 className="absolute top-3 text-lg font-semibold text-green-700 dark:text-green-300">
-                                                Completed
-                                            </h2>
-
-                                            {/* Completed Count */}
-                                            <span className="text-4xl font-bold text-green-700 dark:text-green-300 mt-6">{completeCount}</span>
-
-                                            {/* Subtitle */}
-                                            <p className="text-sm text-gray-500 dark:text-gray-300 mt-2">Click to view completed tasks</p>
-                                        </div>
-                                    </Link>
-
 
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -111,7 +114,7 @@ function PIR() {
 
                 {/* Footer */}
                 <Footer />
-                <ScrollUpButton/>
+                <ScrollUpButton />
             </Container>
         </main>
     );

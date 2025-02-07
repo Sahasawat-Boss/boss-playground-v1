@@ -12,7 +12,7 @@ const ScrollUpButton = () => {
 
     useEffect(() => {
         const toggleVisibility = () => {
-            setIsVisible(window.scrollY > 100);
+            setIsVisible(window.scrollY > 105);
         };
 
         window.addEventListener("scroll", toggleVisibility);
@@ -24,12 +24,12 @@ const ScrollUpButton = () => {
     };
 
     return (
-        <div className="fixed bottom-3.5 right-4 flex flex-col items-end gap-2 z-50">
+        <div className="fixed bottom-3.5 right-4 flex flex-col items-end gap-2 z-50 ">
             {/* Scroll to Top Button */}
             <button
                 onClick={scrollToTop}
-                className={`text-white dark:text-black bg-[#4e4e4e] dark:bg-gray-300 text-3xl border border-white dark:border-[gray] rounded-full transition-transform hover:scale-110 
-                ${isVisible ? "opacity-100 mr-0.5" : "opacity-0 pointer-events-none"}`}
+                className={` text-white dark:text-black bg-gray-900 dark:bg-white text-3xl border border-gray-400 dark:border-[gray] rounded-full transition-transform hover:scale-110 
+                ${isVisible ? "opacity-80 mr-0.5" : "opacity-0 mr-0.5 pointer-events-none"}`}
                 aria-label="Scroll to top"
             >
                 <IoMdArrowDropup />
@@ -42,7 +42,7 @@ const ScrollUpButton = () => {
                 onMouseLeave={() => setIsDropdownOpen(false)}
             >
                 <button
-                    className="text-lg p-1 bg-[#4e4e4e] dark:bg-gray-300 text-white dark:text-black rounded-full shadow-lg border border-white dark:border-gray-800 transition-transform hover:scale-110"
+                    className="opacity-80 text-lg p-[4.15px] bg-gray-900 dark:bg-white text-white dark:text-black rounded-full shadow-lg border border-gray-400 dark:border-gray-800 transition-transform hover:scale-110"
                     aria-label="More options"
                 >
                     <IoEllipsisVertical />
@@ -50,7 +50,7 @@ const ScrollUpButton = () => {
 
                 {/* Dropdown Box */}
                 <div
-                    className={`absolute -top-7 right-5 rounded-xl bg-white dark:bg-gray-800 shadow-lg px-3 py-2 transition-transform duration-200 transform ${
+                    className={` absolute -top-7 right-5 rounded-xl bg-white dark:bg-gray-800 shadow-lg px-3 py-2 transition-transform duration-200 transform ${
                         isDropdownOpen ? "scale-115 opacity-100" : "scale-75 opacity-0 pointer-events-none"
                     }`}
                 >

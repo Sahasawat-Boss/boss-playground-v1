@@ -17,7 +17,7 @@ const ReportInfoPanel = () => {
                 aria-expanded={isOpen}
             >
                 <span className="flex items-center text-sm font-semibold ">
-                    📊 Report Information
+                    📊 Report Calculation
                 </span>
                 {/* Toggle Icon */}
                 {isOpen ? (
@@ -33,15 +33,8 @@ const ReportInfoPanel = () => {
                     }`}
             >
                 <div className="flex justify-center item-center ">
-                    <div className="px-6 text-sm w-full max-w-4xl">
+                    <div className="px-8 text-sm w-full max-w-4xl">            
                         <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">
-                            Overview of PI Task Report
-                        </h3>
-                        <p className="text-gray-700 dark:text-gray-300">
-                            This page displays a report table summarizing the overall status of PI Tasks and their completion within the system. The report provides insights into task progress and pending deadlines.
-                        </p>
-
-                        <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mt-4 mb-2">
                             Calculation: Pending (Day)
                         </h3>
                         <p className="text-gray-700 dark:text-gray-300">

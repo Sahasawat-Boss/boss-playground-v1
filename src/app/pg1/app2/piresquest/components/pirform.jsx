@@ -147,7 +147,7 @@ const RequestForm = () => {
 
             if (result.success) {
                 setSuccessMessage(true);
-                setTimeout(() => setFadeOut(true), 400); // ⏳ Step 2: Wait 0.4 seconds before fading out
+                setTimeout(() => setFadeOut(true), 2000); // ⏳ Step 2: Wait 2 seconds before fading out
                 setTimeout(() => {
                     setSuccessMessage(false);
                     setFadeOut(false);
@@ -233,22 +233,15 @@ const RequestForm = () => {
                     <label className="block mb-1">
                         Detected Date:
                         <input
-                            type="text"
+                            type="date"
                             name="detectedDate"
-                            value={formData.detectedDate ? new Date(formData.detectedDate).toLocaleDateString("en-GB", {
-                                day: "2-digit",
-                                month: "2-digit",
-                                year: "2-digit"
-                            }) : ""}
-                            onChange={(e) => {
-                                const formattedDate = e.target.value.split("-").reverse().join("-"); // Convert DD-MM-YY back to YYYY-MM-DD
-                                setFormData({ ...formData, detectedDate: formattedDate });
-                            }}
+                            value={formData.detectedDate}
+                            onChange={handleChange}
                             className="text-black w-full border border-gray-300 rounded px-3 py-2 mt-1"
-                            placeholder="DD-MM-YY"
                         />
                     </label>
                 </div>
+
 
                 <div>
                     <label className="block">
@@ -420,22 +413,15 @@ const RequestForm = () => {
                     <label className="block mb-1">
                         Due Date:
                         <input
-                            type="text"
+                            type="date"
                             name="dueDate"
-                            value={formData.dueDate ? new Date(formData.dueDate).toLocaleDateString("en-GB", {
-                                day: "2-digit",
-                                month: "2-digit",
-                                year: "2-digit"
-                            }) : ""}
-                            onChange={(e) => {
-                                const formattedDate = e.target.value.split("-").reverse().join("-"); // Convert DD-MM-YY back to YYYY-MM-DD
-                                setFormData({ ...formData, dueDate: formattedDate });
-                            }}
+                            value={formData.dueDate}
+                            onChange={handleChange}
                             className="text-black w-full border border-gray-300 rounded px-3 py-2 mt-1"
-                            placeholder="DD-MM-YY"
                         />
                     </label>
                 </div>
+
             </div>
             <div className="flex items-center justify-center gap-6 mt-8 mb-2">
                 <button

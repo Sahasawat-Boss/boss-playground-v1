@@ -7,6 +7,7 @@ import Footer from "../Components/footer";
 import BackButton from "../components/backButton";
 import AppNav from "./components/appNav";
 import AppNav2 from "./components/appNav2";
+import ScrollUpButton from "../components/scrollUp";
 
 const Pg1 = () => {
     const { data: session } = useSession();
@@ -55,6 +56,7 @@ const Pg1 = () => {
 
                 {/* Footer */}
                 <Footer />
+                <ScrollUpButton/>
             </Container>
         </main>
     );
