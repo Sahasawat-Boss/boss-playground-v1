@@ -3,12 +3,12 @@
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { CgProfile } from "react-icons/cg";
-import Container from "../Components/container";
-import NavBar from "../Components/nav";
-import Footer from "../Components/footer";
+import Container from "../compoenents/container";
+import NavBar from "../compoenents/nav";
+import Footer from "../compoenents/footer";
 import Link from "next/link";
-import ScrollUpButton from "../components/scrollUp";
-import YTvdo from "./components/YTvdo";
+import ScrollUpButton from "../compoenents/scrollUp";
+import YTvdo from "./compoenents/YTvdo";
 
 function WelcomePage() {
     const { data: session } = useSession();

@@ -2,9 +2,9 @@
 
 import { useSession } from 'next-auth/react'
 import { useEffect } from 'react';
-import Container from "../app/Components/container";
-import NavBar from "../app/Components/nav";
-import Footer from "../app/Components/footer";
+import Container from "../app/components/container";
+import NavBar from "../app/components/nav";
+import Footer from "../app/components/footer";
 import Hero from "./components/forIndex/hero";
 import AboutMe from "./components/forIndex/aboutMe";
 import Port from "./components/forIndex/port";

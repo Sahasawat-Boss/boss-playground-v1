@@ -1,8 +1,8 @@
 "use client"
 
-import Container from "../Components/container";
-import NavBar from "../Components/nav";
-import Footer from "../Components/footer";
+import Container from "../compoenents/container";
+import NavBar from "../compoenents/nav";
+import Footer from "../compoenents/footer";
 import Link from 'next/link';
 
 function createContent() {
