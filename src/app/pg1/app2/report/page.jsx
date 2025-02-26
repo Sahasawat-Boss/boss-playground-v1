@@ -9,7 +9,7 @@ import SideMenu from "../components/sideMenu";
 import ScrollUpButton from "@/app/components/scrollUp";
 import ExportExcelReport from "./components/exportExcelReport";
 import ExportPDFReport from "./components/exportPDFreport";
-import ReportInfoPanel from "./components/reportInfoPanel ";
+import ReportInfoPanel from "./components/reportInfoPanel";
 import ReportSummary from "./components/reportSummary";
 import ReportChart from "./components/ReportChart";
 import { IoReload } from "react-icons/io5";
