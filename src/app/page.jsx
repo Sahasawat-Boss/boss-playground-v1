@@ -10,7 +10,6 @@ import AboutMe from "./components/forIndex/aboutMe";
 import Port from "./components/forIndex/port";
 import CardInterest from './components/forIndex/stack';
 import Parallax1 from "./components/forIndex/parallax1"
-import Parallax2 from "./components/forIndex/parallax2"
 import ScrollUpButton from "./components/scrollUp";
 
 export default function FirstPage() {
@@ -33,7 +32,6 @@ export default function FirstPage() {
         <Parallax1 />
         <CardInterest />
 
-        <Parallax2 />
         <Port />
 
         <Footer />
