@@ -1,9 +1,9 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import Container from "../Components/container";
-import NavBar from "../Components/nav";
-import Footer from "../Components/footer";
+import Container from "../components/container";
+import NavBar from "../components/nav";
+import Footer from "../components/footer";
 import BackButton from "../components/backButton";
 import AppNav from "./components/appNav";
 import AppNav2 from "./components/appNav2";

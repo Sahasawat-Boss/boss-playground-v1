@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import Container from "../Components/container";
-import NavBar from "../Components/nav";
-import Footer from "../Components/footer";
+import Container from "../components/container";
+import NavBar from "../components/nav";
+import Footer from "../components/footer";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";

@@ -3,8 +3,8 @@
 import UploadForm from './components/UploadForm';
 import { useSession } from 'next-auth/react'
 import Container from "../../components/container";
-import NavBar from "../../Components/nav";
-import Footer from "../../Components/footer";
+import NavBar from "../../components/nav";
+import Footer from "../../components/footer";
 import BackButton from "../../components/backButton";
 import ScrollUpButton from "@/app/components/scrollUp";
 
