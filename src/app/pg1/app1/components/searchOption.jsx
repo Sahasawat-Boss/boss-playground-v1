@@ -66,7 +66,7 @@ const SearchOptions = () => {
                                     id="status"
                                     value={status}
                                     onChange={(e) => setStatus(e.target.value)}
-                                    className={`py-2 px-4 border border-gray-300 shadow-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition
+                                    className={`py-2 px-4 border bg-white border-gray-300 shadow-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition
                                         ${status === '' ? 'text-gray-400' : 'text-black'
                                         }`}
                                 >

@@ -218,7 +218,7 @@ const RequestForm = () => {
                             name="project"
                             value={formData.project} // Controlled field
                             onChange={handleChange} // Update state on change
-                            className="text-black w-full border border-gray-300 rounded px-3 py-2 mt-1"
+                            className="text-black bg-white dark:bg-gray-200 bg-gray-200 w-full border border-gray-300 rounded px-3 py-2 mt-1"
                         >
                             <option value="" disabled>Select a project</option>
                             <option value="Main Branch (A)">Main Branch A (A)</option>
@@ -237,7 +237,7 @@ const RequestForm = () => {
                             name="detectedDate"
                             value={formData.detectedDate}
                             onChange={handleChange}
-                            className="text-black w-full border border-gray-300 rounded px-3 py-2 mt-1"
+                            className="text-black bg-white dark:bg-gray-200 w-full border border-gray-300 rounded px-3 py-2 mt-1"
                         />
                     </label>
                 </div>
@@ -251,7 +251,7 @@ const RequestForm = () => {
                             name="detectedBy"
                             value={formData.detectedBy}
                             onChange={handleChange}
-                            className="text-black w-full border border-gray-300 rounded px-3 py-2 mt-1"
+                            className="text-black bg-white dark:bg-gray-200 w-full border border-gray-300 rounded px-3 py-2 mt-1"
                             placeholder="Enter your name..."
                         />
                     </label>
@@ -263,7 +263,7 @@ const RequestForm = () => {
                             name="detectedProcess"
                             value={formData.detectedProcess} // Controlled by state
                             onChange={handleChange} // Updates state on change
-                            className="text-black w-full border border-gray-300 rounded px-3 py-2 mt-1"
+                            className="text-black bg-white dark:bg-gray-200 w-full border border-gray-300 rounded px-3 py-2 mt-1"
                         >
                             <option value="" disabled>Select a process</option>
                             <option value="Main Process">Main Process </option>
@@ -322,7 +322,7 @@ const RequestForm = () => {
                         name="details"
                         value={formData.details}
                         onChange={handleChange}
-                        className="text-black w-full mt-2 h-20 border border-gray-300 rounded px-3 py-2"
+                        className="text-black bg-white dark:bg-gray-200 w-full mt-2 h-20 border border-gray-300 rounded px-3 py-2"
                         rows="4"
                         placeholder="Provide additional details here..."
                     />
@@ -404,7 +404,7 @@ const RequestForm = () => {
                             name="inspectorName"
                             value={formData.inspectorName}
                             onChange={handleChange}
-                            className="text-black w-full border border-gray-300 rounded px-3 py-2 mt-1"
+                            className="text-black bg-white dark:bg-gray-200 w-full border border-gray-300 rounded px-3 py-2 mt-1"
                             placeholder="Enter name..."
                         />
                     </label>
@@ -417,7 +417,7 @@ const RequestForm = () => {
                             name="dueDate"
                             value={formData.dueDate}
                             onChange={handleChange}
-                            className="text-black w-full border border-gray-300 rounded px-3 py-2 mt-1"
+                            className="text-black bg-white dark:bg-gray-200 w-full border border-gray-300 rounded px-3 py-2 mt-1"
                         />
                     </label>
                 </div>

@@ -93,7 +93,7 @@ function SignIn() {
                                     value={email} // Controlled input
                                     onChange={(e) => setEmail(e.target.value)}
                                     placeholder="email"
-                                    className="text-black input input-bordered focus:border-blue-500 focus:ring-2 focus:ring-blue-400"
+                                    className="text-white input input-bordered focus:border-blue-500 focus:ring-2 focus:ring-blue-400"
                                     disabled={isLoading} // ⬅️ Disable input while loading
                                 />
                             </div>
@@ -107,7 +107,7 @@ function SignIn() {
                                     value={password} // Controlled input
                                     onChange={(e) => setPassword(e.target.value)}
                                     placeholder="password"
-                                    className="text-black input input-bordered focus:border-blue-500 focus:ring-2 focus:ring-blue-400"
+                                    className="text-white input input-bordered focus:border-blue-500 focus:ring-2 focus:ring-blue-400"
                                     disabled={isLoading} // ⬅️ Disable input while loading
                                 />
                             </div>
@@ -136,7 +136,7 @@ function SignIn() {
                                 </a>
                             </label>
 
-                            <p className="mt-0 text-black">
+                            <p className="mt-0 text-gray-400">
                                 Don't have an account?
                                 <Link href="/signUp" className="text-blue-600 font-medium hover:underline ml-1">
                                     Sign Up

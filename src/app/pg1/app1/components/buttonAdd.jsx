@@ -92,7 +92,7 @@ const ButtonAdd = ({ fetchData }) => {
             {/* Success Message */}
             {successMessage && (
                 <div
-                    className={`fixed left-1/2 top-16 z-[99999] flex w-fit -translate-x-1/2 transform items-center justify-center text-center rounded-md border px-8 py-3 border-green-600 bg-white text-green-600 shadow-md ${fadeOut ? "opacity-0 transition-opacity duration-300" : "opacity-100"
+                    className={`fixed left-1/2 top-16 z-[99999] flex w-fit -translate-x-1/2 transform items-center justify-center text-center rounded-md bg-white border px-8 py-3 border-green-600 bg-white text-green-600 shadow-md ${fadeOut ? "opacity-0 transition-opacity duration-300" : "opacity-100"
                         }`}>
                     <span className="font-semibold text-xl mr-2"><FaRegCheckCircle /></span>
                     <span className="font-semibold ">Added Data Successfully</span>
@@ -106,10 +106,10 @@ const ButtonAdd = ({ fetchData }) => {
                 Add Data
             </button>
 
-            <dialog id="my_modal_2" className="modal text-black">
-                <div className="modal-box rounded-lg h-fit max-w-fit px-6">
+            <dialog id="my_modal_2" className="modal text-black ">
+                <div className="modal-box rounded-lg h-fit max-w-fit px-6 bg-white">
 
-                    <div className="flex justify-between items-center pb-3">
+                    <div className="flex justify-between items-center pb-3 bg-white">
                         <h3 className="font-bold text-[1.35rem] px-6">Add Data</h3>
                         <button
                             className="text-[#a0a0a0] hover:text-[#384f8f] text-3xl focus:outline-none"
@@ -124,7 +124,7 @@ const ButtonAdd = ({ fetchData }) => {
                         <hr className=" mb-5 border-1 border-gray-300 w-full" />
 
                         <form onSubmit={handleSubmit}>
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-2 gap-4 bg-white">
                                 <div className="flex flex-col">
                                     <label className="relative">
                                         <span className="absolute top-1 -left-3 text-red-400 text-[9.5px] mr-1">
@@ -138,7 +138,7 @@ const ButtonAdd = ({ fetchData }) => {
                                         value={formData.name}
                                         onChange={handleInputChange}
                                         placeholder="Enter name"
-                                        className="p-2 border border-gray-300 rounded-md"
+                                        className="p-2 border border-gray-300 rounded-md bg-white "
                                         required
                                     />
                                 </div>
@@ -150,7 +150,7 @@ const ButtonAdd = ({ fetchData }) => {
                                         value={formData.email}
                                         onChange={handleInputChange}
                                         placeholder="Enter email"
-                                        className="p-2 border border-gray-300 rounded-md"
+                                        className="p-2 border border-gray-300 rounded-md bg-white"
                                     />
                                 </div>
                             </div>
@@ -170,7 +170,7 @@ const ButtonAdd = ({ fetchData }) => {
                                             }));
                                         }}
                                         placeholder="Enter age"
-                                        className="p-2 border border-gray-300 rounded-md"
+                                        className="p-2 border border-gray-300 rounded-md bg-white"
                                     />
                                 </div>
 
@@ -182,7 +182,7 @@ const ButtonAdd = ({ fetchData }) => {
                                         value={formData.phone}
                                         onChange={handleInputChange}
                                         placeholder="Enter phone"
-                                        className="p-2 border border-gray-300 rounded-md"
+                                        className="p-2 border border-gray-300 rounded-md bg-white"
                                     />
                                 </div>
                             </div>
@@ -195,22 +195,22 @@ const ButtonAdd = ({ fetchData }) => {
                                     value={formData.company_name}
                                     onChange={handleInputChange}
                                     placeholder="Enter company name"
-                                    className="p-2 mt-1 border border-gray-300 rounded-md w-full"
+                                    className="p-2 mt-1 border border-gray-300 rounded-md bg-white w-full"
                                 />
                             </div>
 
                             <div className="mt-4 flex flex-col">
                                 <label>Preferred Plans</label>
-                                <div className="flex flex-wrap my-2 gap-x-6 gap-y-4">
+                                <div className="flex flex-wrap my-2 gap-x-6 gap-y-4 bg-white">
                                     {["A", "B", "C"].map((plan) => (
-                                        <label key={plan} className="mr-2 flex items-center gap-x-2 gap-y-4">
+                                        <label key={plan} className="mr-2 flex items-center gap-x-2 gap-y-4 bg-white">
                                             <input
                                                 type="checkbox"
                                                 name="plan"
                                                 value={plan}
                                                 checked={formData.plan.includes(plan)}
                                                 onChange={handleInputChange}
-                                                className="mt-1 w-5 h-5 mr-2 "
+                                                className="mt-1 w-5 h-5 mr-2 bg-white "
                                             />
                                             {plan}
                                         </label>
@@ -234,7 +234,7 @@ const ButtonAdd = ({ fetchData }) => {
                                                 value={status}
                                                 checked={formData.status === status}
                                                 onChange={handleInputChange}
-                                                className="mt-1 w-5 h-5 mr-2"
+                                                className="mt-1 w-5 h-5 mr-2 bg-white"
                                                 required
                                             />
                                             {status}
@@ -252,7 +252,7 @@ const ButtonAdd = ({ fetchData }) => {
                                     value={formData.comments}
                                     onChange={handleInputChange}
                                     placeholder="Write comments here..."
-                                    className="w-full p-2 mt-2 border border-gray-300 rounded-md"
+                                    className="w-full p-2 mt-2 border border-gray-300 rounded-md bg-white"
                                     rows="4"
                                 />
                             </div>

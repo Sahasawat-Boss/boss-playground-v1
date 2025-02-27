@@ -119,7 +119,7 @@ function SignUp() {
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
                                     placeholder="Enter your name"
-                                    className="text-black input input-bordered focus:border-blue-500 focus:ring-2 focus:ring-blue-400"
+                                    className="text-white input input-bordered focus:border-blue-500 focus:ring-2 focus:ring-blue-400"
                                     disabled={isLoading} // ⬅️ Disable while loading
                                 />
                             </div>
@@ -133,7 +133,7 @@ function SignUp() {
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     placeholder="Enter your email"
-                                    className="text-black input input-bordered focus:border-blue-500 focus:ring-2 focus:ring-blue-400"
+                                    className="text-white input input-bordered focus:border-blue-500 focus:ring-2 focus:ring-blue-400"
                                     disabled={isLoading} // ⬅️ Disable while loading
                                 />
                             </div>
@@ -147,7 +147,7 @@ function SignUp() {
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                     placeholder="Enter your password"
-                                    className="text-black input input-bordered focus:border-blue-500 focus:ring-2 focus:ring-blue-400"
+                                    className="text-white input input-bordered focus:border-blue-500 focus:ring-2 focus:ring-blue-400"
                                     disabled={isLoading} // ⬅️ Disable while loading
                                 />
                             </div>
@@ -161,7 +161,7 @@ function SignUp() {
                                     value={confirmPassword}
                                     onChange={(e) => setConfirmPassword(e.target.value)}
                                     placeholder="Re-enter your password"
-                                    className="text-black input input-bordered focus:border-blue-500 focus:ring-2 focus:ring-blue-400"
+                                    className="text-white input input-bordered focus:border-blue-500 focus:ring-2 focus:ring-blue-400"
                                     disabled={isLoading} // ⬅️ Disable while loading
                                 />
                             </div>
@@ -184,7 +184,7 @@ function SignUp() {
                                 </button>
                             </div>
 
-                            <p className="mt-3 text-black">Already have an account?
+                            <p className="mt-3 text-gray-400">Already have an account?
                                 <Link href="/signIn" className='text-blue-500 font-medium hover:underline ml-1'>Sign In</Link>
                             </p>
                         </form>

@@ -144,11 +144,11 @@ const Crude2 = () => {
                             <th className="sticky left-0 z-50 bg-[#e7e7e7] pt-4 pb-2 px-5 border border-[#ffffff] w-[60px] truncate">
                                 <input
                                     type="checkbox"
-                                    className="w-6 h-6"
+                                    className="w-6 h-6 text-white accent-white bg-white border border-white rounded-md focus:ring-2 focus:ring-blue-500"
                                     checked={isAllSelected}
                                     onChange={toggleSelectAll}
                                     style={{
-                                        backgroundColor: isAllSelected ? "#1E3A8A" : "transparent",
+                                        backgroundColor: isAllSelected ? "#e7e7e7" : "#e7e7e7",
                                         borderColor: "#1E3A8A",
                                     }}
                                 />
@@ -207,7 +207,7 @@ const Crude2 = () => {
                                         <td className="sticky left-0 z-50 bg-[#e7e7e7] py-3 px-5 text-left font-bold uppercase border border-[#ffffff] w-[60px] truncate">
                                             <input
                                                 type="checkbox"
-                                                className="w-6 h-6"
+                                                className="w-6 h-6 text-white accent-white bg-white border border-white rounded-md focus:ring-2 focus:ring-blue-500"
                                                 checked={isSelected}
                                                 onChange={() => toggleRowSelection(row, index)}
                                                 style={{
@@ -423,7 +423,7 @@ const Crude2 = () => {
                         </dialog>
                         {/*Button Delete and modal*/}
 
-                        
+
                     </div>
                     {/* Button Section*/}
 
