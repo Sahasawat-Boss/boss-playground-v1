@@ -143,7 +143,11 @@ function SignIn() {
                                 </Link>
                             </p>
                         </form>
+
                     </div>
+                    <div className="text-center text-white text-lg mt-8">Test User?</div>
+                    <div className="text-center text-white text-lg">Username: 123@123</div>
+                    <div className="text-center text-white text-lg"> Password: 123 </div>
                 </div>
             </div>
             <Footer />
