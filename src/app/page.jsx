@@ -7,7 +7,6 @@ import NavBar from "../app/components/nav";
 import Footer from "../app/components/footer";
 import Hero from "./components/forIndex/hero";
 import AboutMe from "./components/forIndex/aboutMe";
-import Port from "./components/forIndex/port";
 import Parallax1 from "./components/forIndex/parallax1"
 import ScrollUpButton from "./components/scrollUp";
 
@@ -29,8 +28,6 @@ export default function FirstPage() {
         <AboutMe />
         
         <Parallax1 />
-
-        <Port />
 
         <Footer />
         <ScrollUpButton />
